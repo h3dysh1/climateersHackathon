@@ -35,9 +35,14 @@ p { margin: 0 0 8px; line-height: 1.4; }
 
 .counts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
 .count { padding: 10px; border-radius: 8px; background: #1f2430; border-left: 4px solid; }
-.count.high { border-color: var(--high); }
-.count.medium { border-color: var(--medium); }
-.count.low { border-color: var(--low); }
+.count.exposed { border-color: var(--high); }
+.count.partial { border-color: var(--medium); }
+.count.strong { border-color: var(--low); }
+.row { display: flex; gap: 6px; margin-bottom: 10px; }
+button.ghost { background: none; color: var(--muted); border: 1px solid #2f3644; }
+.ranked { padding-left: 18px; margin: 6px 0 0; }
+.ranked li { cursor: pointer; padding: 3px 0; color: var(--muted); }
+.ranked li.on { color: var(--accent); font-weight: 600; }
 .count .n { display: block; font-size: 22px; font-weight: 600; }
 .count .label { font-size: 12px; color: var(--muted); text-transform: capitalize; }
 .count .delta { display: block; font-size: 11px; color: var(--muted); }

@@ -1,37 +1,57 @@
-// Data loading, API calls and the shared upgrade rule (must match docs/contracts.md).
+// Data loading, API calls and the restoration model (must match backend/app/restoration.py).
 
 export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-export const UPGRADE_FACTOR = 0.5;
+
+const WAVE_REDUCTION_PER_100M = 0.13;
+const WAVE_REDUCTION_CAP = 0.66;
+const SURGE_REDUCTION_M_PER_KM = 0.1;
+export const BANDS = ['exposed', 'partial', 'strong'];
 
 export const BAND_COLOURS = {
-  high: [230, 72, 62],
-  medium: [240, 170, 50],
-  low: [70, 180, 120],
+  exposed: [230, 72, 62],
+  partial: [240, 170, 50],
+  strong: [60, 190, 140],
 };
 
-export function band(risk) {
-  if (risk >= 0.5) return 'high';
-  if (risk >= 0.25) return 'medium';
-  return 'low';
+export const waveReduction = (w) => +Math.min(WAVE_REDUCTION_CAP, (WAVE_REDUCTION_PER_100M * Math.max(0, w)) / 100).toFixed(3);
+export const surgeReductionM = (w) => +((SURGE_REDUCTION_M_PER_KM * Math.max(0, w)) / 1000).toFixed(3);
+export function protectionBand(w) {
+  const r = waveReduction(w);
+  if (r >= 0.4) return 'strong';
+  if (r >= 0.2) return 'partial';
+  return 'exposed';
 }
 
-export function counts(buildings) {
-  const c = { high: 0, medium: 0, low: 0 };
-  for (const b of buildings) c[b.band] += 1;
-  return c;
+function peopleByBand(segments, widthOf) {
+  const out = { exposed: 0, partial: 0, strong: 0 };
+  for (const s of segments) out[protectionBand(widthOf(s))] += s.surge_people || 0;
+  return out;
 }
 
-// Local fallback for /plan-upgrades so the UI works even if the backend is down.
-export function planUpgradesLocal(buildings, budget) {
-  const ranked = [...buildings].sort((a, b) => b.risk - a.risk);
-  const chosen = new Set(ranked.slice(0, budget).map((b) => b.id));
-  const after = buildings.map((b) => {
-    if (!chosen.has(b.id)) return { ...b, upgraded: false };
-    const vulnerability = +(b.vulnerability * UPGRADE_FACTOR).toFixed(3);
-    const risk = +(b.exposure * vulnerability).toFixed(3);
-    return { ...b, vulnerability, risk, band: band(risk), upgraded: true };
-  });
-  return { upgraded: [...chosen], before: counts(buildings), after: counts(after), buildings: after, local: true };
+// Local copy of /scenario so the app works even if the backend is asleep.
+export function runScenarioLocal(segments, restoreIds) {
+  const chosen = new Set(restoreIds);
+  const widthAfter = (s) => s.existing_width_m + (chosen.has(s.id) ? s.restorable_width_m : 0);
+  const restored = segments.filter((s) => chosen.has(s.id));
+  const better = restored
+    .filter((s) => BANDS.indexOf(protectionBand(widthAfter(s))) > BANDS.indexOf(protectionBand(s.existing_width_m)))
+    .reduce((n, s) => n + (s.surge_people || 0), 0);
+  return {
+    restored: restored.map((s) => s.id),
+    hectares: +restored.reduce((n, s) => n + (s.restorable_ha || 0), 0).toFixed(1),
+    people_better_protected: better,
+    before: peopleByBand(segments, (s) => s.existing_width_m),
+    after: peopleByBand(segments, widthAfter),
+    segments: segments.map((s) => ({
+      id: s.id,
+      width_m: widthAfter(s),
+      wave_reduction: waveReduction(widthAfter(s)),
+      surge_reduction_m: surgeReductionM(widthAfter(s)),
+      band: protectionBand(widthAfter(s)),
+      restored: chosen.has(s.id),
+    })),
+    local: true,
+  };
 }
 
 async function getJson(path, fallback) {
@@ -45,14 +65,15 @@ async function getJson(path, fallback) {
 }
 
 export async function loadData() {
-  const [track, buildings, risk, labels, validation] = await Promise.all([
+  const empty = { type: 'FeatureCollection', features: [] };
+  const [track, segments, mangroves, buildings, validation] = await Promise.all([
     getJson('/data/track.json', []),
-    getJson('/data/buildings.geojson', { features: [] }),
-    getJson('/data/risk.json', { buildings: [] }),
-    getJson('/data/roof_labels.json', {}),
+    getJson('/data/coast_segments.geojson', empty),
+    getJson('/data/mangroves.geojson', empty),
+    getJson('/data/buildings.geojson', empty),
     getJson('/data/validation.json', null),
   ]);
-  return { track, buildings, risk: risk.buildings, labels, validation };
+  return { track, segments, mangroves, buildings, validation };
 }
 
 async function post(path, body) {
@@ -65,17 +86,18 @@ async function post(path, body) {
   return r.json();
 }
 
-export async function planUpgrades(buildings, budget) {
+export async function runScenario(segments, restoreIds) {
   try {
-    return await post('/plan-upgrades', {
-      budget,
-      buildings: buildings.map(({ id, exposure, vulnerability, risk, band }) => ({ id, exposure, vulnerability, risk, band })),
+    return await post('/scenario', {
+      restore_ids: restoreIds,
+      segments: segments.map(({ id, existing_width_m, restorable_width_m, restorable_ha, surge_people }) =>
+        ({ id, existing_width_m, restorable_width_m, restorable_ha, surge_people })),
     });
   } catch {
-    return planUpgradesLocal(buildings, budget);
+    return runScenarioLocal(segments, restoreIds);
   }
 }
 
-export async function resiliencePlan(areaName, summary) {
-  return post('/resilience-plan', { area_name: areaName, summary });
+export async function restorationPlan(areaName, summary) {
+  return post('/restoration-plan', { area_name: areaName, summary });
 }

@@ -1,19 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import DeckGL from '@deck.gl/react';
-import { PathLayer, ScatterplotLayer } from '@deck.gl/layers';
+import { GeoJsonLayer, PathLayer, ScatterplotLayer } from '@deck.gl/layers';
 import { Map } from 'react-map-gl/maplibre';
-import { BAND_COLOURS, counts, loadData, planUpgrades, resiliencePlan } from './api.js';
+import { BAND_COLOURS, loadData, protectionBand, restorationPlan, runScenario } from './api.js';
 
 // Free dark basemap (attribution: © OpenStreetMap contributors, © CARTO).
 const MAP_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
-const AREA_NAME = 'Pilot area'; // P1: replace with the real district name
-
-const INITIAL_VIEW = { longitude: 178.1, latitude: -17.5, zoom: 9, pitch: 0, bearing: 0 };
+const AREA_NAME = 'Lautoka'; // pilot city
+const INITIAL_VIEW = { longitude: 177.44, latitude: -17.62, zoom: 11.5, pitch: 0, bearing: 0 };
 
 export default function App() {
   const [data, setData] = useState(null);
-  const [budget, setBudget] = useState(0);
-  const [plan, setPlan] = useState(null);
+  const [restoreIds, setRestoreIds] = useState([]);
+  const [scenario, setScenario] = useState(null);
   const [selected, setSelected] = useState(null);
   const [planText, setPlanText] = useState('');
   const [planBusy, setPlanBusy] = useState(false);
@@ -22,83 +21,84 @@ export default function App() {
     loadData().then(setData);
   }, []);
 
-  // Join building points with risk scores and roof labels.
-  const buildings = useMemo(() => {
-    if (!data) return [];
-    const riskById = Object.fromEntries(data.risk.map((r) => [r.id, r]));
-    return data.buildings.features
-      .filter((f) => riskById[f.properties.id])
-      .map((f) => ({
-        ...f.properties,
-        position: f.geometry.coordinates,
-        ...riskById[f.properties.id],
-        labels: data.labels[f.properties.id],
-      }));
-  }, [data]);
+  const segments = useMemo(() => (data ? data.segments.features.map((f) => ({ ...f.properties, path: f.geometry.coordinates })) : []), [data]);
+  const ranked = useMemo(() => [...segments].filter((s) => s.restorable_ha > 0).sort((a, b) => b.priority - a.priority), [segments]);
 
-  // Re-plan whenever the budget changes (debounced).
   useEffect(() => {
-    if (!buildings.length) return;
-    if (budget === 0) return setPlan(null);
-    const t = setTimeout(() => planUpgrades(buildings, budget).then(setPlan), 200);
-    return () => clearTimeout(t);
-  }, [budget, buildings]);
+    if (!segments.length) return;
+    runScenario(segments, restoreIds).then(setScenario);
+  }, [restoreIds, segments]);
 
-  const shown = useMemo(() => {
-    if (!plan) return buildings;
-    const after = Object.fromEntries(plan.buildings.map((b) => [b.id, b]));
-    return buildings.map((b) => ({ ...b, ...after[b.id] }));
-  }, [plan, buildings]);
+  const after = useMemo(() => Object.fromEntries((scenario?.segments || []).map((s) => [s.id, s])), [scenario]);
 
-  const before = counts(buildings);
-  const after = plan ? plan.after : before;
+  const toggle = (id) => setRestoreIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]));
+  const restoreTop = (n) => setRestoreIds(ranked.slice(0, n).map((s) => s.id));
 
   const layers = [
+    new GeoJsonLayer({
+      id: 'mangroves',
+      data: data?.mangroves,
+      filled: true,
+      getFillColor: [60, 190, 140, 110],
+      stroked: false,
+    }),
+    new ScatterplotLayer({
+      id: 'buildings',
+      data: data?.buildings.features || [],
+      getPosition: (f) => f.geometry.coordinates,
+      getRadius: 3,
+      radiusUnits: 'pixels',
+      getFillColor: (f) => {
+        const band = after[f.properties.segment_id]?.band;
+        return band ? [...BAND_COLOURS[band], 160] : [140, 150, 165, 120];
+      },
+      updateTriggers: { getFillColor: [scenario] },
+    }),
+    new PathLayer({
+      id: 'coast',
+      data: segments,
+      getPath: (s) => s.path,
+      getColor: (s) => {
+        const a = after[s.id];
+        if (a?.restored) return [120, 230, 255, 255];
+        return [...BAND_COLOURS[a?.band || protectionBand(s.existing_width_m)], 255];
+      },
+      getWidth: (s) => (restoreIds.includes(s.id) ? 9 : 6),
+      widthUnits: 'pixels',
+      capRounded: true,
+      pickable: true,
+      onClick: ({ object }) => {
+        setSelected(object);
+        if (object.restorable_ha > 0) toggle(object.id);
+      },
+      updateTriggers: { getColor: [scenario], getWidth: [restoreIds] },
+    }),
     new PathLayer({
       id: 'track',
       data: data?.track?.length ? [{ path: data.track.map((p) => [p.lon, p.lat]) }] : [],
       getPath: (d) => d.path,
-      getColor: [180, 200, 255, 200],
-      getWidth: 4,
+      getColor: [180, 200, 255, 140],
+      getWidth: 3,
       widthUnits: 'pixels',
-    }),
-    new ScatterplotLayer({
-      id: 'track-points',
-      data: data?.track || [],
-      getPosition: (p) => [p.lon, p.lat],
-      getRadius: 6,
-      radiusUnits: 'pixels',
-      getFillColor: [180, 200, 255, 255],
-    }),
-    new ScatterplotLayer({
-      id: 'buildings',
-      data: shown,
-      getPosition: (b) => b.position,
-      getRadius: 5,
-      radiusUnits: 'pixels',
-      getFillColor: (b) => [...BAND_COLOURS[b.band], 220],
-      stroked: true,
-      getLineColor: (b) => (b.upgraded ? [255, 255, 255, 255] : [0, 0, 0, 0]),
-      lineWidthUnits: 'pixels',
-      getLineWidth: 2,
-      pickable: true,
-      onClick: ({ object }) => setSelected(object),
-      updateTriggers: { getFillColor: [plan], getLineColor: [plan] },
     }),
   ];
 
   async function makePlan() {
     setPlanBusy(true);
     try {
+      const top = ranked.slice(0, 5).map(({ id, restorable_ha, surge_people, priority, wave_reduction_now, wave_reduction_restored }) =>
+        ({ id, restorable_ha, surge_people, priority, wave_reduction_now, wave_reduction_restored }));
       const summary = {
-        buildings_scored: buildings.length,
-        before,
-        after,
-        upgraded: plan?.upgraded || [],
-        upgrade_assumption: 'An upgraded roof (tie-downs, strapping, repairs) halves roof vulnerability in this model.',
+        restored: scenario.restored,
+        hectares: scenario.hectares,
+        people_better_protected: scenario.people_better_protected,
+        surge_exposed_people_by_protection_before: scenario.before,
+        surge_exposed_people_by_protection_after: scenario.after,
+        top_ranked_sites: top,
+        model: 'Wave height reduction 13% per 100 m of mangroves (low end of 13-66% field range), capped at 66%; surge reduction 0.1 m per km.',
         validation: data.validation,
       };
-      const r = await resiliencePlan(AREA_NAME, summary);
+      const r = await restorationPlan(AREA_NAME, summary);
       setPlanText(r.markdown);
     } catch (e) {
       setPlanText(`Could not reach the backend: ${e.message}`);
@@ -108,65 +108,79 @@ export default function App() {
   }
 
   function downloadPlan() {
-    const blob = new Blob([planText], { type: 'text/markdown' });
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'resilience-plan.md';
+    a.href = URL.createObjectURL(new Blob([planText], { type: 'text/markdown' }));
+    a.download = 'restoration-plan.md';
     a.click();
   }
 
   if (!data) return <div className="loading">Loading…</div>;
-
   const v = data.validation;
+  const s = scenario;
 
   return (
     <div className="app">
       <DeckGL initialViewState={INITIAL_VIEW} controller layers={layers}
-        getTooltip={({ object }) => object?.band && `${object.id} · ${object.band} risk (${object.risk})`}>
+        getTooltip={({ object }) => object?.restorable_width_m !== undefined &&
+          `${object.id}: ${object.existing_width_m} m mangroves now, +${object.restorable_width_m} m restorable · ${object.surge_people} people behind`}>
         <Map mapStyle={MAP_STYLE} />
       </DeckGL>
 
       <aside className="panel">
-        <h1>Cyclone Prepare</h1>
-        <p className="muted">Which homes to strengthen first, checked against Cyclone Winston (2016).</p>
+        <h1>Restore to Protect</h1>
+        <p className="muted">Where restoring mangroves protects the most people from cyclone waves in {AREA_NAME}.</p>
 
         <section>
-          <h2>Buildings at risk</h2>
-          <div className="counts">
-            {['high', 'medium', 'low'].map((b) => (
-              <div key={b} className={`count ${b}`}>
-                <span className="n">{after[b]}</span>
-                <span className="label">{b}</span>
-                {plan && after[b] !== before[b] && <span className="delta">was {before[b]}</span>}
-              </div>
-            ))}
+          <h2>People in surge-exposed homes</h2>
+          {s && (
+            <div className="counts">
+              {['exposed', 'partial', 'strong'].map((b) => (
+                <div key={b} className={`count ${b}`}>
+                  <span className="n">{s.after[b]}</span>
+                  <span className="label">{b === 'strong' ? 'well buffered' : b === 'partial' ? 'partly buffered' : 'no buffer'}</span>
+                  {s.after[b] !== s.before[b] && <span className="delta">was {s.before[b]}</span>}
+                </div>
+              ))}
+            </div>
+          )}
+          <p className="muted small">Protection = mangrove width in front of the coast. Modelled, approximate.</p>
+        </section>
+
+        <section>
+          <h2>Restoration scenario</h2>
+          <p className="small">Click coast segments on the map, or:</p>
+          <div className="row">
+            <button onClick={() => restoreTop(3)}>Top 3 sites</button>
+            <button onClick={() => restoreTop(10)}>Top 10</button>
+            <button className="ghost" onClick={() => setRestoreIds([])}>Clear</button>
           </div>
-          <p className="muted small">{buildings.length} buildings scored · modelled, approximate</p>
+          {s && (
+            <p><strong>{s.hectares} ha</strong> restored on {s.restored.length} segments · <strong>{s.people_better_protected}</strong> people move to better protection.</p>
+          )}
+          {s?.local && <p className="muted small">Backend offline — using local calculation.</p>}
+          <ol className="ranked small">
+            {ranked.slice(0, 5).map((r) => (
+              <li key={r.id} className={restoreIds.includes(r.id) ? 'on' : ''} onClick={() => toggle(r.id)}>
+                {r.id}: {r.restorable_ha} ha, {r.surge_people} people behind
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section>
-          <h2>Upgrade planner</h2>
-          <label className="small">Strengthen the {budget} highest-risk homes</label>
-          <input type="range" min="0" max={Math.min(200, buildings.length)} value={budget}
-            onChange={(e) => setBudget(+e.target.value)} />
-          {plan?.local && <p className="muted small">Backend offline — using local calculation.</p>}
-        </section>
-
-        <section>
-          <h2>Validation against Winston</h2>
+          <h2>Evidence from Cyclone Winston</h2>
           {v ? (
             <>
               {v.mock && <p className="warn small">Mock numbers — replace with real validation.</p>}
-              <p><strong>{Math.round(v.model_recall_severe * 100)}%</strong> of severely damaged buildings were flagged high-risk
-                (exposure only: {Math.round(v.baseline_recall_severe * 100)}%).</p>
-              <p className="muted small">{v.note} Test set: {v.n_test} buildings.</p>
+              <p>Severe damage near the coast: <strong>{Math.round(v.severe_rate_with_mangroves * 100)}%</strong> of buildings behind mangroves vs <strong>{Math.round(v.severe_rate_without * 100)}%</strong> without.</p>
+              <p className="muted small">{v.note}</p>
             </>
           ) : <p className="muted">No validation.json yet.</p>}
         </section>
 
         <section>
-          <h2>Resilience plan</h2>
-          <button onClick={makePlan} disabled={planBusy}>{planBusy ? 'Writing…' : 'Generate plan'}</button>
+          <h2>Restoration plan</h2>
+          <button onClick={makePlan} disabled={planBusy || !s}>{planBusy ? 'Writing…' : 'Generate plan'}</button>
           {planText && (
             <>
               <pre className="plan">{planText}</pre>
@@ -176,15 +190,12 @@ export default function App() {
         </section>
 
         {selected && (
-          <section className="selected">
-            <h2>Building {selected.id} <button className="link" onClick={() => setSelected(null)}>close</button></h2>
-            {selected.tile && <img src={`/${selected.tile}`} alt={`Aerial tile of ${selected.id}`} onError={(e) => (e.target.style.display = 'none')} />}
-            <p className="small">Village: {selected.village || '—'}</p>
-            <p className="small">Risk {selected.risk} ({selected.band}) = exposure {selected.exposure} × vulnerability {selected.vulnerability}</p>
-            {selected.labels && (
-              <p className="small">Roof: {selected.labels.roof_material}, {selected.labels.roof_shape}, {selected.labels.condition}
-                {' '}(AI confidence {selected.labels.confidence})</p>
-            )}
+          <section>
+            <h2>Segment {selected.id} <button className="link" onClick={() => setSelected(null)}>close</button></h2>
+            <p className="small">Mangroves now: {selected.existing_width_m} m wide (cuts waves ~{Math.round(selected.wave_reduction_now * 100)}%)</p>
+            <p className="small">Restorable: +{selected.restorable_width_m} m, {selected.restorable_ha} ha (would cut waves ~{Math.round(selected.wave_reduction_restored * 100)}%)</p>
+            <p className="small">Behind it: {selected.buildings_behind} buildings, {selected.people_behind} people ({selected.surge_people} in surge zone)</p>
+            <p className="muted small">Storm-surge reduction is small (~{selected.surge_reduction_restored_m} m); the main benefit is waves and erosion.</p>
           </section>
         )}
       </aside>

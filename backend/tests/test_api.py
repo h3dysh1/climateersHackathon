@@ -6,14 +6,14 @@ os.environ["ANTHROPIC_API_KEY"] = ""
 from fastapi.testclient import TestClient  # noqa: E402
 
 from app.main import app  # noqa: E402
+from app.restoration import protection_band, wave_reduction  # noqa: E402
 
 client = TestClient(app)
 
-BUILDINGS = [
-    {"id": "a", "exposure": 0.9, "vulnerability": 0.8, "risk": 0.72, "band": "high"},
-    {"id": "b", "exposure": 0.8, "vulnerability": 0.7, "risk": 0.56, "band": "high"},
-    {"id": "c", "exposure": 0.5, "vulnerability": 0.6, "risk": 0.30, "band": "medium"},
-    {"id": "d", "exposure": 0.2, "vulnerability": 0.5, "risk": 0.10, "band": "low"},
+SEGMENTS = [
+    {"id": "s1", "existing_width_m": 0, "restorable_width_m": 400, "restorable_ha": 20, "surge_people": 120},
+    {"id": "s2", "existing_width_m": 250, "restorable_width_m": 0, "restorable_ha": 0, "surge_people": 40},
+    {"id": "s3", "existing_width_m": 0, "restorable_width_m": 100, "restorable_ha": 5, "surge_people": 30},
 ]
 
 
@@ -21,20 +21,23 @@ def test_health():
     assert client.get("/health").json() == {"ok": True, "mock": True}
 
 
-def test_plan_upgrades_moves_buildings_out_of_high():
-    r = client.post("/plan-upgrades", json={"budget": 2, "buildings": BUILDINGS}).json()
-    assert r["upgraded"] == ["a", "b"]
-    assert r["before"] == {"high": 2, "medium": 1, "low": 1}
-    assert r["after"]["high"] == 0
-    assert sum(r["after"].values()) == 4
+def test_wave_model_is_conservative_and_capped():
+    assert wave_reduction(0) == 0
+    assert wave_reduction(100) == 0.13
+    assert wave_reduction(2000) == 0.66
+    assert protection_band(0) == "exposed"
+    assert protection_band(400) == "strong"
 
 
-def test_classify_mock():
-    r = client.post("/classify", json={"id": "b0001", "image_base64": "aGVsbG8="}).json()
-    assert r["id"] == "b0001" and r["mock"] is True
-    assert r["roof_material"] in ("corrugated_iron", "concrete", "timber")
+def test_scenario_moves_people_to_better_protection():
+    r = client.post("/scenario", json={"restore_ids": ["s1"], "segments": SEGMENTS}).json()
+    assert r["restored"] == ["s1"]
+    assert r["hectares"] == 20
+    assert r["people_better_protected"] == 120
+    assert r["before"]["exposed"] == 150 and r["after"]["exposed"] == 30
+    assert sum(r["before"].values()) == sum(r["after"].values())
 
 
-def test_resilience_plan_mock():
-    r = client.post("/resilience-plan", json={"area_name": "Test", "summary": {"before": {"high": 5}, "after": {"high": 1}}})
+def test_restoration_plan_mock():
+    r = client.post("/restoration-plan", json={"area_name": "Test", "summary": {"hectares": 20}})
     assert "MOCK" in r.json()["markdown"]

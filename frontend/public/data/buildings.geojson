@@ -6,14 +6,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17793,
-     -17.40173
+     177.41228,
+     -17.5788
     ]
    },
    "properties": {
     "id": "b0001",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 668
    }
   },
   {
@@ -21,14 +23,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.19184,
-     -17.38423
+     177.4073,
+     -17.57695
     ]
    },
    "properties": {
     "id": "b0002",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 139
    }
   },
   {
@@ -36,14 +40,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18157,
-     -17.39172
+     177.40837,
+     -17.57875
     ]
    },
    "properties": {
     "id": "b0003",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 254
    }
   },
   {
@@ -51,14 +57,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16177,
-     -17.40395
+     177.40708,
+     -17.57873
     ]
    },
    "properties": {
     "id": "b0004",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 116
    }
   },
   {
@@ -66,14 +74,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17872,
-     -17.3995
+     177.40698,
+     -17.57701
     ]
    },
    "properties": {
     "id": "b0005",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 106
    }
   },
   {
@@ -81,14 +91,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.1999,
-     -17.39559
+     177.4121,
+     -17.57695
     ]
    },
    "properties": {
     "id": "b0006",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 649
    }
   },
   {
@@ -96,14 +108,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16664,
-     -17.39061
+     177.41162,
+     -17.57762
     ]
    },
    "properties": {
     "id": "b0007",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 598
    }
   },
   {
@@ -111,14 +125,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17772,
-     -17.39571
+     177.40687,
+     -17.57595
     ]
    },
    "properties": {
     "id": "b0008",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 94
    }
   },
   {
@@ -126,14 +142,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17647,
-     -17.40103
+     177.4102,
+     -17.5771
     ]
    },
    "properties": {
     "id": "b0009",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 448
    }
   },
   {
@@ -141,14 +159,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17127,
-     -17.39216
+     177.40921,
+     -17.57611
     ]
    },
    "properties": {
     "id": "b0010",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 343
    }
   },
   {
@@ -156,14 +176,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18915,
-     -17.39762
+     177.40738,
+     -17.57699
     ]
    },
    "properties": {
     "id": "b0011",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 148
    }
   },
   {
@@ -171,14 +193,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.19336,
-     -17.39956
+     177.40979,
+     -17.57708
     ]
    },
    "properties": {
     "id": "b0012",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 404
    }
   },
   {
@@ -186,14 +210,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16268,
-     -17.38857
+     177.4115,
+     -17.57682
     ]
    },
    "properties": {
     "id": "b0013",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 586
    }
   },
   {
@@ -201,14 +227,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.19072,
-     -17.37573
+     177.41254,
+     -17.57751
     ]
    },
    "properties": {
     "id": "b0014",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 696
    }
   },
   {
@@ -216,14 +244,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.19623,
-     -17.4211
+     177.41062,
+     -17.57572
     ]
    },
    "properties": {
     "id": "b0015",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 492
    }
   },
   {
@@ -231,14 +261,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16507,
-     -17.40047
+     177.40914,
+     -17.57618
     ]
    },
    "properties": {
     "id": "b0016",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 335
    }
   },
   {
@@ -246,14 +278,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.22082,
-     -17.39203
+     177.41343,
+     -17.57876
     ]
    },
    "properties": {
     "id": "b0017",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 791
    }
   },
   {
@@ -261,14 +295,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17471,
-     -17.39556
+     177.41115,
+     -17.57589
     ]
    },
    "properties": {
     "id": "b0018",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 549
    }
   },
   {
@@ -276,14 +312,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.20708,
-     -17.42943
+     177.41047,
+     -17.57686
     ]
    },
    "properties": {
     "id": "b0019",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 476
    }
   },
   {
@@ -291,14 +329,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18138,
-     -17.38088
+     177.40751,
+     -17.57755
     ]
    },
    "properties": {
     "id": "b0020",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 162
    }
   },
   {
@@ -306,14 +346,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18526,
-     -17.4121
+     177.40781,
+     -17.57729
     ]
    },
    "properties": {
     "id": "b0021",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 2,
+    "surge_m": 1,
+    "coast_m": 194
    }
   },
   {
@@ -321,14 +363,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.19042,
-     -17.38681
+     177.41506,
+     -17.57878
     ]
    },
    "properties": {
     "id": "b0022",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 964
    }
   },
   {
@@ -336,14 +380,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.1651,
-     -17.39883
+     177.41158,
+     -17.57589
     ]
    },
    "properties": {
     "id": "b0023",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 594
    }
   },
   {
@@ -351,14 +397,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18337,
-     -17.3726
+     177.4095,
+     -17.57779
     ]
    },
    "properties": {
     "id": "b0024",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 373
    }
   },
   {
@@ -366,14 +414,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.178,
-     -17.40443
+     177.41164,
+     -17.57741
     ]
    },
    "properties": {
     "id": "b0025",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 601
    }
   },
   {
@@ -381,14 +431,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18984,
-     -17.39057
+     177.41491,
+     -17.57734
     ]
    },
    "properties": {
     "id": "b0026",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 947
    }
   },
   {
@@ -396,14 +448,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16076,
-     -17.42429
+     177.40703,
+     -17.57641
     ]
    },
    "properties": {
     "id": "b0027",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 112
    }
   },
   {
@@ -411,14 +465,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16977,
-     -17.40548
+     177.41225,
+     -17.57547
     ]
    },
    "properties": {
     "id": "b0028",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 665
    }
   },
   {
@@ -426,14 +482,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18097,
-     -17.39772
+     177.409,
+     -17.57766
     ]
    },
    "properties": {
     "id": "b0029",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 320
    }
   },
   {
@@ -441,14 +499,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18731,
-     -17.38471
+     177.40956,
+     -17.57566
     ]
    },
    "properties": {
     "id": "b0030",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s01",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 380
    }
   },
   {
@@ -456,14 +516,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18381,
-     -17.39201
+     177.41273,
+     -17.58277
     ]
    },
    "properties": {
     "id": "b0031",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 519
    }
   },
   {
@@ -471,14 +533,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17385,
-     -17.38565
+     177.40947,
+     -17.58266
     ]
    },
    "properties": {
     "id": "b0032",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 173
    }
   },
   {
@@ -486,14 +550,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18504,
-     -17.39802
+     177.41652,
+     -17.58176
     ]
    },
    "properties": {
     "id": "b0033",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 921
    }
   },
   {
@@ -501,14 +567,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17698,
-     -17.39737
+     177.41233,
+     -17.58157
     ]
    },
    "properties": {
     "id": "b0034",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 477
    }
   },
   {
@@ -516,14 +584,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17452,
-     -17.3982
+     177.41564,
+     -17.58043
     ]
    },
    "properties": {
     "id": "b0035",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 828
    }
   },
   {
@@ -531,14 +601,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18457,
-     -17.40855
+     177.41463,
+     -17.57999
     ]
    },
    "properties": {
     "id": "b0036",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 721
    }
   },
   {
@@ -546,14 +618,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17572,
-     -17.39664
+     177.41622,
+     -17.58009
     ]
    },
    "properties": {
     "id": "b0037",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 890
    }
   },
   {
@@ -561,14 +635,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17411,
-     -17.39579
+     177.40905,
+     -17.58301
     ]
    },
    "properties": {
     "id": "b0038",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 129
    }
   },
   {
@@ -576,14 +652,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17586,
-     -17.39411
+     177.4104,
+     -17.5818
     ]
    },
    "properties": {
     "id": "b0039",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 272
    }
   },
   {
@@ -591,14 +669,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.1704,
-     -17.39785
+     177.40994,
+     -17.58254
     ]
    },
    "properties": {
     "id": "b0040",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 223
    }
   },
   {
@@ -606,14 +686,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18408,
-     -17.39916
+     177.41206,
+     -17.58222
     ]
    },
    "properties": {
     "id": "b0041",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 448
    }
   },
   {
@@ -621,14 +703,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17284,
-     -17.41225
+     177.41116,
+     -17.58311
     ]
    },
    "properties": {
     "id": "b0042",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s02",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 353
    }
   },
   {
@@ -636,14 +720,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18371,
-     -17.39326
+     177.4179,
+     -17.58524
     ]
    },
    "properties": {
     "id": "b0043",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 905
    }
   },
   {
@@ -651,14 +737,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17441,
-     -17.38545
+     177.41699,
+     -17.58664
     ]
    },
    "properties": {
     "id": "b0044",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 808
    }
   },
   {
@@ -666,14 +754,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18772,
-     -17.41388
+     177.41338,
+     -17.58632
     ]
    },
    "properties": {
     "id": "b0045",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 424
    }
   },
   {
@@ -681,14 +771,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17134,
-     -17.40187
+     177.41041,
+     -17.58782
     ]
    },
    "properties": {
     "id": "b0046",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 109
    }
   },
   {
@@ -696,14 +788,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16787,
-     -17.37463
+     177.4138,
+     -17.58766
     ]
    },
    "properties": {
     "id": "b0047",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 469
    }
   },
   {
@@ -711,14 +805,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17989,
-     -17.39532
+     177.41032,
+     -17.58806
     ]
    },
    "properties": {
     "id": "b0048",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 100
    }
   },
   {
@@ -726,14 +822,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18368,
-     -17.40264
+     177.41465,
+     -17.58463
     ]
    },
    "properties": {
     "id": "b0049",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 560
    }
   },
   {
@@ -741,14 +839,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16382,
-     -17.3906
+     177.41008,
+     -17.5849
     ]
    },
    "properties": {
     "id": "b0050",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 74
    }
   },
   {
@@ -756,14 +856,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17065,
-     -17.42619
+     177.41322,
+     -17.58576
     ]
    },
    "properties": {
     "id": "b0051",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 407
    }
   },
   {
@@ -771,14 +873,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18949,
-     -17.38808
+     177.41524,
+     -17.58634
     ]
    },
    "properties": {
     "id": "b0052",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 622
    }
   },
   {
@@ -786,14 +890,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.19527,
-     -17.41009
+     177.41745,
+     -17.58447
     ]
    },
    "properties": {
     "id": "b0053",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 856
    }
   },
   {
@@ -801,14 +907,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17789,
-     -17.39675
+     177.41415,
+     -17.58693
     ]
    },
    "properties": {
     "id": "b0054",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 506
    }
   },
   {
@@ -816,14 +924,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16306,
-     -17.39774
+     177.41077,
+     -17.58682
     ]
    },
    "properties": {
     "id": "b0055",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 147
    }
   },
   {
@@ -831,14 +941,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.18073,
-     -17.4015
+     177.41414,
+     -17.58556
     ]
    },
    "properties": {
     "id": "b0056",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 505
    }
   },
   {
@@ -846,14 +958,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.19114,
-     -17.41036
+     177.41006,
+     -17.58462
     ]
    },
    "properties": {
     "id": "b0057",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 72
    }
   },
   {
@@ -861,14 +975,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.16731,
-     -17.38277
+     177.41309,
+     -17.58556
     ]
    },
    "properties": {
     "id": "b0058",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 394
    }
   },
   {
@@ -876,14 +992,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17028,
-     -17.40559
+     177.41664,
+     -17.58698
     ]
    },
    "properties": {
     "id": "b0059",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 770
    }
   },
   {
@@ -891,14 +1009,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.17603,
-     -17.39212
+     177.41758,
+     -17.58554
     ]
    },
    "properties": {
     "id": "b0060",
-    "village": "Village A",
-    "tile": null
+    "segment_id": "s03",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 870
    }
   },
   {
@@ -906,14 +1026,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.03926,
-     -17.45091
+     177.41449,
+     -17.58477
     ]
    },
    "properties": {
     "id": "b0061",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 542
    }
   },
   {
@@ -921,14 +1043,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.03876,
-     -17.45355
+     177.41676,
+     -17.58613
     ]
    },
    "properties": {
     "id": "b0062",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 783
    }
   },
   {
@@ -936,14 +1060,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04454,
-     -17.4403
+     177.4128,
+     -17.58725
     ]
    },
    "properties": {
     "id": "b0063",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 363
    }
   },
   {
@@ -951,14 +1077,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05578,
-     -17.45779
+     177.41707,
+     -17.5851
     ]
    },
    "properties": {
     "id": "b0064",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 816
    }
   },
   {
@@ -966,14 +1094,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06993,
-     -17.47732
+     177.41704,
+     -17.58734
     ]
    },
    "properties": {
     "id": "b0065",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 813
    }
   },
   {
@@ -981,14 +1111,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04861,
-     -17.4426
+     177.41303,
+     -17.58795
     ]
    },
    "properties": {
     "id": "b0066",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 388
    }
   },
   {
@@ -996,14 +1128,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06739,
-     -17.46193
+     177.41692,
+     -17.58635
     ]
    },
    "properties": {
     "id": "b0067",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 801
    }
   },
   {
@@ -1011,14 +1145,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.0454,
-     -17.44371
+     177.41605,
+     -17.5846
     ]
    },
    "properties": {
     "id": "b0068",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 708
    }
   },
   {
@@ -1026,14 +1162,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.03285,
-     -17.44364
+     177.41709,
+     -17.58544
     ]
    },
    "properties": {
     "id": "b0069",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 818
    }
   },
   {
@@ -1041,14 +1179,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04078,
-     -17.45551
+     177.4184,
+     -17.58674
     ]
    },
    "properties": {
     "id": "b0070",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 957
    }
   },
   {
@@ -1056,14 +1196,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04076,
-     -17.45532
+     177.41077,
+     -17.58636
     ]
    },
    "properties": {
     "id": "b0071",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 147
    }
   },
   {
@@ -1071,14 +1213,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.03992,
-     -17.45597
+     177.41168,
+     -17.5858
     ]
    },
    "properties": {
     "id": "b0072",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 244
    }
   },
   {
@@ -1086,14 +1230,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.0499,
-     -17.45033
+     177.41737,
+     -17.58632
     ]
    },
    "properties": {
     "id": "b0073",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 848
    }
   },
   {
@@ -1101,14 +1247,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04343,
-     -17.45829
+     177.41293,
+     -17.58573
     ]
    },
    "properties": {
     "id": "b0074",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 377
    }
   },
   {
@@ -1116,14 +1264,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.02071,
-     -17.44174
+     177.41092,
+     -17.58665
     ]
    },
    "properties": {
     "id": "b0075",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 164
    }
   },
   {
@@ -1131,14 +1281,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04196,
-     -17.45728
+     177.41657,
+     -17.58633
     ]
    },
    "properties": {
     "id": "b0076",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s03",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 763
    }
   },
   {
@@ -1146,14 +1298,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05295,
-     -17.44778
+     177.41808,
+     -17.58904
     ]
    },
    "properties": {
     "id": "b0077",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 811
    }
   },
   {
@@ -1161,14 +1315,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.03969,
-     -17.43814
+     177.41506,
+     -17.58987
     ]
    },
    "properties": {
     "id": "b0078",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 490
    }
   },
   {
@@ -1176,14 +1332,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04895,
-     -17.4507
+     177.4174,
+     -17.59194
     ]
    },
    "properties": {
     "id": "b0079",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 739
    }
   },
   {
@@ -1191,14 +1349,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04622,
-     -17.43601
+     177.41116,
+     -17.59042
     ]
    },
    "properties": {
     "id": "b0080",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 76
    }
   },
   {
@@ -1206,14 +1366,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05443,
-     -17.44536
+     177.41813,
+     -17.59203
     ]
    },
    "properties": {
     "id": "b0081",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 816
    }
   },
   {
@@ -1221,14 +1383,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04219,
-     -17.42595
+     177.41969,
+     -17.59018
     ]
    },
    "properties": {
     "id": "b0082",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 981
    }
   },
   {
@@ -1236,14 +1400,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04242,
-     -17.47445
+     177.41231,
+     -17.59058
     ]
    },
    "properties": {
     "id": "b0083",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 2,
+    "surge_m": 1,
+    "coast_m": 198
    }
   },
   {
@@ -1251,14 +1417,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04183,
-     -17.44482
+     177.41104,
+     -17.58905
     ]
    },
    "properties": {
     "id": "b0084",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 64
    }
   },
   {
@@ -1266,14 +1434,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05461,
-     -17.4413
+     177.41183,
+     -17.58985
     ]
    },
    "properties": {
     "id": "b0085",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 148
    }
   },
   {
@@ -1281,14 +1451,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05333,
-     -17.444
+     177.4148,
+     -17.5894
     ]
    },
    "properties": {
     "id": "b0086",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s04",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 462
    }
   },
   {
@@ -1296,14 +1468,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05823,
-     -17.46255
+     177.414,
+     -17.59619
     ]
    },
    "properties": {
     "id": "b0087",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 328
    }
   },
   {
@@ -1311,14 +1485,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06316,
-     -17.4658
+     177.41429,
+     -17.59509
     ]
    },
    "properties": {
     "id": "b0088",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 360
    }
   },
   {
@@ -1326,14 +1502,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04644,
-     -17.44054
+     177.41192,
+     -17.59438
     ]
    },
    "properties": {
     "id": "b0089",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 108
    }
   },
   {
@@ -1341,14 +1519,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04534,
-     -17.46564
+     177.4173,
+     -17.59411
     ]
    },
    "properties": {
     "id": "b0090",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 679
    }
   },
   {
@@ -1356,14 +1536,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05107,
-     -17.46186
+     177.41514,
+     -17.59374
     ]
    },
    "properties": {
     "id": "b0091",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 450
    }
   },
   {
@@ -1371,14 +1553,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04821,
-     -17.43528
+     177.41254,
+     -17.59651
     ]
    },
    "properties": {
     "id": "b0092",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 174
    }
   },
   {
@@ -1386,14 +1570,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05639,
-     -17.43903
+     177.41154,
+     -17.59547
     ]
    },
    "properties": {
     "id": "b0093",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 68
    }
   },
   {
@@ -1401,14 +1587,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06169,
-     -17.45617
+     177.41682,
+     -17.59425
     ]
    },
    "properties": {
     "id": "b0094",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 628
    }
   },
   {
@@ -1416,14 +1604,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04204,
-     -17.4455
+     177.41292,
+     -17.59535
     ]
    },
    "properties": {
     "id": "b0095",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 214
    }
   },
   {
@@ -1431,14 +1621,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.0595,
-     -17.422
+     177.41245,
+     -17.59684
     ]
    },
    "properties": {
     "id": "b0096",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 164
    }
   },
   {
@@ -1446,14 +1638,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04751,
-     -17.4424
+     177.41601,
+     -17.59505
     ]
    },
    "properties": {
     "id": "b0097",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 542
    }
   },
   {
@@ -1461,14 +1655,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05098,
-     -17.45583
+     177.41928,
+     -17.59685
     ]
    },
    "properties": {
     "id": "b0098",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 889
    }
   },
   {
@@ -1476,14 +1672,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06427,
-     -17.4419
+     177.41385,
+     -17.59426
     ]
    },
    "properties": {
     "id": "b0099",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 313
    }
   },
   {
@@ -1491,14 +1689,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05167,
-     -17.43976
+     177.41542,
+     -17.59696
     ]
    },
    "properties": {
     "id": "b0100",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 480
    }
   },
   {
@@ -1506,14 +1706,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.0343,
-     -17.45615
+     177.41534,
+     -17.59484
     ]
    },
    "properties": {
     "id": "b0101",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 471
    }
   },
   {
@@ -1521,14 +1723,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.03515,
-     -17.44556
+     177.4168,
+     -17.59634
     ]
    },
    "properties": {
     "id": "b0102",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 626
    }
   },
   {
@@ -1536,14 +1740,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06035,
-     -17.45979
+     177.41542,
+     -17.59513
     ]
    },
    "properties": {
     "id": "b0103",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 480
    }
   },
   {
@@ -1551,14 +1757,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.0688,
-     -17.42593
+     177.41592,
+     -17.59616
     ]
    },
    "properties": {
     "id": "b0104",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s05",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 532
    }
   },
   {
@@ -1566,14 +1774,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04763,
-     -17.46724
+     177.41871,
+     -17.60106
     ]
    },
    "properties": {
     "id": "b0105",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 848
    }
   },
   {
@@ -1581,14 +1791,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.03571,
-     -17.44263
+     177.4147,
+     -17.60042
     ]
    },
    "properties": {
     "id": "b0106",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 423
    }
   },
   {
@@ -1596,14 +1808,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05608,
-     -17.46905
+     177.41334,
+     -17.60129
     ]
    },
    "properties": {
     "id": "b0107",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 279
    }
   },
   {
@@ -1611,14 +1825,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05038,
-     -17.46063
+     177.4139,
+     -17.60112
     ]
    },
    "properties": {
     "id": "b0108",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 338
    }
   },
   {
@@ -1626,14 +1842,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.07085,
-     -17.46329
+     177.4196,
+     -17.59923
     ]
    },
    "properties": {
     "id": "b0109",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 943
    }
   },
   {
@@ -1641,14 +1859,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05831,
-     -17.44677
+     177.41247,
+     -17.59836
     ]
    },
    "properties": {
     "id": "b0110",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 186
    }
   },
   {
@@ -1656,14 +1876,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.0339,
-     -17.4563
+     177.41315,
+     -17.59811
     ]
    },
    "properties": {
     "id": "b0111",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 259
    }
   },
   {
@@ -1671,14 +1893,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06812,
-     -17.44673
+     177.41911,
+     -17.60097
     ]
    },
    "properties": {
     "id": "b0112",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 891
    }
   },
   {
@@ -1686,14 +1910,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04756,
-     -17.4624
+     177.41864,
+     -17.60098
     ]
    },
    "properties": {
     "id": "b0113",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 841
    }
   },
   {
@@ -1701,14 +1927,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05905,
-     -17.4512
+     177.42009,
+     -17.6001
     ]
    },
    "properties": {
     "id": "b0114",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 994
    }
   },
   {
@@ -1716,14 +1944,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04546,
-     -17.46982
+     177.41294,
+     -17.60041
     ]
    },
    "properties": {
     "id": "b0115",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 236
    }
   },
   {
@@ -1731,14 +1961,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06579,
-     -17.45265
+     177.41446,
+     -17.60034
     ]
    },
    "properties": {
     "id": "b0116",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 398
    }
   },
   {
@@ -1746,14 +1978,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04127,
-     -17.44501
+     177.41513,
+     -17.60149
     ]
    },
    "properties": {
     "id": "b0117",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 468
    }
   },
   {
@@ -1761,14 +1995,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.04795,
-     -17.45939
+     177.41582,
+     -17.60049
     ]
    },
    "properties": {
     "id": "b0118",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 542
    }
   },
   {
@@ -1776,14 +2012,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.06723,
-     -17.43305
+     177.4122,
+     -17.59824
     ]
    },
    "properties": {
     "id": "b0119",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 157
    }
   },
   {
@@ -1791,14 +2029,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.05247,
-     -17.46269
+     177.41988,
+     -17.60118
     ]
    },
    "properties": {
     "id": "b0120",
-    "village": "Village B",
-    "tile": null
+    "segment_id": "s06",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 973
    }
   },
   {
@@ -1806,14 +2046,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25311,
-     -17.57208
+     177.41362,
+     -17.59828
     ]
    },
    "properties": {
     "id": "b0121",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s06",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 308
    }
   },
   {
@@ -1821,14 +2063,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24366,
-     -17.55268
+     177.41797,
+     -17.60361
     ]
    },
    "properties": {
     "id": "b0122",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 857
    }
   },
   {
@@ -1836,14 +2080,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.26382,
-     -17.53499
+     177.414,
+     -17.60412
     ]
    },
    "properties": {
     "id": "b0123",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 436
    }
   },
   {
@@ -1851,14 +2097,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24814,
-     -17.563
+     177.41548,
+     -17.60352
     ]
    },
    "properties": {
     "id": "b0124",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 592
    }
   },
   {
@@ -1866,14 +2114,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.26571,
-     -17.5557
+     177.41287,
+     -17.60317
     ]
    },
    "properties": {
     "id": "b0125",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 315
    }
   },
   {
@@ -1881,14 +2131,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25492,
-     -17.55045
+     177.41418,
+     -17.6058
     ]
    },
    "properties": {
     "id": "b0126",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 454
    }
   },
   {
@@ -1896,14 +2148,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25022,
-     -17.53687
+     177.41605,
+     -17.60316
     ]
    },
    "properties": {
     "id": "b0127",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 653
    }
   },
   {
@@ -1911,14 +2165,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.2595,
-     -17.55232
+     177.41581,
+     -17.60525
     ]
    },
    "properties": {
     "id": "b0128",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 628
    }
   },
   {
@@ -1926,14 +2182,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.23366,
-     -17.54604
+     177.41809,
+     -17.60442
     ]
    },
    "properties": {
     "id": "b0129",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 870
    }
   },
   {
@@ -1941,14 +2199,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.229,
-     -17.56574
+     177.41927,
+     -17.60455
     ]
    },
    "properties": {
     "id": "b0130",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 995
    }
   },
   {
@@ -1956,14 +2216,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.26866,
-     -17.55707
+     177.41593,
+     -17.6059
     ]
    },
    "properties": {
     "id": "b0131",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 641
    }
   },
   {
@@ -1971,14 +2233,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.23275,
-     -17.557
+     177.4125,
+     -17.60566
     ]
    },
    "properties": {
     "id": "b0132",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 277
    }
   },
   {
@@ -1986,14 +2250,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25166,
-     -17.54701
+     177.41271,
+     -17.6054
     ]
    },
    "properties": {
     "id": "b0133",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 299
    }
   },
   {
@@ -2001,14 +2267,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.26665,
-     -17.52424
+     177.416,
+     -17.60414
     ]
    },
    "properties": {
     "id": "b0134",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 647
    }
   },
   {
@@ -2016,14 +2284,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.2416,
-     -17.55446
+     177.41296,
+     -17.60425
     ]
    },
    "properties": {
     "id": "b0135",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 325
    }
   },
   {
@@ -2031,14 +2301,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25344,
-     -17.55906
+     177.41279,
+     -17.60315
     ]
    },
    "properties": {
     "id": "b0136",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 307
    }
   },
   {
@@ -2046,14 +2318,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.2523,
-     -17.56208
+     177.4107,
+     -17.60599
     ]
    },
    "properties": {
     "id": "b0137",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 85
    }
   },
   {
@@ -2061,14 +2335,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24072,
-     -17.55343
+     177.4153,
+     -17.60537
     ]
    },
    "properties": {
     "id": "b0138",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 573
    }
   },
   {
@@ -2076,14 +2352,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25975,
-     -17.55418
+     177.41257,
+     -17.60444
     ]
    },
    "properties": {
     "id": "b0139",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 283
    }
   },
   {
@@ -2091,14 +2369,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24672,
-     -17.56195
+     177.4177,
+     -17.6045
     ]
    },
    "properties": {
     "id": "b0140",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 828
    }
   },
   {
@@ -2106,14 +2386,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25012,
-     -17.56296
+     177.41526,
+     -17.60284
     ]
    },
    "properties": {
     "id": "b0141",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 569
    }
   },
   {
@@ -2121,14 +2403,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24434,
-     -17.53842
+     177.41312,
+     -17.60528
     ]
    },
    "properties": {
     "id": "b0142",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 342
    }
   },
   {
@@ -2136,14 +2420,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24439,
-     -17.55688
+     177.41344,
+     -17.60305
     ]
    },
    "properties": {
     "id": "b0143",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 376
    }
   },
   {
@@ -2151,14 +2437,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25468,
-     -17.55717
+     177.41689,
+     -17.60555
     ]
    },
    "properties": {
     "id": "b0144",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 742
    }
   },
   {
@@ -2166,14 +2454,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.27295,
-     -17.53418
+     177.41916,
+     -17.60303
     ]
    },
    "properties": {
     "id": "b0145",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 983
    }
   },
   {
@@ -2181,14 +2471,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25149,
-     -17.56348
+     177.411,
+     -17.60338
     ]
    },
    "properties": {
     "id": "b0146",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 117
    }
   },
   {
@@ -2196,14 +2488,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24326,
-     -17.53739
+     177.41422,
+     -17.60586
     ]
    },
    "properties": {
     "id": "b0147",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 459
    }
   },
   {
@@ -2211,14 +2505,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24133,
-     -17.54333
+     177.4179,
+     -17.60291
     ]
    },
    "properties": {
     "id": "b0148",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 849
    }
   },
   {
@@ -2226,14 +2522,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.26522,
-     -17.55479
+     177.41906,
+     -17.60389
     ]
    },
    "properties": {
     "id": "b0149",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 972
    }
   },
   {
@@ -2241,14 +2539,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.26257,
-     -17.55856
+     177.41299,
+     -17.6044
     ]
    },
    "properties": {
     "id": "b0150",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 328
    }
   },
   {
@@ -2256,14 +2556,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.22535,
-     -17.52697
+     177.41278,
+     -17.60605
     ]
    },
    "properties": {
     "id": "b0151",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 306
    }
   },
   {
@@ -2271,14 +2573,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24646,
-     -17.54943
+     177.41898,
+     -17.60254
     ]
    },
    "properties": {
     "id": "b0152",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 964
    }
   },
   {
@@ -2286,14 +2590,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.23318,
-     -17.54541
+     177.41327,
+     -17.60593
     ]
    },
    "properties": {
     "id": "b0153",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s07",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 357
    }
   },
   {
@@ -2301,14 +2607,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24767,
-     -17.53947
+     177.40902,
+     -17.60918
     ]
    },
    "properties": {
     "id": "b0154",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 51
    }
   },
   {
@@ -2316,14 +2624,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25514,
-     -17.56851
+     177.41151,
+     -17.60819
     ]
    },
    "properties": {
     "id": "b0155",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 315
    }
   },
   {
@@ -2331,14 +2641,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.2479,
-     -17.53929
+     177.41353,
+     -17.61054
     ]
    },
    "properties": {
     "id": "b0156",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 529
    }
   },
   {
@@ -2346,14 +2658,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24093,
-     -17.54256
+     177.41633,
+     -17.61004
     ]
    },
    "properties": {
     "id": "b0157",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 826
    }
   },
   {
@@ -2361,14 +2675,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25706,
-     -17.53459
+     177.40939,
+     -17.61048
     ]
    },
    "properties": {
     "id": "b0158",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 90
    }
   },
   {
@@ -2376,14 +2692,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25986,
-     -17.53614
+     177.41465,
+     -17.61025
     ]
    },
    "properties": {
     "id": "b0159",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 648
    }
   },
   {
@@ -2391,14 +2709,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.2479,
-     -17.54698
+     177.41665,
+     -17.61
     ]
    },
    "properties": {
     "id": "b0160",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 861
    }
   },
   {
@@ -2406,14 +2726,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.2617,
-     -17.54099
+     177.41603,
+     -17.6084
     ]
    },
    "properties": {
     "id": "b0161",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 795
    }
   },
   {
@@ -2421,14 +2743,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24252,
-     -17.5591
+     177.41546,
+     -17.60877
     ]
    },
    "properties": {
     "id": "b0162",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 735
    }
   },
   {
@@ -2436,14 +2760,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.25222,
-     -17.55891
+     177.4155,
+     -17.60823
     ]
    },
    "properties": {
     "id": "b0163",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 738
    }
   },
   {
@@ -2451,14 +2777,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24368,
-     -17.55309
+     177.4164,
+     -17.60797
     ]
    },
    "properties": {
     "id": "b0164",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 834
    }
   },
   {
@@ -2466,14 +2794,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24566,
-     -17.53215
+     177.41463,
+     -17.6079
     ]
    },
    "properties": {
     "id": "b0165",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 646
    }
   },
   {
@@ -2481,14 +2811,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24546,
-     -17.54655
+     177.41026,
+     -17.60866
     ]
    },
    "properties": {
     "id": "b0166",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 182
    }
   },
   {
@@ -2496,14 +2828,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.24954,
-     -17.53997
+     177.4141,
+     -17.60762
     ]
    },
    "properties": {
     "id": "b0167",
-    "village": "Village C",
-    "tile": null
+    "segment_id": "s08",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 590
    }
   },
   {
@@ -2511,719 +2845,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     178.23176,
-     -17.55778
-    ]
-   },
-   "properties": {
-    "id": "b0168",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.23812,
-     -17.53299
-    ]
-   },
-   "properties": {
-    "id": "b0169",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.25848,
-     -17.54665
-    ]
-   },
-   "properties": {
-    "id": "b0170",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.25574,
-     -17.56472
-    ]
-   },
-   "properties": {
-    "id": "b0171",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.25407,
-     -17.55693
-    ]
-   },
-   "properties": {
-    "id": "b0172",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.25712,
-     -17.55102
-    ]
-   },
-   "properties": {
-    "id": "b0173",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.25094,
-     -17.55465
-    ]
-   },
-   "properties": {
-    "id": "b0174",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.24806,
-     -17.54949
-    ]
-   },
-   "properties": {
-    "id": "b0175",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.24064,
-     -17.55006
-    ]
-   },
-   "properties": {
-    "id": "b0176",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.25297,
-     -17.56642
-    ]
-   },
-   "properties": {
-    "id": "b0177",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.25865,
-     -17.52938
-    ]
-   },
-   "properties": {
-    "id": "b0178",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.24661,
-     -17.54035
-    ]
-   },
-   "properties": {
-    "id": "b0179",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     178.24722,
-     -17.56157
-    ]
-   },
-   "properties": {
-    "id": "b0180",
-    "village": "Village C",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.92529,
-     -17.62366
-    ]
-   },
-   "properties": {
-    "id": "b0181",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94907,
-     -17.61705
-    ]
-   },
-   "properties": {
-    "id": "b0182",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.96135,
-     -17.61901
-    ]
-   },
-   "properties": {
-    "id": "b0183",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.9811,
-     -17.6251
-    ]
-   },
-   "properties": {
-    "id": "b0184",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94857,
-     -17.62204
-    ]
-   },
-   "properties": {
-    "id": "b0185",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.97169,
-     -17.61373
-    ]
-   },
-   "properties": {
-    "id": "b0186",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94218,
-     -17.61268
-    ]
-   },
-   "properties": {
-    "id": "b0187",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94644,
-     -17.58464
-    ]
-   },
-   "properties": {
-    "id": "b0188",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94525,
-     -17.61574
-    ]
-   },
-   "properties": {
-    "id": "b0189",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.9535,
-     -17.6182
-    ]
-   },
-   "properties": {
-    "id": "b0190",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.9531,
-     -17.64059
-    ]
-   },
-   "properties": {
-    "id": "b0191",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.96632,
-     -17.61705
-    ]
-   },
-   "properties": {
-    "id": "b0192",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.95845,
-     -17.57736
-    ]
-   },
-   "properties": {
-    "id": "b0193",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94748,
-     -17.61605
-    ]
-   },
-   "properties": {
-    "id": "b0194",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.96196,
-     -17.60822
-    ]
-   },
-   "properties": {
-    "id": "b0195",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94424,
-     -17.62821
-    ]
-   },
-   "properties": {
-    "id": "b0196",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.92758,
-     -17.62701
-    ]
-   },
-   "properties": {
-    "id": "b0197",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.96082,
-     -17.61853
-    ]
-   },
-   "properties": {
-    "id": "b0198",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.9596,
-     -17.62398
-    ]
-   },
-   "properties": {
-    "id": "b0199",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.95084,
-     -17.62518
-    ]
-   },
-   "properties": {
-    "id": "b0200",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.92812,
-     -17.62154
-    ]
-   },
-   "properties": {
-    "id": "b0201",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94325,
-     -17.63654
-    ]
-   },
-   "properties": {
-    "id": "b0202",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.91898,
-     -17.6257
-    ]
-   },
-   "properties": {
-    "id": "b0203",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94968,
-     -17.62695
-    ]
-   },
-   "properties": {
-    "id": "b0204",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94795,
-     -17.62556
-    ]
-   },
-   "properties": {
-    "id": "b0205",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.92313,
-     -17.6017
-    ]
-   },
-   "properties": {
-    "id": "b0206",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94027,
-     -17.59963
-    ]
-   },
-   "properties": {
-    "id": "b0207",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.92301,
-     -17.61789
-    ]
-   },
-   "properties": {
-    "id": "b0208",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94508,
-     -17.63111
-    ]
-   },
-   "properties": {
-    "id": "b0209",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.96222,
-     -17.61728
-    ]
-   },
-   "properties": {
-    "id": "b0210",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.97552,
-     -17.63288
-    ]
-   },
-   "properties": {
-    "id": "b0211",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.94617,
-     -17.61989
-    ]
-   },
-   "properties": {
-    "id": "b0212",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.95117,
-     -17.63291
-    ]
-   },
-   "properties": {
-    "id": "b0213",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.95417,
-     -17.62886
-    ]
-   },
-   "properties": {
-    "id": "b0214",
-    "village": "Village D",
-    "tile": null
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     177.95339,
+     177.41641,
      -17.60845
     ]
    },
    "properties": {
-    "id": "b0215",
-    "village": "Village D",
-    "tile": null
+    "id": "b0168",
+    "segment_id": "s08",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 835
    }
   },
   {
@@ -3231,14 +2862,815 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.9431,
-     -17.6007
+     177.41513,
+     -17.60805
+    ]
+   },
+   "properties": {
+    "id": "b0169",
+    "segment_id": "s08",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 699
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40846,
+     -17.61375
+    ]
+   },
+   "properties": {
+    "id": "b0170",
+    "segment_id": "s09",
+    "people": 2,
+    "surge_m": 1,
+    "coast_m": 176
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41064,
+     -17.61343
+    ]
+   },
+   "properties": {
+    "id": "b0171",
+    "segment_id": "s09",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 408
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41289,
+     -17.61279
+    ]
+   },
+   "properties": {
+    "id": "b0172",
+    "segment_id": "s09",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 646
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40946,
+     -17.6141
+    ]
+   },
+   "properties": {
+    "id": "b0173",
+    "segment_id": "s09",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 282
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41441,
+     -17.61235
+    ]
+   },
+   "properties": {
+    "id": "b0174",
+    "segment_id": "s09",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 808
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41531,
+     -17.61473
+    ]
+   },
+   "properties": {
+    "id": "b0175",
+    "segment_id": "s09",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 903
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40786,
+     -17.61239
+    ]
+   },
+   "properties": {
+    "id": "b0176",
+    "segment_id": "s09",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 113
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4129,
+     -17.61871
+    ]
+   },
+   "properties": {
+    "id": "b0177",
+    "segment_id": "s10",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 854
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40739,
+     -17.61721
+    ]
+   },
+   "properties": {
+    "id": "b0178",
+    "segment_id": "s10",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 269
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40975,
+     -17.61817
+    ]
+   },
+   "properties": {
+    "id": "b0179",
+    "segment_id": "s10",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 519
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41348,
+     -17.61852
+    ]
+   },
+   "properties": {
+    "id": "b0180",
+    "segment_id": "s10",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 915
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41085,
+     -17.61723
+    ]
+   },
+   "properties": {
+    "id": "b0181",
+    "segment_id": "s10",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 636
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41069,
+     -17.61836
+    ]
+   },
+   "properties": {
+    "id": "b0182",
+    "segment_id": "s10",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 620
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41198,
+     -17.61846
+    ]
+   },
+   "properties": {
+    "id": "b0183",
+    "segment_id": "s10",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 756
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40652,
+     -17.61781
+    ]
+   },
+   "properties": {
+    "id": "b0184",
+    "segment_id": "s10",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 177
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40773,
+     -17.61713
+    ]
+   },
+   "properties": {
+    "id": "b0185",
+    "segment_id": "s10",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 305
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40974,
+     -17.62303
+    ]
+   },
+   "properties": {
+    "id": "b0186",
+    "segment_id": "s11",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 723
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40757,
+     -17.62363
+    ]
+   },
+   "properties": {
+    "id": "b0187",
+    "segment_id": "s11",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 493
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40518,
+     -17.62052
+    ]
+   },
+   "properties": {
+    "id": "b0188",
+    "segment_id": "s11",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 239
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40355,
+     -17.6224
+    ]
+   },
+   "properties": {
+    "id": "b0189",
+    "segment_id": "s11",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 67
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41206,
+     -17.62243
+    ]
+   },
+   "properties": {
+    "id": "b0190",
+    "segment_id": "s11",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 970
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40686,
+     -17.62074
+    ]
+   },
+   "properties": {
+    "id": "b0191",
+    "segment_id": "s11",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 418
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40406,
+     -17.62373
+    ]
+   },
+   "properties": {
+    "id": "b0192",
+    "segment_id": "s11",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 121
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40809,
+     -17.62061
+    ]
+   },
+   "properties": {
+    "id": "b0193",
+    "segment_id": "s11",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 548
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4088,
+     -17.62177
+    ]
+   },
+   "properties": {
+    "id": "b0194",
+    "segment_id": "s11",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 623
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41134,
+     -17.62151
+    ]
+   },
+   "properties": {
+    "id": "b0195",
+    "segment_id": "s11",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 893
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40785,
+     -17.62089
+    ]
+   },
+   "properties": {
+    "id": "b0196",
+    "segment_id": "s11",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 523
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40362,
+     -17.62405
+    ]
+   },
+   "properties": {
+    "id": "b0197",
+    "segment_id": "s11",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 74
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4095,
+     -17.62259
+    ]
+   },
+   "properties": {
+    "id": "b0198",
+    "segment_id": "s11",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 698
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40466,
+     -17.62281
+    ]
+   },
+   "properties": {
+    "id": "b0199",
+    "segment_id": "s11",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 184
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40448,
+     -17.62286
+    ]
+   },
+   "properties": {
+    "id": "b0200",
+    "segment_id": "s11",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 165
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41012,
+     -17.62102
+    ]
+   },
+   "properties": {
+    "id": "b0201",
+    "segment_id": "s11",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 763
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41181,
+     -17.62335
+    ]
+   },
+   "properties": {
+    "id": "b0202",
+    "segment_id": "s11",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 943
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41147,
+     -17.62301
+    ]
+   },
+   "properties": {
+    "id": "b0203",
+    "segment_id": "s11",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 906
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40398,
+     -17.62265
+    ]
+   },
+   "properties": {
+    "id": "b0204",
+    "segment_id": "s11",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 112
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40408,
+     -17.62071
+    ]
+   },
+   "properties": {
+    "id": "b0205",
+    "segment_id": "s11",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 123
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41104,
+     -17.62304
+    ]
+   },
+   "properties": {
+    "id": "b0206",
+    "segment_id": "s11",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 862
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41087,
+     -17.62303
+    ]
+   },
+   "properties": {
+    "id": "b0207",
+    "segment_id": "s11",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 843
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40563,
+     -17.6231
+    ]
+   },
+   "properties": {
+    "id": "b0208",
+    "segment_id": "s11",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 287
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40873,
+     -17.62701
+    ]
+   },
+   "properties": {
+    "id": "b0209",
+    "segment_id": "s12",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 796
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40897,
+     -17.62628
+    ]
+   },
+   "properties": {
+    "id": "b0210",
+    "segment_id": "s12",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 821
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40662,
+     -17.62596
+    ]
+   },
+   "properties": {
+    "id": "b0211",
+    "segment_id": "s12",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 572
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41006,
+     -17.62707
+    ]
+   },
+   "properties": {
+    "id": "b0212",
+    "segment_id": "s12",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 937
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40844,
+     -17.62623
+    ]
+   },
+   "properties": {
+    "id": "b0213",
+    "segment_id": "s12",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 765
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40605,
+     -17.62526
+    ]
+   },
+   "properties": {
+    "id": "b0214",
+    "segment_id": "s12",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 511
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40284,
+     -17.62685
+    ]
+   },
+   "properties": {
+    "id": "b0215",
+    "segment_id": "s12",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 171
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40422,
+     -17.62763
     ]
    },
    "properties": {
     "id": "b0216",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 318
    }
   },
   {
@@ -3246,14 +3678,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.95021,
-     -17.63273
+     177.41044,
+     -17.62762
     ]
    },
    "properties": {
     "id": "b0217",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 977
    }
   },
   {
@@ -3261,14 +3695,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.94996,
-     -17.64272
+     177.40383,
+     -17.62681
     ]
    },
    "properties": {
     "id": "b0218",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 277
    }
   },
   {
@@ -3276,14 +3712,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.95061,
-     -17.61775
+     177.40523,
+     -17.62795
     ]
    },
    "properties": {
     "id": "b0219",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 425
    }
   },
   {
@@ -3291,14 +3729,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.95969,
-     -17.63415
+     177.40237,
+     -17.62675
     ]
    },
    "properties": {
     "id": "b0220",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 121
    }
   },
   {
@@ -3306,14 +3746,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.96924,
-     -17.62977
+     177.40663,
+     -17.62692
     ]
    },
    "properties": {
     "id": "b0221",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 573
    }
   },
   {
@@ -3321,14 +3763,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.94257,
-     -17.61499
+     177.41062,
+     -17.62693
     ]
    },
    "properties": {
     "id": "b0222",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 997
    }
   },
   {
@@ -3336,14 +3780,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.93557,
-     -17.60636
+     177.4066,
+     -17.62768
     ]
    },
    "properties": {
     "id": "b0223",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 570
    }
   },
   {
@@ -3351,14 +3797,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.93904,
-     -17.62988
+     177.40476,
+     -17.62823
     ]
    },
    "properties": {
     "id": "b0224",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 375
    }
   },
   {
@@ -3366,14 +3814,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.92999,
-     -17.61075
+     177.40499,
+     -17.62563
     ]
    },
    "properties": {
     "id": "b0225",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 400
    }
   },
   {
@@ -3381,14 +3831,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.95613,
-     -17.6168
+     177.40964,
+     -17.62585
     ]
    },
    "properties": {
     "id": "b0226",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 893
    }
   },
   {
@@ -3396,14 +3848,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.94384,
-     -17.63455
+     177.40513,
+     -17.62586
     ]
    },
    "properties": {
     "id": "b0227",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 414
    }
   },
   {
@@ -3411,14 +3865,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.94508,
-     -17.62479
+     177.40507,
+     -17.62734
     ]
    },
    "properties": {
     "id": "b0228",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 408
    }
   },
   {
@@ -3426,14 +3882,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.93462,
-     -17.61539
+     177.40616,
+     -17.62648
     ]
    },
    "properties": {
     "id": "b0229",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 523
    }
   },
   {
@@ -3441,14 +3899,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.95122,
-     -17.62392
+     177.40282,
+     -17.62674
     ]
    },
    "properties": {
     "id": "b0230",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 170
    }
   },
   {
@@ -3456,14 +3916,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.94941,
-     -17.63336
+     177.40877,
+     -17.62549
     ]
    },
    "properties": {
     "id": "b0231",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 801
    }
   },
   {
@@ -3471,14 +3933,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.94663,
-     -17.62698
+     177.40412,
+     -17.62766
     ]
    },
    "properties": {
     "id": "b0232",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 307
    }
   },
   {
@@ -3486,14 +3950,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.95213,
-     -17.61481
+     177.40748,
+     -17.627
     ]
    },
    "properties": {
     "id": "b0233",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 664
    }
   },
   {
@@ -3501,14 +3967,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.95458,
-     -17.60175
+     177.4093,
+     -17.6254
     ]
    },
    "properties": {
     "id": "b0234",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 856
    }
   },
   {
@@ -3516,14 +3984,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.97025,
-     -17.63761
+     177.40284,
+     -17.62702
     ]
    },
    "properties": {
     "id": "b0235",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 171
    }
   },
   {
@@ -3531,14 +4001,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.95547,
-     -17.60397
+     177.41037,
+     -17.62679
     ]
    },
    "properties": {
     "id": "b0236",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s12",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 970
    }
   },
   {
@@ -3546,14 +4018,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.94116,
-     -17.62427
+     177.40912,
+     -17.63216
     ]
    },
    "properties": {
     "id": "b0237",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s13",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 974
    }
   },
   {
@@ -3561,14 +4035,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.92709,
-     -17.63382
+     177.40242,
+     -17.63251
     ]
    },
    "properties": {
     "id": "b0238",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s13",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 263
    }
   },
   {
@@ -3576,14 +4052,16 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.94608,
-     -17.61044
+     177.40139,
+     -17.63007
     ]
    },
    "properties": {
     "id": "b0239",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s13",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 153
    }
   },
   {
@@ -3591,14 +4069,2702 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     177.93271,
-     -17.61064
+     177.40621,
+     -17.63029
     ]
    },
    "properties": {
     "id": "b0240",
-    "village": "Village D",
-    "tile": null
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 665
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40118,
+     -17.63025
+    ]
+   },
+   "properties": {
+    "id": "b0241",
+    "segment_id": "s13",
+    "people": 2,
+    "surge_m": 1,
+    "coast_m": 131
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40742,
+     -17.63222
+    ]
+   },
+   "properties": {
+    "id": "b0242",
+    "segment_id": "s13",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 793
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40619,
+     -17.63196
+    ]
+   },
+   "properties": {
+    "id": "b0243",
+    "segment_id": "s13",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 663
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40602,
+     -17.63115
+    ]
+   },
+   "properties": {
+    "id": "b0244",
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 645
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40667,
+     -17.63265
+    ]
+   },
+   "properties": {
+    "id": "b0245",
+    "segment_id": "s13",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 714
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4031,
+     -17.62965
+    ]
+   },
+   "properties": {
+    "id": "b0246",
+    "segment_id": "s13",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 335
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40389,
+     -17.63225
+    ]
+   },
+   "properties": {
+    "id": "b0247",
+    "segment_id": "s13",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 419
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40042,
+     -17.63111
+    ]
+   },
+   "properties": {
+    "id": "b0248",
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 51
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40291,
+     -17.63191
+    ]
+   },
+   "properties": {
+    "id": "b0249",
+    "segment_id": "s13",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 315
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40467,
+     -17.63221
+    ]
+   },
+   "properties": {
+    "id": "b0250",
+    "segment_id": "s13",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 502
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40068,
+     -17.63157
+    ]
+   },
+   "properties": {
+    "id": "b0251",
+    "segment_id": "s13",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 78
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40317,
+     -17.63298
+    ]
+   },
+   "properties": {
+    "id": "b0252",
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 342
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40834,
+     -17.63072
+    ]
+   },
+   "properties": {
+    "id": "b0253",
+    "segment_id": "s13",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 891
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40272,
+     -17.63064
+    ]
+   },
+   "properties": {
+    "id": "b0254",
+    "segment_id": "s13",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 294
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40244,
+     -17.63294
+    ]
+   },
+   "properties": {
+    "id": "b0255",
+    "segment_id": "s13",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 265
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40685,
+     -17.63175
+    ]
+   },
+   "properties": {
+    "id": "b0256",
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 732
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40219,
+     -17.63018
+    ]
+   },
+   "properties": {
+    "id": "b0257",
+    "segment_id": "s13",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 238
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40798,
+     -17.63282
+    ]
+   },
+   "properties": {
+    "id": "b0258",
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 853
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4091,
+     -17.63193
+    ]
+   },
+   "properties": {
+    "id": "b0259",
+    "segment_id": "s13",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 971
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40248,
+     -17.63226
+    ]
+   },
+   "properties": {
+    "id": "b0260",
+    "segment_id": "s13",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 269
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40139,
+     -17.6308
+    ]
+   },
+   "properties": {
+    "id": "b0261",
+    "segment_id": "s13",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 154
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40209,
+     -17.63225
+    ]
+   },
+   "properties": {
+    "id": "b0262",
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 228
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40857,
+     -17.63286
+    ]
+   },
+   "properties": {
+    "id": "b0263",
+    "segment_id": "s13",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 915
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40172,
+     -17.63164
+    ]
+   },
+   "properties": {
+    "id": "b0264",
+    "segment_id": "s13",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 189
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40063,
+     -17.6309
+    ]
+   },
+   "properties": {
+    "id": "b0265",
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 72
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40088,
+     -17.63284
+    ]
+   },
+   "properties": {
+    "id": "b0266",
+    "segment_id": "s13",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 99
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40444,
+     -17.63048
+    ]
+   },
+   "properties": {
+    "id": "b0267",
+    "segment_id": "s13",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 477
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40698,
+     -17.62945
+    ]
+   },
+   "properties": {
+    "id": "b0268",
+    "segment_id": "s13",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 746
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40336,
+     -17.63239
+    ]
+   },
+   "properties": {
+    "id": "b0269",
+    "segment_id": "s13",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 363
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4071,
+     -17.63294
+    ]
+   },
+   "properties": {
+    "id": "b0270",
+    "segment_id": "s13",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 759
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40851,
+     -17.63596
+    ]
+   },
+   "properties": {
+    "id": "b0271",
+    "segment_id": "s14",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 986
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.39971,
+     -17.63655
+    ]
+   },
+   "properties": {
+    "id": "b0272",
+    "segment_id": "s14",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 53
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40345,
+     -17.63436
+    ]
+   },
+   "properties": {
+    "id": "b0273",
+    "segment_id": "s14",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 449
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40832,
+     -17.63681
+    ]
+   },
+   "properties": {
+    "id": "b0274",
+    "segment_id": "s14",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 966
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40657,
+     -17.63644
+    ]
+   },
+   "properties": {
+    "id": "b0275",
+    "segment_id": "s14",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 780
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40047,
+     -17.63501
+    ]
+   },
+   "properties": {
+    "id": "b0276",
+    "segment_id": "s14",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 133
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40302,
+     -17.63423
+    ]
+   },
+   "properties": {
+    "id": "b0277",
+    "segment_id": "s14",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 404
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40258,
+     -17.63489
+    ]
+   },
+   "properties": {
+    "id": "b0278",
+    "segment_id": "s14",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 357
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.39996,
+     -17.63607
+    ]
+   },
+   "properties": {
+    "id": "b0279",
+    "segment_id": "s14",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 79
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40655,
+     -17.63741
+    ]
+   },
+   "properties": {
+    "id": "b0280",
+    "segment_id": "s14",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 778
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40384,
+     -17.63465
+    ]
+   },
+   "properties": {
+    "id": "b0281",
+    "segment_id": "s14",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 491
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40199,
+     -17.63486
+    ]
+   },
+   "properties": {
+    "id": "b0282",
+    "segment_id": "s14",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 294
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40272,
+     -17.63657
+    ]
+   },
+   "properties": {
+    "id": "b0283",
+    "segment_id": "s14",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 372
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40008,
+     -17.63486
+    ]
+   },
+   "properties": {
+    "id": "b0284",
+    "segment_id": "s14",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 91
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40252,
+     -17.63656
+    ]
+   },
+   "properties": {
+    "id": "b0285",
+    "segment_id": "s14",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 351
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40615,
+     -17.6354
+    ]
+   },
+   "properties": {
+    "id": "b0286",
+    "segment_id": "s14",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 735
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40816,
+     -17.63732
+    ]
+   },
+   "properties": {
+    "id": "b0287",
+    "segment_id": "s14",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 949
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40065,
+     -17.63497
+    ]
+   },
+   "properties": {
+    "id": "b0288",
+    "segment_id": "s14",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 152
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40823,
+     -17.63616
+    ]
+   },
+   "properties": {
+    "id": "b0289",
+    "segment_id": "s14",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 956
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40787,
+     -17.63461
+    ]
+   },
+   "properties": {
+    "id": "b0290",
+    "segment_id": "s14",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 918
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.408,
+     -17.6369
+    ]
+   },
+   "properties": {
+    "id": "b0291",
+    "segment_id": "s14",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 932
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4024,
+     -17.63505
+    ]
+   },
+   "properties": {
+    "id": "b0292",
+    "segment_id": "s14",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 338
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40513,
+     -17.63637
+    ]
+   },
+   "properties": {
+    "id": "b0293",
+    "segment_id": "s14",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 627
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40381,
+     -17.63472
+    ]
+   },
+   "properties": {
+    "id": "b0294",
+    "segment_id": "s14",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 488
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40039,
+     -17.63685
+    ]
+   },
+   "properties": {
+    "id": "b0295",
+    "segment_id": "s14",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 125
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4019,
+     -17.63733
+    ]
+   },
+   "properties": {
+    "id": "b0296",
+    "segment_id": "s14",
+    "people": 2,
+    "surge_m": 1,
+    "coast_m": 285
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.404,
+     -17.63559
+    ]
+   },
+   "properties": {
+    "id": "b0297",
+    "segment_id": "s14",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 508
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40847,
+     -17.63436
+    ]
+   },
+   "properties": {
+    "id": "b0298",
+    "segment_id": "s14",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 981
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40146,
+     -17.64054
+    ]
+   },
+   "properties": {
+    "id": "b0299",
+    "segment_id": "s15",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 248
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4083,
+     -17.64143
+    ]
+   },
+   "properties": {
+    "id": "b0300",
+    "segment_id": "s15",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 974
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40333,
+     -17.63981
+    ]
+   },
+   "properties": {
+    "id": "b0301",
+    "segment_id": "s15",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 446
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4017,
+     -17.64011
+    ]
+   },
+   "properties": {
+    "id": "b0302",
+    "segment_id": "s15",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 273
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4064,
+     -17.63924
+    ]
+   },
+   "properties": {
+    "id": "b0303",
+    "segment_id": "s15",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 772
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40223,
+     -17.64001
+    ]
+   },
+   "properties": {
+    "id": "b0304",
+    "segment_id": "s15",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 329
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40187,
+     -17.64112
+    ]
+   },
+   "properties": {
+    "id": "b0305",
+    "segment_id": "s15",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 291
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40181,
+     -17.64117
+    ]
+   },
+   "properties": {
+    "id": "b0306",
+    "segment_id": "s15",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 285
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40212,
+     -17.63878
+    ]
+   },
+   "properties": {
+    "id": "b0307",
+    "segment_id": "s15",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 317
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40252,
+     -17.64063
+    ]
+   },
+   "properties": {
+    "id": "b0308",
+    "segment_id": "s15",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 360
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40597,
+     -17.6462
+    ]
+   },
+   "properties": {
+    "id": "b0309",
+    "segment_id": "s16",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 667
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40903,
+     -17.64619
+    ]
+   },
+   "properties": {
+    "id": "b0310",
+    "segment_id": "s16",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 991
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40806,
+     -17.64572
+    ]
+   },
+   "properties": {
+    "id": "b0311",
+    "segment_id": "s16",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 889
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40834,
+     -17.64641
+    ]
+   },
+   "properties": {
+    "id": "b0312",
+    "segment_id": "s16",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 919
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40224,
+     -17.64638
+    ]
+   },
+   "properties": {
+    "id": "b0313",
+    "segment_id": "s16",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 271
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40887,
+     -17.64445
+    ]
+   },
+   "properties": {
+    "id": "b0314",
+    "segment_id": "s16",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 974
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40349,
+     -17.64343
+    ]
+   },
+   "properties": {
+    "id": "b0315",
+    "segment_id": "s16",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 404
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40555,
+     -17.64375
+    ]
+   },
+   "properties": {
+    "id": "b0316",
+    "segment_id": "s16",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 623
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40862,
+     -17.64618
+    ]
+   },
+   "properties": {
+    "id": "b0317",
+    "segment_id": "s16",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 948
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40651,
+     -17.64529
+    ]
+   },
+   "properties": {
+    "id": "b0318",
+    "segment_id": "s16",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 724
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40346,
+     -17.64605
+    ]
+   },
+   "properties": {
+    "id": "b0319",
+    "segment_id": "s16",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 400
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40911,
+     -17.64642
+    ]
+   },
+   "properties": {
+    "id": "b0320",
+    "segment_id": "s16",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 1000
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40599,
+     -17.64582
+    ]
+   },
+   "properties": {
+    "id": "b0321",
+    "segment_id": "s16",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 669
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40749,
+     -17.64508
+    ]
+   },
+   "properties": {
+    "id": "b0322",
+    "segment_id": "s16",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 828
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40181,
+     -17.64543
+    ]
+   },
+   "properties": {
+    "id": "b0323",
+    "segment_id": "s16",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 226
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40044,
+     -17.64477
+    ]
+   },
+   "properties": {
+    "id": "b0324",
+    "segment_id": "s16",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 80
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40072,
+     -17.64619
+    ]
+   },
+   "properties": {
+    "id": "b0325",
+    "segment_id": "s16",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 110
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4061,
+     -17.646
+    ]
+   },
+   "properties": {
+    "id": "b0326",
+    "segment_id": "s16",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 681
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40097,
+     -17.64597
+    ]
+   },
+   "properties": {
+    "id": "b0327",
+    "segment_id": "s16",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 137
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40728,
+     -17.64955
+    ]
+   },
+   "properties": {
+    "id": "b0328",
+    "segment_id": "s17",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 684
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40409,
+     -17.64901
+    ]
+   },
+   "properties": {
+    "id": "b0329",
+    "segment_id": "s17",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 347
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40501,
+     -17.65099
+    ]
+   },
+   "properties": {
+    "id": "b0330",
+    "segment_id": "s17",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 443
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40707,
+     -17.64965
+    ]
+   },
+   "properties": {
+    "id": "b0331",
+    "segment_id": "s17",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 662
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40312,
+     -17.65104
+    ]
+   },
+   "properties": {
+    "id": "b0332",
+    "segment_id": "s17",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 243
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40509,
+     -17.64809
+    ]
+   },
+   "properties": {
+    "id": "b0333",
+    "segment_id": "s17",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 453
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40647,
+     -17.64974
+    ]
+   },
+   "properties": {
+    "id": "b0334",
+    "segment_id": "s17",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 599
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40246,
+     -17.65087
+    ]
+   },
+   "properties": {
+    "id": "b0335",
+    "segment_id": "s17",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 173
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40703,
+     -17.64777
+    ]
+   },
+   "properties": {
+    "id": "b0336",
+    "segment_id": "s17",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 659
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40643,
+     -17.6477
+    ]
+   },
+   "properties": {
+    "id": "b0337",
+    "segment_id": "s17",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 594
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40581,
+     -17.65053
+    ]
+   },
+   "properties": {
+    "id": "b0338",
+    "segment_id": "s17",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 529
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40275,
+     -17.65044
+    ]
+   },
+   "properties": {
+    "id": "b0339",
+    "segment_id": "s17",
+    "people": 2,
+    "surge_m": 1,
+    "coast_m": 204
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40227,
+     -17.64928
+    ]
+   },
+   "properties": {
+    "id": "b0340",
+    "segment_id": "s17",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 153
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.404,
+     -17.64803
+    ]
+   },
+   "properties": {
+    "id": "b0341",
+    "segment_id": "s17",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 337
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41003,
+     -17.64931
+    ]
+   },
+   "properties": {
+    "id": "b0342",
+    "segment_id": "s17",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 977
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40674,
+     -17.64876
+    ]
+   },
+   "properties": {
+    "id": "b0343",
+    "segment_id": "s17",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 627
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40939,
+     -17.64881
+    ]
+   },
+   "properties": {
+    "id": "b0344",
+    "segment_id": "s17",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 909
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40703,
+     -17.64796
+    ]
+   },
+   "properties": {
+    "id": "b0345",
+    "segment_id": "s17",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 658
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40492,
+     -17.648
+    ]
+   },
+   "properties": {
+    "id": "b0346",
+    "segment_id": "s17",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 434
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40294,
+     -17.65027
+    ]
+   },
+   "properties": {
+    "id": "b0347",
+    "segment_id": "s17",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 224
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4097,
+     -17.65049
+    ]
+   },
+   "properties": {
+    "id": "b0348",
+    "segment_id": "s17",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 942
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4024,
+     -17.65017
+    ]
+   },
+   "properties": {
+    "id": "b0349",
+    "segment_id": "s17",
+    "people": 7,
+    "surge_m": 1,
+    "coast_m": 167
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4086,
+     -17.65036
+    ]
+   },
+   "properties": {
+    "id": "b0350",
+    "segment_id": "s17",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 825
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40888,
+     -17.65439
+    ]
+   },
+   "properties": {
+    "id": "b0351",
+    "segment_id": "s18",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 685
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40827,
+     -17.65357
+    ]
+   },
+   "properties": {
+    "id": "b0352",
+    "segment_id": "s18",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 620
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40987,
+     -17.65321
+    ]
+   },
+   "properties": {
+    "id": "b0353",
+    "segment_id": "s18",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 789
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40812,
+     -17.65402
+    ]
+   },
+   "properties": {
+    "id": "b0354",
+    "segment_id": "s18",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 603
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40619,
+     -17.65374
+    ]
+   },
+   "properties": {
+    "id": "b0355",
+    "segment_id": "s18",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 399
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40311,
+     -17.65332
+    ]
+   },
+   "properties": {
+    "id": "b0356",
+    "segment_id": "s18",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 72
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40707,
+     -17.65394
+    ]
+   },
+   "properties": {
+    "id": "b0357",
+    "segment_id": "s18",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 492
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41228,
+     -17.65713
+    ]
+   },
+   "properties": {
+    "id": "b0358",
+    "segment_id": "s19",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 845
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40574,
+     -17.65959
+    ]
+   },
+   "properties": {
+    "id": "b0359",
+    "segment_id": "s19",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 152
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40806,
+     -17.65716
+    ]
+   },
+   "properties": {
+    "id": "b0360",
+    "segment_id": "s19",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 397
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40935,
+     -17.65991
+    ]
+   },
+   "properties": {
+    "id": "b0361",
+    "segment_id": "s19",
+    "people": 7,
+    "surge_m": 2,
+    "coast_m": 535
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40595,
+     -17.65672
+    ]
+   },
+   "properties": {
+    "id": "b0362",
+    "segment_id": "s19",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 174
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41175,
+     -17.65821
+    ]
+   },
+   "properties": {
+    "id": "b0363",
+    "segment_id": "s19",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 789
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41152,
+     -17.65682
+    ]
+   },
+   "properties": {
+    "id": "b0364",
+    "segment_id": "s19",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 764
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4133,
+     -17.65957
+    ]
+   },
+   "properties": {
+    "id": "b0365",
+    "segment_id": "s19",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 953
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4137,
+     -17.65741
+    ]
+   },
+   "properties": {
+    "id": "b0366",
+    "segment_id": "s19",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 996
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40652,
+     -17.65651
+    ]
+   },
+   "properties": {
+    "id": "b0367",
+    "segment_id": "s19",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 234
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40736,
+     -17.65712
+    ]
+   },
+   "properties": {
+    "id": "b0368",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 323
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41093,
+     -17.65745
+    ]
+   },
+   "properties": {
+    "id": "b0369",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 702
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40537,
+     -17.65879
+    ]
+   },
+   "properties": {
+    "id": "b0370",
+    "segment_id": "s19",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 112
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40621,
+     -17.65682
+    ]
+   },
+   "properties": {
+    "id": "b0371",
+    "segment_id": "s19",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 201
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41289,
+     -17.65841
+    ]
+   },
+   "properties": {
+    "id": "b0372",
+    "segment_id": "s19",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 910
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40928,
+     -17.65673
+    ]
+   },
+   "properties": {
+    "id": "b0373",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 527
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41008,
+     -17.65783
+    ]
+   },
+   "properties": {
+    "id": "b0374",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 612
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40764,
+     -17.65993
+    ]
+   },
+   "properties": {
+    "id": "b0375",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 353
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4084,
+     -17.65776
+    ]
+   },
+   "properties": {
+    "id": "b0376",
+    "segment_id": "s19",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 433
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41087,
+     -17.65682
+    ]
+   },
+   "properties": {
+    "id": "b0377",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": null,
+    "coast_m": 696
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41188,
+     -17.6591
+    ]
+   },
+   "properties": {
+    "id": "b0378",
+    "segment_id": "s19",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 803
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40522,
+     -17.65695
+    ]
+   },
+   "properties": {
+    "id": "b0379",
+    "segment_id": "s19",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 96
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40976,
+     -17.65796
+    ]
+   },
+   "properties": {
+    "id": "b0380",
+    "segment_id": "s19",
+    "people": 2,
+    "surge_m": 2,
+    "coast_m": 577
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40704,
+     -17.65812
+    ]
+   },
+   "properties": {
+    "id": "b0381",
+    "segment_id": "s19",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 289
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41139,
+     -17.65872
+    ]
+   },
+   "properties": {
+    "id": "b0382",
+    "segment_id": "s19",
+    "people": 5,
+    "surge_m": null,
+    "coast_m": 751
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41365,
+     -17.65797
+    ]
+   },
+   "properties": {
+    "id": "b0383",
+    "segment_id": "s19",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 991
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40775,
+     -17.65976
+    ]
+   },
+   "properties": {
+    "id": "b0384",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 364
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40637,
+     -17.65737
+    ]
+   },
+   "properties": {
+    "id": "b0385",
+    "segment_id": "s19",
+    "people": 2,
+    "surge_m": 1,
+    "coast_m": 218
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40744,
+     -17.65819
+    ]
+   },
+   "properties": {
+    "id": "b0386",
+    "segment_id": "s19",
+    "people": 4,
+    "surge_m": 2,
+    "coast_m": 332
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41051,
+     -17.6565
+    ]
+   },
+   "properties": {
+    "id": "b0387",
+    "segment_id": "s19",
+    "people": 6,
+    "surge_m": null,
+    "coast_m": 657
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4131,
+     -17.65682
+    ]
+   },
+   "properties": {
+    "id": "b0388",
+    "segment_id": "s19",
+    "people": 7,
+    "surge_m": null,
+    "coast_m": 932
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.4048,
+     -17.65994
+    ]
+   },
+   "properties": {
+    "id": "b0389",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 52
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40739,
+     -17.6578
+    ]
+   },
+   "properties": {
+    "id": "b0390",
+    "segment_id": "s19",
+    "people": 5,
+    "surge_m": 2,
+    "coast_m": 326
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40938,
+     -17.65682
+    ]
+   },
+   "properties": {
+    "id": "b0391",
+    "segment_id": "s19",
+    "people": 3,
+    "surge_m": 2,
+    "coast_m": 537
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40694,
+     -17.66455
+    ]
+   },
+   "properties": {
+    "id": "b0392",
+    "segment_id": "s20",
+    "people": 4,
+    "surge_m": 1,
+    "coast_m": 71
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40946,
+     -17.66267
+    ]
+   },
+   "properties": {
+    "id": "b0393",
+    "segment_id": "s20",
+    "people": 6,
+    "surge_m": 2,
+    "coast_m": 339
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40875,
+     -17.66245
+    ]
+   },
+   "properties": {
+    "id": "b0394",
+    "segment_id": "s20",
+    "people": 6,
+    "surge_m": 1,
+    "coast_m": 263
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40794,
+     -17.66323
+    ]
+   },
+   "properties": {
+    "id": "b0395",
+    "segment_id": "s20",
+    "people": 5,
+    "surge_m": 1,
+    "coast_m": 177
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.40816,
+     -17.66451
+    ]
+   },
+   "properties": {
+    "id": "b0396",
+    "segment_id": "s20",
+    "people": 3,
+    "surge_m": 1,
+    "coast_m": 201
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41308,
+     -17.66293
+    ]
+   },
+   "properties": {
+    "id": "b0397",
+    "segment_id": "s20",
+    "people": 2,
+    "surge_m": null,
+    "coast_m": 722
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.41246,
+     -17.66141
+    ]
+   },
+   "properties": {
+    "id": "b0398",
+    "segment_id": "s20",
+    "people": 4,
+    "surge_m": null,
+    "coast_m": 656
    }
   }
  ]
