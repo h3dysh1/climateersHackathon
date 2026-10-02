@@ -1,0 +1,645 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.405,
+      -17.575
+     ],
+     [
+      177.40696,
+      -17.5795
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s01",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 100,
+    "restorable_ha": 5.0,
+    "people_behind": 131,
+    "surge_people": 95,
+    "buildings_behind": 30,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.13,
+    "surge_reduction_restored_m": 0.01,
+    "band_now": "exposed",
+    "band_restored": "exposed",
+    "priority": 2.47
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40696,
+      -17.5795
+     ],
+     [
+      177.40871,
+      -17.584
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s02",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 400,
+    "restorable_ha": 20.0,
+    "people_behind": 57,
+    "surge_people": 40,
+    "buildings_behind": 12,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.52,
+    "surge_reduction_restored_m": 0.04,
+    "band_now": "exposed",
+    "band_restored": "strong",
+    "priority": 1.04
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40871,
+      -17.584
+     ],
+     [
+      177.41005,
+      -17.5885
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s03",
+    "length_m": 500,
+    "existing_width_m": 80,
+    "restorable_width_m": 0,
+    "restorable_ha": 0.0,
+    "people_behind": 160,
+    "surge_people": 87,
+    "buildings_behind": 34,
+    "wave_reduction_now": 0.104,
+    "wave_reduction_restored": 0.104,
+    "surge_reduction_restored_m": 0.008,
+    "band_now": "exposed",
+    "band_restored": "exposed",
+    "priority": 0
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.41005,
+      -17.5885
+     ],
+     [
+      177.41083,
+      -17.593
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s04",
+    "length_m": 500,
+    "existing_width_m": 40,
+    "restorable_width_m": 200,
+    "restorable_ha": 10.0,
+    "people_behind": 40,
+    "surge_people": 22,
+    "buildings_behind": 10,
+    "wave_reduction_now": 0.052,
+    "wave_reduction_restored": 0.312,
+    "surge_reduction_restored_m": 0.024,
+    "band_now": "exposed",
+    "band_restored": "partial",
+    "priority": 0.57
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.41083,
+      -17.593
+     ],
+     [
+      177.41097,
+      -17.5975
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s05",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 200,
+    "restorable_ha": 10.0,
+    "people_behind": 86,
+    "surge_people": 70,
+    "buildings_behind": 18,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.26,
+    "surge_reduction_restored_m": 0.02,
+    "band_now": "exposed",
+    "band_restored": "partial",
+    "priority": 1.82
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.41097,
+      -17.5975
+     ],
+     [
+      177.41046,
+      -17.602
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s06",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 400,
+    "restorable_ha": 20.0,
+    "people_behind": 78,
+    "surge_people": 51,
+    "buildings_behind": 17,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.52,
+    "surge_reduction_restored_m": 0.04,
+    "band_now": "exposed",
+    "band_restored": "strong",
+    "priority": 1.33
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.41046,
+      -17.602
+     ],
+     [
+      177.40934,
+      -17.6065
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s07",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 100,
+    "restorable_ha": 5.0,
+    "people_behind": 142,
+    "surge_people": 83,
+    "buildings_behind": 32,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.13,
+    "surge_reduction_restored_m": 0.01,
+    "band_now": "exposed",
+    "band_restored": "exposed",
+    "priority": 2.16
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40934,
+      -17.6065
+     ],
+     [
+      177.40774,
+      -17.611
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s08",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 200,
+    "restorable_ha": 10.0,
+    "people_behind": 75,
+    "surge_people": 24,
+    "buildings_behind": 16,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.26,
+    "surge_reduction_restored_m": 0.02,
+    "band_now": "exposed",
+    "band_restored": "partial",
+    "priority": 0.62
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40774,
+      -17.611
+     ],
+     [
+      177.40585,
+      -17.6155
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s09",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 0,
+    "restorable_ha": 0.0,
+    "people_behind": 32,
+    "surge_people": 13,
+    "buildings_behind": 7,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.0,
+    "surge_reduction_restored_m": 0.0,
+    "band_now": "exposed",
+    "band_restored": "exposed",
+    "priority": 0
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40585,
+      -17.6155
+     ],
+     [
+      177.40386,
+      -17.62
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s10",
+    "length_m": 500,
+    "existing_width_m": 250,
+    "restorable_width_m": 0,
+    "restorable_ha": 0.0,
+    "people_behind": 42,
+    "surge_people": 22,
+    "buildings_behind": 9,
+    "wave_reduction_now": 0.325,
+    "wave_reduction_restored": 0.325,
+    "surge_reduction_restored_m": 0.025,
+    "band_now": "partial",
+    "band_restored": "partial",
+    "priority": 0
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40386,
+      -17.62
+     ],
+     [
+      177.40199,
+      -17.6245
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s11",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 300,
+    "restorable_ha": 15.0,
+    "people_behind": 100,
+    "surge_people": 64,
+    "buildings_behind": 23,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.39,
+    "surge_reduction_restored_m": 0.03,
+    "band_now": "exposed",
+    "band_restored": "partial",
+    "priority": 1.66
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40199,
+      -17.6245
+     ],
+     [
+      177.40046,
+      -17.629
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s12",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 100,
+    "restorable_ha": 5.0,
+    "people_behind": 116,
+    "surge_people": 73,
+    "buildings_behind": 28,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.13,
+    "surge_reduction_restored_m": 0.01,
+    "band_now": "exposed",
+    "band_restored": "exposed",
+    "priority": 1.9
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40046,
+      -17.629
+     ],
+     [
+      177.39943,
+      -17.6335
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s13",
+    "length_m": 500,
+    "existing_width_m": 40,
+    "restorable_width_m": 400,
+    "restorable_ha": 20.0,
+    "people_behind": 151,
+    "surge_people": 101,
+    "buildings_behind": 34,
+    "wave_reduction_now": 0.052,
+    "wave_reduction_restored": 0.572,
+    "surge_reduction_restored_m": 0.044,
+    "band_now": "exposed",
+    "band_restored": "strong",
+    "priority": 2.63
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.39943,
+      -17.6335
+     ],
+     [
+      177.39901,
+      -17.638
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s14",
+    "length_m": 500,
+    "existing_width_m": 150,
+    "restorable_width_m": 300,
+    "restorable_ha": 15.0,
+    "people_behind": 116,
+    "surge_people": 73,
+    "buildings_behind": 28,
+    "wave_reduction_now": 0.195,
+    "wave_reduction_restored": 0.585,
+    "surge_reduction_restored_m": 0.045,
+    "band_now": "exposed",
+    "band_restored": "strong",
+    "priority": 1.9
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.39901,
+      -17.638
+     ],
+     [
+      177.39925,
+      -17.6425
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s15",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 400,
+    "restorable_ha": 20.0,
+    "people_behind": 46,
+    "surge_people": 39,
+    "buildings_behind": 10,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.52,
+    "surge_reduction_restored_m": 0.04,
+    "band_now": "exposed",
+    "band_restored": "strong",
+    "priority": 1.01
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.39925,
+      -17.6425
+     ],
+     [
+      177.40012,
+      -17.647
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s16",
+    "length_m": 500,
+    "existing_width_m": 80,
+    "restorable_width_m": 400,
+    "restorable_ha": 20.0,
+    "people_behind": 89,
+    "surge_people": 34,
+    "buildings_behind": 19,
+    "wave_reduction_now": 0.104,
+    "wave_reduction_restored": 0.624,
+    "surge_reduction_restored_m": 0.048,
+    "band_now": "exposed",
+    "band_restored": "strong",
+    "priority": 0.88
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40012,
+      -17.647
+     ],
+     [
+      177.40153,
+      -17.6515
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s17",
+    "length_m": 500,
+    "existing_width_m": 0,
+    "restorable_width_m": 300,
+    "restorable_ha": 15.0,
+    "people_behind": 89,
+    "surge_people": 57,
+    "buildings_behind": 23,
+    "wave_reduction_now": 0.0,
+    "wave_reduction_restored": 0.39,
+    "surge_reduction_restored_m": 0.03,
+    "band_now": "exposed",
+    "band_restored": "partial",
+    "priority": 1.48
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40153,
+      -17.6515
+     ],
+     [
+      177.40332,
+      -17.656
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s18",
+    "length_m": 500,
+    "existing_width_m": 250,
+    "restorable_width_m": 0,
+    "restorable_ha": 0.0,
+    "people_behind": 37,
+    "surge_people": 14,
+    "buildings_behind": 7,
+    "wave_reduction_now": 0.325,
+    "wave_reduction_restored": 0.325,
+    "surge_reduction_restored_m": 0.025,
+    "band_now": "partial",
+    "band_restored": "partial",
+    "priority": 0
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.40332,
+      -17.656
+     ],
+     [
+      177.4053,
+      -17.6605
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s19",
+    "length_m": 500,
+    "existing_width_m": 250,
+    "restorable_width_m": 0,
+    "restorable_ha": 0.0,
+    "people_behind": 139,
+    "surge_people": 80,
+    "buildings_behind": 34,
+    "wave_reduction_now": 0.325,
+    "wave_reduction_restored": 0.325,
+    "surge_reduction_restored_m": 0.025,
+    "band_now": "partial",
+    "band_restored": "partial",
+    "priority": 0
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      177.4053,
+      -17.6605
+     ],
+     [
+      177.40724,
+      -17.665
+     ]
+    ]
+   },
+   "properties": {
+    "id": "s20",
+    "length_m": 500,
+    "existing_width_m": 40,
+    "restorable_width_m": 100,
+    "restorable_ha": 5.0,
+    "people_behind": 30,
+    "surge_people": 24,
+    "buildings_behind": 7,
+    "wave_reduction_now": 0.052,
+    "wave_reduction_restored": 0.182,
+    "surge_reduction_restored_m": 0.014,
+    "band_now": "exposed",
+    "band_restored": "exposed",
+    "priority": 0.62
+   }
+  }
+ ]
+}

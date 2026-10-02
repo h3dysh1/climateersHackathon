@@ -47,7 +47,7 @@ def main():
         features.append({
             "type": "Feature",
             "geometry": {"type": "Point", "coordinates": [round(p.x, 6), round(p.y, 6)]},
-            "properties": {"id": bid, "village": village_names[i] if village_names else None, "tile": f"tiles/{bid}.png"},
+            "properties": {"id": bid, "village": village_names[i] if village_names else None},
         })
     write_json("buildings.geojson", {"type": "FeatureCollection", "features": features})
     print(f"{len(features)} buildings")
