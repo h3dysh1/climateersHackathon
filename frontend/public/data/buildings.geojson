@@ -1,0 +1,3605 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17793,
+     -17.40173
+    ]
+   },
+   "properties": {
+    "id": "b0001",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.19184,
+     -17.38423
+    ]
+   },
+   "properties": {
+    "id": "b0002",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18157,
+     -17.39172
+    ]
+   },
+   "properties": {
+    "id": "b0003",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16177,
+     -17.40395
+    ]
+   },
+   "properties": {
+    "id": "b0004",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17872,
+     -17.3995
+    ]
+   },
+   "properties": {
+    "id": "b0005",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.1999,
+     -17.39559
+    ]
+   },
+   "properties": {
+    "id": "b0006",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16664,
+     -17.39061
+    ]
+   },
+   "properties": {
+    "id": "b0007",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17772,
+     -17.39571
+    ]
+   },
+   "properties": {
+    "id": "b0008",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17647,
+     -17.40103
+    ]
+   },
+   "properties": {
+    "id": "b0009",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17127,
+     -17.39216
+    ]
+   },
+   "properties": {
+    "id": "b0010",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18915,
+     -17.39762
+    ]
+   },
+   "properties": {
+    "id": "b0011",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.19336,
+     -17.39956
+    ]
+   },
+   "properties": {
+    "id": "b0012",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16268,
+     -17.38857
+    ]
+   },
+   "properties": {
+    "id": "b0013",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.19072,
+     -17.37573
+    ]
+   },
+   "properties": {
+    "id": "b0014",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.19623,
+     -17.4211
+    ]
+   },
+   "properties": {
+    "id": "b0015",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16507,
+     -17.40047
+    ]
+   },
+   "properties": {
+    "id": "b0016",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.22082,
+     -17.39203
+    ]
+   },
+   "properties": {
+    "id": "b0017",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17471,
+     -17.39556
+    ]
+   },
+   "properties": {
+    "id": "b0018",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.20708,
+     -17.42943
+    ]
+   },
+   "properties": {
+    "id": "b0019",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18138,
+     -17.38088
+    ]
+   },
+   "properties": {
+    "id": "b0020",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18526,
+     -17.4121
+    ]
+   },
+   "properties": {
+    "id": "b0021",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.19042,
+     -17.38681
+    ]
+   },
+   "properties": {
+    "id": "b0022",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.1651,
+     -17.39883
+    ]
+   },
+   "properties": {
+    "id": "b0023",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18337,
+     -17.3726
+    ]
+   },
+   "properties": {
+    "id": "b0024",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.178,
+     -17.40443
+    ]
+   },
+   "properties": {
+    "id": "b0025",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18984,
+     -17.39057
+    ]
+   },
+   "properties": {
+    "id": "b0026",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16076,
+     -17.42429
+    ]
+   },
+   "properties": {
+    "id": "b0027",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16977,
+     -17.40548
+    ]
+   },
+   "properties": {
+    "id": "b0028",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18097,
+     -17.39772
+    ]
+   },
+   "properties": {
+    "id": "b0029",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18731,
+     -17.38471
+    ]
+   },
+   "properties": {
+    "id": "b0030",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18381,
+     -17.39201
+    ]
+   },
+   "properties": {
+    "id": "b0031",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17385,
+     -17.38565
+    ]
+   },
+   "properties": {
+    "id": "b0032",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18504,
+     -17.39802
+    ]
+   },
+   "properties": {
+    "id": "b0033",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17698,
+     -17.39737
+    ]
+   },
+   "properties": {
+    "id": "b0034",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17452,
+     -17.3982
+    ]
+   },
+   "properties": {
+    "id": "b0035",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18457,
+     -17.40855
+    ]
+   },
+   "properties": {
+    "id": "b0036",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17572,
+     -17.39664
+    ]
+   },
+   "properties": {
+    "id": "b0037",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17411,
+     -17.39579
+    ]
+   },
+   "properties": {
+    "id": "b0038",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17586,
+     -17.39411
+    ]
+   },
+   "properties": {
+    "id": "b0039",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.1704,
+     -17.39785
+    ]
+   },
+   "properties": {
+    "id": "b0040",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18408,
+     -17.39916
+    ]
+   },
+   "properties": {
+    "id": "b0041",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17284,
+     -17.41225
+    ]
+   },
+   "properties": {
+    "id": "b0042",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18371,
+     -17.39326
+    ]
+   },
+   "properties": {
+    "id": "b0043",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17441,
+     -17.38545
+    ]
+   },
+   "properties": {
+    "id": "b0044",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18772,
+     -17.41388
+    ]
+   },
+   "properties": {
+    "id": "b0045",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17134,
+     -17.40187
+    ]
+   },
+   "properties": {
+    "id": "b0046",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16787,
+     -17.37463
+    ]
+   },
+   "properties": {
+    "id": "b0047",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17989,
+     -17.39532
+    ]
+   },
+   "properties": {
+    "id": "b0048",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18368,
+     -17.40264
+    ]
+   },
+   "properties": {
+    "id": "b0049",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16382,
+     -17.3906
+    ]
+   },
+   "properties": {
+    "id": "b0050",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17065,
+     -17.42619
+    ]
+   },
+   "properties": {
+    "id": "b0051",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18949,
+     -17.38808
+    ]
+   },
+   "properties": {
+    "id": "b0052",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.19527,
+     -17.41009
+    ]
+   },
+   "properties": {
+    "id": "b0053",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17789,
+     -17.39675
+    ]
+   },
+   "properties": {
+    "id": "b0054",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16306,
+     -17.39774
+    ]
+   },
+   "properties": {
+    "id": "b0055",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.18073,
+     -17.4015
+    ]
+   },
+   "properties": {
+    "id": "b0056",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.19114,
+     -17.41036
+    ]
+   },
+   "properties": {
+    "id": "b0057",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.16731,
+     -17.38277
+    ]
+   },
+   "properties": {
+    "id": "b0058",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17028,
+     -17.40559
+    ]
+   },
+   "properties": {
+    "id": "b0059",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.17603,
+     -17.39212
+    ]
+   },
+   "properties": {
+    "id": "b0060",
+    "village": "Village A",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.03926,
+     -17.45091
+    ]
+   },
+   "properties": {
+    "id": "b0061",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.03876,
+     -17.45355
+    ]
+   },
+   "properties": {
+    "id": "b0062",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04454,
+     -17.4403
+    ]
+   },
+   "properties": {
+    "id": "b0063",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05578,
+     -17.45779
+    ]
+   },
+   "properties": {
+    "id": "b0064",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06993,
+     -17.47732
+    ]
+   },
+   "properties": {
+    "id": "b0065",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04861,
+     -17.4426
+    ]
+   },
+   "properties": {
+    "id": "b0066",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06739,
+     -17.46193
+    ]
+   },
+   "properties": {
+    "id": "b0067",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.0454,
+     -17.44371
+    ]
+   },
+   "properties": {
+    "id": "b0068",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.03285,
+     -17.44364
+    ]
+   },
+   "properties": {
+    "id": "b0069",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04078,
+     -17.45551
+    ]
+   },
+   "properties": {
+    "id": "b0070",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04076,
+     -17.45532
+    ]
+   },
+   "properties": {
+    "id": "b0071",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.03992,
+     -17.45597
+    ]
+   },
+   "properties": {
+    "id": "b0072",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.0499,
+     -17.45033
+    ]
+   },
+   "properties": {
+    "id": "b0073",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04343,
+     -17.45829
+    ]
+   },
+   "properties": {
+    "id": "b0074",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.02071,
+     -17.44174
+    ]
+   },
+   "properties": {
+    "id": "b0075",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04196,
+     -17.45728
+    ]
+   },
+   "properties": {
+    "id": "b0076",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05295,
+     -17.44778
+    ]
+   },
+   "properties": {
+    "id": "b0077",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.03969,
+     -17.43814
+    ]
+   },
+   "properties": {
+    "id": "b0078",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04895,
+     -17.4507
+    ]
+   },
+   "properties": {
+    "id": "b0079",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04622,
+     -17.43601
+    ]
+   },
+   "properties": {
+    "id": "b0080",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05443,
+     -17.44536
+    ]
+   },
+   "properties": {
+    "id": "b0081",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04219,
+     -17.42595
+    ]
+   },
+   "properties": {
+    "id": "b0082",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04242,
+     -17.47445
+    ]
+   },
+   "properties": {
+    "id": "b0083",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04183,
+     -17.44482
+    ]
+   },
+   "properties": {
+    "id": "b0084",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05461,
+     -17.4413
+    ]
+   },
+   "properties": {
+    "id": "b0085",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05333,
+     -17.444
+    ]
+   },
+   "properties": {
+    "id": "b0086",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05823,
+     -17.46255
+    ]
+   },
+   "properties": {
+    "id": "b0087",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06316,
+     -17.4658
+    ]
+   },
+   "properties": {
+    "id": "b0088",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04644,
+     -17.44054
+    ]
+   },
+   "properties": {
+    "id": "b0089",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04534,
+     -17.46564
+    ]
+   },
+   "properties": {
+    "id": "b0090",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05107,
+     -17.46186
+    ]
+   },
+   "properties": {
+    "id": "b0091",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04821,
+     -17.43528
+    ]
+   },
+   "properties": {
+    "id": "b0092",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05639,
+     -17.43903
+    ]
+   },
+   "properties": {
+    "id": "b0093",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06169,
+     -17.45617
+    ]
+   },
+   "properties": {
+    "id": "b0094",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04204,
+     -17.4455
+    ]
+   },
+   "properties": {
+    "id": "b0095",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.0595,
+     -17.422
+    ]
+   },
+   "properties": {
+    "id": "b0096",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04751,
+     -17.4424
+    ]
+   },
+   "properties": {
+    "id": "b0097",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05098,
+     -17.45583
+    ]
+   },
+   "properties": {
+    "id": "b0098",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06427,
+     -17.4419
+    ]
+   },
+   "properties": {
+    "id": "b0099",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05167,
+     -17.43976
+    ]
+   },
+   "properties": {
+    "id": "b0100",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.0343,
+     -17.45615
+    ]
+   },
+   "properties": {
+    "id": "b0101",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.03515,
+     -17.44556
+    ]
+   },
+   "properties": {
+    "id": "b0102",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06035,
+     -17.45979
+    ]
+   },
+   "properties": {
+    "id": "b0103",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.0688,
+     -17.42593
+    ]
+   },
+   "properties": {
+    "id": "b0104",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04763,
+     -17.46724
+    ]
+   },
+   "properties": {
+    "id": "b0105",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.03571,
+     -17.44263
+    ]
+   },
+   "properties": {
+    "id": "b0106",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05608,
+     -17.46905
+    ]
+   },
+   "properties": {
+    "id": "b0107",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05038,
+     -17.46063
+    ]
+   },
+   "properties": {
+    "id": "b0108",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.07085,
+     -17.46329
+    ]
+   },
+   "properties": {
+    "id": "b0109",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05831,
+     -17.44677
+    ]
+   },
+   "properties": {
+    "id": "b0110",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.0339,
+     -17.4563
+    ]
+   },
+   "properties": {
+    "id": "b0111",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06812,
+     -17.44673
+    ]
+   },
+   "properties": {
+    "id": "b0112",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04756,
+     -17.4624
+    ]
+   },
+   "properties": {
+    "id": "b0113",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05905,
+     -17.4512
+    ]
+   },
+   "properties": {
+    "id": "b0114",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04546,
+     -17.46982
+    ]
+   },
+   "properties": {
+    "id": "b0115",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06579,
+     -17.45265
+    ]
+   },
+   "properties": {
+    "id": "b0116",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04127,
+     -17.44501
+    ]
+   },
+   "properties": {
+    "id": "b0117",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.04795,
+     -17.45939
+    ]
+   },
+   "properties": {
+    "id": "b0118",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.06723,
+     -17.43305
+    ]
+   },
+   "properties": {
+    "id": "b0119",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.05247,
+     -17.46269
+    ]
+   },
+   "properties": {
+    "id": "b0120",
+    "village": "Village B",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25311,
+     -17.57208
+    ]
+   },
+   "properties": {
+    "id": "b0121",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24366,
+     -17.55268
+    ]
+   },
+   "properties": {
+    "id": "b0122",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.26382,
+     -17.53499
+    ]
+   },
+   "properties": {
+    "id": "b0123",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24814,
+     -17.563
+    ]
+   },
+   "properties": {
+    "id": "b0124",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.26571,
+     -17.5557
+    ]
+   },
+   "properties": {
+    "id": "b0125",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25492,
+     -17.55045
+    ]
+   },
+   "properties": {
+    "id": "b0126",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25022,
+     -17.53687
+    ]
+   },
+   "properties": {
+    "id": "b0127",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.2595,
+     -17.55232
+    ]
+   },
+   "properties": {
+    "id": "b0128",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.23366,
+     -17.54604
+    ]
+   },
+   "properties": {
+    "id": "b0129",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.229,
+     -17.56574
+    ]
+   },
+   "properties": {
+    "id": "b0130",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.26866,
+     -17.55707
+    ]
+   },
+   "properties": {
+    "id": "b0131",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.23275,
+     -17.557
+    ]
+   },
+   "properties": {
+    "id": "b0132",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25166,
+     -17.54701
+    ]
+   },
+   "properties": {
+    "id": "b0133",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.26665,
+     -17.52424
+    ]
+   },
+   "properties": {
+    "id": "b0134",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.2416,
+     -17.55446
+    ]
+   },
+   "properties": {
+    "id": "b0135",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25344,
+     -17.55906
+    ]
+   },
+   "properties": {
+    "id": "b0136",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.2523,
+     -17.56208
+    ]
+   },
+   "properties": {
+    "id": "b0137",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24072,
+     -17.55343
+    ]
+   },
+   "properties": {
+    "id": "b0138",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25975,
+     -17.55418
+    ]
+   },
+   "properties": {
+    "id": "b0139",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24672,
+     -17.56195
+    ]
+   },
+   "properties": {
+    "id": "b0140",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25012,
+     -17.56296
+    ]
+   },
+   "properties": {
+    "id": "b0141",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24434,
+     -17.53842
+    ]
+   },
+   "properties": {
+    "id": "b0142",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24439,
+     -17.55688
+    ]
+   },
+   "properties": {
+    "id": "b0143",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25468,
+     -17.55717
+    ]
+   },
+   "properties": {
+    "id": "b0144",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.27295,
+     -17.53418
+    ]
+   },
+   "properties": {
+    "id": "b0145",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25149,
+     -17.56348
+    ]
+   },
+   "properties": {
+    "id": "b0146",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24326,
+     -17.53739
+    ]
+   },
+   "properties": {
+    "id": "b0147",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24133,
+     -17.54333
+    ]
+   },
+   "properties": {
+    "id": "b0148",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.26522,
+     -17.55479
+    ]
+   },
+   "properties": {
+    "id": "b0149",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.26257,
+     -17.55856
+    ]
+   },
+   "properties": {
+    "id": "b0150",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.22535,
+     -17.52697
+    ]
+   },
+   "properties": {
+    "id": "b0151",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24646,
+     -17.54943
+    ]
+   },
+   "properties": {
+    "id": "b0152",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.23318,
+     -17.54541
+    ]
+   },
+   "properties": {
+    "id": "b0153",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24767,
+     -17.53947
+    ]
+   },
+   "properties": {
+    "id": "b0154",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25514,
+     -17.56851
+    ]
+   },
+   "properties": {
+    "id": "b0155",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.2479,
+     -17.53929
+    ]
+   },
+   "properties": {
+    "id": "b0156",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24093,
+     -17.54256
+    ]
+   },
+   "properties": {
+    "id": "b0157",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25706,
+     -17.53459
+    ]
+   },
+   "properties": {
+    "id": "b0158",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25986,
+     -17.53614
+    ]
+   },
+   "properties": {
+    "id": "b0159",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.2479,
+     -17.54698
+    ]
+   },
+   "properties": {
+    "id": "b0160",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.2617,
+     -17.54099
+    ]
+   },
+   "properties": {
+    "id": "b0161",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24252,
+     -17.5591
+    ]
+   },
+   "properties": {
+    "id": "b0162",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25222,
+     -17.55891
+    ]
+   },
+   "properties": {
+    "id": "b0163",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24368,
+     -17.55309
+    ]
+   },
+   "properties": {
+    "id": "b0164",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24566,
+     -17.53215
+    ]
+   },
+   "properties": {
+    "id": "b0165",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24546,
+     -17.54655
+    ]
+   },
+   "properties": {
+    "id": "b0166",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24954,
+     -17.53997
+    ]
+   },
+   "properties": {
+    "id": "b0167",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.23176,
+     -17.55778
+    ]
+   },
+   "properties": {
+    "id": "b0168",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.23812,
+     -17.53299
+    ]
+   },
+   "properties": {
+    "id": "b0169",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25848,
+     -17.54665
+    ]
+   },
+   "properties": {
+    "id": "b0170",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25574,
+     -17.56472
+    ]
+   },
+   "properties": {
+    "id": "b0171",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25407,
+     -17.55693
+    ]
+   },
+   "properties": {
+    "id": "b0172",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25712,
+     -17.55102
+    ]
+   },
+   "properties": {
+    "id": "b0173",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25094,
+     -17.55465
+    ]
+   },
+   "properties": {
+    "id": "b0174",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24806,
+     -17.54949
+    ]
+   },
+   "properties": {
+    "id": "b0175",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24064,
+     -17.55006
+    ]
+   },
+   "properties": {
+    "id": "b0176",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25297,
+     -17.56642
+    ]
+   },
+   "properties": {
+    "id": "b0177",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.25865,
+     -17.52938
+    ]
+   },
+   "properties": {
+    "id": "b0178",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24661,
+     -17.54035
+    ]
+   },
+   "properties": {
+    "id": "b0179",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     178.24722,
+     -17.56157
+    ]
+   },
+   "properties": {
+    "id": "b0180",
+    "village": "Village C",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.92529,
+     -17.62366
+    ]
+   },
+   "properties": {
+    "id": "b0181",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94907,
+     -17.61705
+    ]
+   },
+   "properties": {
+    "id": "b0182",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.96135,
+     -17.61901
+    ]
+   },
+   "properties": {
+    "id": "b0183",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.9811,
+     -17.6251
+    ]
+   },
+   "properties": {
+    "id": "b0184",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94857,
+     -17.62204
+    ]
+   },
+   "properties": {
+    "id": "b0185",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.97169,
+     -17.61373
+    ]
+   },
+   "properties": {
+    "id": "b0186",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94218,
+     -17.61268
+    ]
+   },
+   "properties": {
+    "id": "b0187",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94644,
+     -17.58464
+    ]
+   },
+   "properties": {
+    "id": "b0188",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94525,
+     -17.61574
+    ]
+   },
+   "properties": {
+    "id": "b0189",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.9535,
+     -17.6182
+    ]
+   },
+   "properties": {
+    "id": "b0190",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.9531,
+     -17.64059
+    ]
+   },
+   "properties": {
+    "id": "b0191",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.96632,
+     -17.61705
+    ]
+   },
+   "properties": {
+    "id": "b0192",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95845,
+     -17.57736
+    ]
+   },
+   "properties": {
+    "id": "b0193",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94748,
+     -17.61605
+    ]
+   },
+   "properties": {
+    "id": "b0194",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.96196,
+     -17.60822
+    ]
+   },
+   "properties": {
+    "id": "b0195",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94424,
+     -17.62821
+    ]
+   },
+   "properties": {
+    "id": "b0196",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.92758,
+     -17.62701
+    ]
+   },
+   "properties": {
+    "id": "b0197",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.96082,
+     -17.61853
+    ]
+   },
+   "properties": {
+    "id": "b0198",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.9596,
+     -17.62398
+    ]
+   },
+   "properties": {
+    "id": "b0199",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95084,
+     -17.62518
+    ]
+   },
+   "properties": {
+    "id": "b0200",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.92812,
+     -17.62154
+    ]
+   },
+   "properties": {
+    "id": "b0201",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94325,
+     -17.63654
+    ]
+   },
+   "properties": {
+    "id": "b0202",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.91898,
+     -17.6257
+    ]
+   },
+   "properties": {
+    "id": "b0203",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94968,
+     -17.62695
+    ]
+   },
+   "properties": {
+    "id": "b0204",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94795,
+     -17.62556
+    ]
+   },
+   "properties": {
+    "id": "b0205",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.92313,
+     -17.6017
+    ]
+   },
+   "properties": {
+    "id": "b0206",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94027,
+     -17.59963
+    ]
+   },
+   "properties": {
+    "id": "b0207",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.92301,
+     -17.61789
+    ]
+   },
+   "properties": {
+    "id": "b0208",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94508,
+     -17.63111
+    ]
+   },
+   "properties": {
+    "id": "b0209",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.96222,
+     -17.61728
+    ]
+   },
+   "properties": {
+    "id": "b0210",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.97552,
+     -17.63288
+    ]
+   },
+   "properties": {
+    "id": "b0211",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94617,
+     -17.61989
+    ]
+   },
+   "properties": {
+    "id": "b0212",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95117,
+     -17.63291
+    ]
+   },
+   "properties": {
+    "id": "b0213",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95417,
+     -17.62886
+    ]
+   },
+   "properties": {
+    "id": "b0214",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95339,
+     -17.60845
+    ]
+   },
+   "properties": {
+    "id": "b0215",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.9431,
+     -17.6007
+    ]
+   },
+   "properties": {
+    "id": "b0216",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95021,
+     -17.63273
+    ]
+   },
+   "properties": {
+    "id": "b0217",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94996,
+     -17.64272
+    ]
+   },
+   "properties": {
+    "id": "b0218",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95061,
+     -17.61775
+    ]
+   },
+   "properties": {
+    "id": "b0219",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95969,
+     -17.63415
+    ]
+   },
+   "properties": {
+    "id": "b0220",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.96924,
+     -17.62977
+    ]
+   },
+   "properties": {
+    "id": "b0221",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94257,
+     -17.61499
+    ]
+   },
+   "properties": {
+    "id": "b0222",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.93557,
+     -17.60636
+    ]
+   },
+   "properties": {
+    "id": "b0223",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.93904,
+     -17.62988
+    ]
+   },
+   "properties": {
+    "id": "b0224",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.92999,
+     -17.61075
+    ]
+   },
+   "properties": {
+    "id": "b0225",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95613,
+     -17.6168
+    ]
+   },
+   "properties": {
+    "id": "b0226",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94384,
+     -17.63455
+    ]
+   },
+   "properties": {
+    "id": "b0227",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94508,
+     -17.62479
+    ]
+   },
+   "properties": {
+    "id": "b0228",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.93462,
+     -17.61539
+    ]
+   },
+   "properties": {
+    "id": "b0229",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95122,
+     -17.62392
+    ]
+   },
+   "properties": {
+    "id": "b0230",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94941,
+     -17.63336
+    ]
+   },
+   "properties": {
+    "id": "b0231",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94663,
+     -17.62698
+    ]
+   },
+   "properties": {
+    "id": "b0232",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95213,
+     -17.61481
+    ]
+   },
+   "properties": {
+    "id": "b0233",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95458,
+     -17.60175
+    ]
+   },
+   "properties": {
+    "id": "b0234",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.97025,
+     -17.63761
+    ]
+   },
+   "properties": {
+    "id": "b0235",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.95547,
+     -17.60397
+    ]
+   },
+   "properties": {
+    "id": "b0236",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94116,
+     -17.62427
+    ]
+   },
+   "properties": {
+    "id": "b0237",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.92709,
+     -17.63382
+    ]
+   },
+   "properties": {
+    "id": "b0238",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.94608,
+     -17.61044
+    ]
+   },
+   "properties": {
+    "id": "b0239",
+    "village": "Village D",
+    "tile": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     177.93271,
+     -17.61064
+    ]
+   },
+   "properties": {
+    "id": "b0240",
+    "village": "Village D",
+    "tile": null
+   }
+  }
+ ]
+}

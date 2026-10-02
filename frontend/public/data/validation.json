@@ -1,0 +1,9 @@
+{
+ "n_test": 72,
+ "severe_damage_test": 25,
+ "model_recall_severe": 0.68,
+ "baseline_recall_severe": 0.52,
+ "model_precision_high": 0.47,
+ "note": "MOCK NUMBERS \u2014 replace with 05_validate.py output.",
+ "mock": true
+}
