@@ -114,6 +114,9 @@ class HotspotsIn(BaseModel):
     facilities: list[Facility] = Field(default_factory=list, max_length=MAX_ITEMS)
     cell_m: float = Field(default=250, ge=50, le=5000, description="grid cell size when buildings have no area names")
     top: int = Field(default=10, ge=1, le=100)
+    group_by: Literal["auto", "grid", "place"] = Field(
+        default="auto", description="'place' = one row per village/suburb (clearest list); 'grid' = 250 m squares "
+                                    "named after their main place (precise targets); 'auto' = place names if 80%+ have one")
 
 
 class CompareIn(BaseModel):
@@ -192,7 +195,8 @@ def flood_at_level(body: FloodIn):
 @app.post("/hotspots")
 def most_affected_areas(body: HotspotsIn):
     """The most affected areas at one river level, ranked by people with water inside their homes."""
-    return hotspots.rank_areas(body.level_m, _clean(body.buildings), _clean(body.facilities), body.cell_m, body.top)
+    return hotspots.rank_areas(body.level_m, _clean(body.buildings), _clean(body.facilities), body.cell_m, body.top,
+                               body.group_by)
 
 
 @app.post("/compare-measures")
