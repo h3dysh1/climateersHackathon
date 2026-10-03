@@ -200,12 +200,45 @@ def test_hotspots_group_by_name_when_given():
     assert r["top_areas_share_of_people"] == round(50 / 54, 2)
 
 
+def test_grid_areas_take_the_nearest_place_name():
+    b = _town()
+    # Only some buildings are named (like Nadi, where ~half are): grid still applies, but areas get names.
+    for x in b[:4]:
+        x["area"] = "Namotomoto"   # some Riverside homes
+    b[10]["area"] = "Votualevu"    # one Hilltop home
+    r = client.post("/hotspots", json={"level_m": 2.0, "buildings": b}).json()
+    assert r["grouping"] == "grid 250 m"
+    first, second = r["areas"]
+    assert first["name"] == "Namotomoto" and first["name_source"] == "place"
+    assert second["name"] == "Votualevu"
+    # A cell with no named buildings borrows the nearest name.
+    lone = [{"id": "x1", "ground_m": 0.5, "people": 5, "lon": 177.4600, "lat": -17.800}]
+    r = client.post("/hotspots", json={"level_m": 2.0, "buildings": b + lone}).json()
+    names = {a["name"]: a["name_source"] for a in r["areas"]}
+    assert any(n.startswith("near ") and src == "nearest place" for n, src in names.items())
+
+
+def test_group_by_place_gives_one_row_per_village():
+    b = _town()
+    for x in b[:4]:
+        x["area"] = "Namotomoto"
+    b[10]["area"] = "Votualevu"
+    r = client.post("/hotspots", json={"level_m": 2.0, "buildings": b, "group_by": "place"}).json()
+    assert r["grouping"] == "name"
+    names = [a["name"] for a in r["areas"]]
+    assert "Namotomoto" in names and len(names) == len(set(names))  # each village once
+    # the 6 unnamed riverside homes join "near Namotomoto" rather than an anonymous grid square
+    assert "near Namotomoto" in names
+    grid = client.post("/hotspots", json={"level_m": 2.0, "buildings": b, "group_by": "grid"}).json()
+    assert grid["grouping"] == "grid 250 m"
+
+
 def test_hotspots_need_locations():
     r = client.post("/hotspots", json={"level_m": 2.0, "buildings": BUILDINGS}).json()
     assert r["areas"] == [] and "lon/lat" in r["note"]
 
 
-# --- the three options and side-by-side comparison --------------------------------
+# --- new measures and side-by-side comparison --------------------------------------
 
 def _named_town():
     b = _town()
@@ -284,7 +317,7 @@ def test_layering_in_order_adds_up_and_order_matters():
         assert sum(s["people_added_protection"] for s in steps) == steps[-1]["people_protected_so_far"]
         assert steps[-1]["people_still_water_inside"] + steps[-1]["people_protected_so_far"] == 54
         assert len(lay["orders_compared"]) == 2
-    # Raising last targets homes still flooding after the river is lowered, so it protects more.
+    # Raising last targets homes still flooding after the river is lowered, so it protects at least as many.
     assert raise_last["steps"][-1]["people_protected_so_far"] > raise_first["steps"][-1]["people_protected_so_far"]
     assert raise_last["orders_compared"][0]["order"] == ["channel_clearing_m", "raise_homes"]
 
@@ -315,4 +348,3 @@ def test_places_are_listed_and_feed_the_plan():
     plain = client.post("/flood-plan", json={"area_name": "Elsewhere", "summary": flood(2.0)}).json()["markdown"]
     assert "Nadi" not in plain and "Fiji" not in plain
     assert client.post("/flood-plan", json={"area_name": "X", "place": "atlantis", "summary": {}}).status_code == 404
-    
