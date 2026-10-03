@@ -218,6 +218,21 @@ def test_grid_areas_take_the_nearest_place_name():
     assert any(n.startswith("near ") and src == "nearest place" for n, src in names.items())
 
 
+def test_group_by_place_gives_one_row_per_village():
+    b = _town()
+    for x in b[:4]:
+        x["area"] = "Namotomoto"
+    b[10]["area"] = "Votualevu"
+    r = client.post("/hotspots", json={"level_m": 2.0, "buildings": b, "group_by": "place"}).json()
+    assert r["grouping"] == "name"
+    names = [a["name"] for a in r["areas"]]
+    assert "Namotomoto" in names and len(names) == len(set(names))  # each village once
+    # the 6 unnamed riverside homes join "near Namotomoto" rather than an anonymous grid square
+    assert "near Namotomoto" in names
+    grid = client.post("/hotspots", json={"level_m": 2.0, "buildings": b, "group_by": "grid"}).json()
+    assert grid["grouping"] == "grid 250 m"
+
+
 def test_hotspots_need_locations():
     r = client.post("/hotspots", json={"level_m": 2.0, "buildings": BUILDINGS}).json()
     assert r["areas"] == [] and "lon/lat" in r["note"]

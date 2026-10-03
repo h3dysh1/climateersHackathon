@@ -43,15 +43,43 @@ def _grid_name(cell_buildings: list[dict], centre: tuple[float, float], named: l
     return f"near {near['area']}", "nearest place"
 
 
+def _fill_names(buildings: list[dict], lat0: float) -> list[dict]:
+    """Give every unnamed building the name of the nearest named one, as "near <place>"."""
+    named = [b for b in buildings if b.get("area") and b.get("lon") is not None]
+    if not named:
+        return buildings
+    kx = 111_320 * math.cos(math.radians(lat0))
+    out = []
+    for b in buildings:
+        if b.get("area") or b.get("lon") is None:
+            out.append(b)
+            continue
+        near = min(named, key=lambda n: ((n["lon"] - b["lon"]) * kx) ** 2 + ((n["lat"] - b["lat"]) * 110_540) ** 2)
+        out.append({**b, "area": f"near {near['area']}"})
+    return out
+
+
 def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | None = None,
-               cell_m: float = 250.0, top: int = 10) -> dict:
+               cell_m: float = 250.0, top: int = 10, group_by: str = "auto") -> dict:
+    """group_by: "auto" (names if 80%+ of buildings have one, else grid), "grid" (250 m squares, named after
+    their main place: precise targets for raising homes) or "place" (one row per village/suburb; unnamed
+    buildings join "near <nearest place>": the clearest list for people)."""
     facilities = facilities or []
     result = flood.assess(level_m, buildings, facilities)
     per_b = {r["id"]: r for r in result["buildings"]}
-    # Group by name when most buildings have one (unnamed ones go to "Unnamed area"); else use a grid.
-    named = sum(1 for b in buildings if b.get("area"))
-    by_name = len(buildings) > 0 and named / len(buildings) >= 0.8
     located = [b for b in buildings if b.get("lon") is not None and b.get("lat") is not None]
+    if group_by == "place" and located:
+        lat_c = sum(b["lat"] for b in located) / len(located)
+        buildings = _fill_names(buildings, lat_c)
+        facilities = _fill_names(facilities, lat_c)
+        located = [b for b in buildings if b.get("lon") is not None and b.get("lat") is not None]
+    named = sum(1 for b in buildings if b.get("area"))
+    if group_by == "place":
+        by_name = named > 0
+    elif group_by == "grid":
+        by_name = False
+    else:  # auto: group by name when most buildings have one (unnamed ones go to "Unnamed area"); else grid
+        by_name = len(buildings) > 0 and named / len(buildings) >= 0.8
     if not by_name and not located:
         return {"level_m": level_m, "grouping": "none", "areas": [],
                 "note": "Buildings need lon/lat (or an 'area' name) to be grouped into areas."}
@@ -99,7 +127,7 @@ def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | N
         if a["people_water_inside"] <= 0 and a["people_deep_water"] <= 0:
             continue
         if by_name:
-            name, source = k, "place"
+            name, source = k, ("nearest place" if str(k).startswith("near ") else "place")
             lon = round(sum(a["lons"]) / len(a["lons"]), 6) if a["lons"] else None
             lat = round(sum(a["lats"]) / len(a["lats"]), 6) if a["lats"] else None
         else:
