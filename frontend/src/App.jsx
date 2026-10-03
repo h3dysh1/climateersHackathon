@@ -168,8 +168,8 @@ function MapView({ buildings, onSelect }) {
     const map = new maplibregl.Map({
       container: mapDiv.current,
       style: "https://demotiles.maplibre.org/style.json", // free test map
-      center: [178.45, -18.14], // [longitude, latitude] - change to your pilot area
-      zoom: 12,
+      center: [177.45, -17.62], // [longitude, latitude] - change to your pilot area
+      zoom: 13,
     });
 
     map.on("load", () => {
