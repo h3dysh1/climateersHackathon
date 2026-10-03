@@ -1,8 +1,0 @@
-{
- "records": 120,
- "near_mangroves": 38,
- "severe_rate_with_mangroves": 0.21,
- "severe_rate_without": 0.34,
- "note": "MOCK NUMBERS \u2014 replace with 05_validate.py output.",
- "mock": true
-}
