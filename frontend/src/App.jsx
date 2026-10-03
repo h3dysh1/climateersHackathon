@@ -10,6 +10,7 @@
 import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { addExtraLayers, setExtraVisibility, EXTRA_DEFAULTS, MapLayersPanel } from "./extraLayers";
 
 // Address of P3's backend. Put it in frontend/.env like:  VITE_API_URL=http://localhost:8000
 const API_URL = import.meta.env.VITE_API_URL;
@@ -426,6 +427,8 @@ export default function App() {
   const [counts, setCounts] = useState(null);
   const [hotspots, setHotspots] = useState(null);
   const [topShare, setTopShare] = useState(null);
+  const [extraOn, setExtraOn] = useState(EXTRA_DEFAULTS);
+  const [extraAvailable, setExtraAvailable] = useState({});
 
   // Options panel
   const [tab, setTab] = useState("compare");
@@ -482,6 +485,8 @@ export default function App() {
         if (!r.ok) throw new Error(`Could not load /data/${name}`);
         return r.json();
       });
+    
+    const getOptional = (name) => getJSON(name).catch(() => null);
 
     Promise.all([
       mapLoaded,
@@ -489,9 +494,13 @@ export default function App() {
       getJSON("facilities.json"),
       getJSON("roads.json"),
       getJSON("roads.geojson"),
-      getJSON("flood_extents.geojson"),
+      getJSON("flood_extents.geojson"), 
+      getOptional("rivers.geojson"),
+      getOptional("mangroves.geojson"),
+      getOptional("restorable.geojson"),
+      getOptional("coast_segments.geojson"),
     ])
-      .then(([, buildings, facilities, roads, roadsGeo, floodExtents]) => {
+      .then(([, buildings, facilities, roads, roadsGeo, floodExtents, rivers, mangroves, restorable, coast]) => {
         if (cancelled) return;
 
         // Top to bottom on screen: facilities, homes, roads, water, basemap.
@@ -557,7 +566,7 @@ export default function App() {
             "circle-stroke-width": 2,
           },
         });
-
+        setExtraAvailable(addExtraLayers(map, { rivers, mangroves, restorable, coast }));
         setData({ buildings, facilities, roads, roadsGeo });
         setReady(true);
       })
@@ -680,6 +689,12 @@ export default function App() {
     if (!ready || !map) return;
     map.setFilter("highlight", ["==", ["get", "area"], selectedArea ?? "__none__"]);
   }, [selectedArea, ready]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!ready || !map) return;
+    setExtraVisibility(map, extraOn);
+  }, [extraOn, extraAvailable, ready]);
 
   function pickArea(area) {
     setSelectedArea(area.name);
@@ -820,6 +835,11 @@ export default function App() {
         )}
         {anyOn && mitigation && tab === "combine" && <Waterfall mitigation={mitigation} />}
 
+        <MapLayersPanel
+         available={extraAvailable} 
+         on={extraOn}
+         onChange={(id, value) => setExtraOn((o) => ({ ...o, [id]: value }))}/>
+         
         {/* Key */}
         <h3 style={styles.h3}>Key</h3>
         <div style={styles.legend}>
