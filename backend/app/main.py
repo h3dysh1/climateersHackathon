@@ -7,7 +7,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, field_validator
 
-from . import claude_client, restoration
+from . import llm, restoration
 
 load_dotenv()
 
@@ -78,7 +78,7 @@ def _dump(segments: list[Segment]) -> list[dict]:
 
 @app.get("/health")
 def health():
-    return {"ok": True, "mock": claude_client.is_mock(), "verified_types": restoration.wave_types()}
+    return {"ok": True, "mock": llm.is_mock(), "verified_types": restoration.wave_types()}
 
 
 @app.get("/ecosystems")
@@ -113,7 +113,7 @@ def restoration_plan(body: PlanIn):
         t: {k: restoration.ECOSYSTEMS[t][k] for k in ("label", "maturity_years", "evidence")}
         for t in used if t in restoration.ECOSYSTEMS}}
     try:
-        markdown, cached = claude_client.write_plan(body.area_name, summary)
-    except claude_client.PlanError as e:
+        markdown, cached = llm.write_plan(body.area_name, summary)
+    except llm.PlanError as e:
         raise HTTPException(status_code=502, detail=str(e)) from e
-    return {"markdown": markdown, "cached": cached, "mock": claude_client.is_mock()}
+    return {"markdown": markdown, "cached": cached, "mock": llm.is_mock()}
