@@ -47,7 +47,9 @@ def main():
 
     track = []
     for _, r in df.iterrows():
-        lon = r["LON"] if r["LON"] <= 180 else r["LON"] - 360  # map wants -180..180
+        # Keep 0-360: Winston crossed the 180° line twice (Vanuatu → Tonga → Fiji). Converting to
+        # -180..180 makes the drawn track jump across the whole map. Leaflet/MapLibre accept lon > 180.
+        lon = r["LON"] % 360
         kt = r[wind_col]
         track.append({
             "time": r["ISO_TIME"].strftime("%Y-%m-%dT%H:%M:%SZ"),
