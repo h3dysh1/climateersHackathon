@@ -40,6 +40,44 @@ def protection_band(width_m):
     return "exposed"
 
 
+def read_layer(path, bbox=None, as_lines=False):
+    """Read a vector file, or a 0/1 GeoTIFF (e.g. a Global Mangrove Watch tile, 1 = mangrove),
+    as polygons in EPSG:4326. bbox = (min_lon, min_lat, max_lon, max_lat) avoids loading a
+    whole global file and clips the result.
+    as_lines=True (for coastlines): polygons are turned into their outlines BEFORE clipping,
+    because Overpass Turbo exports closed coastline ways (islands) as polygons, and clipping a
+    polygon first would add a fake coast along the bbox edge."""
+    import geopandas as gpd
+    from shapely.geometry import box, shape
+
+    if str(path).lower().endswith((".tif", ".tiff")):
+        import rasterio
+        from rasterio import features, windows
+        from rasterio.warp import transform_bounds
+
+        with rasterio.open(path) as src:
+            win = None
+            if bbox:
+                b = transform_bounds(4326, src.crs, *bbox)
+                win = windows.from_bounds(*b, src.transform).round_offsets().round_lengths()
+            arr = src.read(1, window=win)
+            tr = src.window_transform(win) if win else src.transform
+            geoms = [shape(g) for g, v in features.shapes(arr, mask=arr == 1, transform=tr) if v == 1]
+            gdf = gpd.GeoDataFrame(geometry=geoms, crs=src.crs).to_crs(4326)
+    else:
+        gdf = gpd.read_file(path, bbox=tuple(bbox) if bbox else None).to_crs(4326)
+    if as_lines:
+        gdf = gdf.set_geometry(gdf.geometry.apply(
+            lambda g: g.boundary if g is not None and g.geom_type in ("Polygon", "MultiPolygon") else g))
+    if bbox:
+        gdf = gdf.clip(box(*bbox))
+    gdf = gdf[gdf.geometry.notna() & ~gdf.geometry.is_empty]
+    if as_lines:  # keep only line parts (clipping can leave stray points)
+        gdf = gdf.explode(index_parts=False)
+        gdf = gdf[gdf.geometry.geom_type.isin(["LineString", "LinearRing"])]
+    return gdf
+
+
 def haversine_km(lat1, lon1, lat2, lon2):
     """Great-circle distance. Works across the 180° meridian."""
     r = 6371.0
