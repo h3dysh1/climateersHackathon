@@ -12,7 +12,7 @@ from . import compare, flood, hotspots, llm, places, plan
 
 load_dotenv()
 
-app = FastAPI(title="Flood Planning API", version="0.4.0")
+app = FastAPI(title="Flood Planning API", version="0.4.0", root_path="/api")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[o.strip() for o in os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",") if o.strip()],
