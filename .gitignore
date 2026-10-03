@@ -23,3 +23,5 @@ data-prep/raw/
 .DS_Store
 .vscode/
 .idea/
+data-prep/raw/
+__pycache__/
