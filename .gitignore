@@ -1,0 +1,25 @@
+# Secrets
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+
+# Raw downloads (keep processed outputs small and committed)
+data-prep/raw/
+*.tif
+*.tiff
+*.zip
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

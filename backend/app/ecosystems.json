@@ -1,0 +1,61 @@
+{
+  "_readme": "Protection parameters per ecosystem type. A type only counts towards protection when verified=true and its numbers come from a cited source. Keep in sync with docs/contracts.md and frontend/src/api.js.",
+  "mangrove": {
+    "label": "Mangroves",
+    "hazard": "coastal_waves",
+    "verified": true,
+    "wave_reduction_per_100m": 0.13,
+    "wave_reduction_cap": 0.66,
+    "surge_reduction_m_per_km": 0.10,
+    "maturity_years": 20,
+    "evidence": "Wave height reduced 13-66% over 100 m of mangroves (McIvor et al. 2012); we use the low end per 100 m, capped at the high end. Observed surge reduction 0-0.25 m per km; we use 0.10.",
+    "sources": [
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC10995189/",
+      "https://www.researchgate.net/figure/The-reduction-in-storm-surge-height-as-the-mangrove-belt-width-increases-for-four_fig5_272791447"
+    ]
+  },
+  "saltmarsh": {
+    "label": "Saltmarsh",
+    "hazard": "coastal_waves",
+    "verified": false,
+    "wave_reduction_per_100m": null,
+    "wave_reduction_cap": null,
+    "surge_reduction_m_per_km": null,
+    "maturity_years": 5,
+    "evidence": "TODO (P2): field studies report large wave-energy reductions over saltmarsh. Convert a cited result to wave HEIGHT reduction per 100 m before setting verified=true.",
+    "sources": []
+  },
+  "seagrass": {
+    "label": "Seagrass",
+    "hazard": "coastal_waves",
+    "verified": false,
+    "wave_reduction_per_100m": null,
+    "wave_reduction_cap": null,
+    "surge_reduction_m_per_km": null,
+    "maturity_years": 5,
+    "evidence": "TODO (P2): seagrass dampens waves mainly in shallow water and stabilises sediment. Find a cited per-100 m figure before enabling.",
+    "sources": []
+  },
+  "coastal_forest": {
+    "label": "Coastal forest",
+    "hazard": "coastal_waves",
+    "verified": false,
+    "wave_reduction_per_100m": null,
+    "wave_reduction_cap": null,
+    "surge_reduction_m_per_km": null,
+    "maturity_years": 15,
+    "evidence": "TODO (P2): beach and littoral forest mainly slows flow and traps debris rather than reducing wave height. Decide whether it belongs in the wave model at all.",
+    "sources": []
+  },
+  "riparian": {
+    "label": "Riverbank vegetation",
+    "hazard": "river_flooding",
+    "verified": false,
+    "wave_reduction_per_100m": null,
+    "wave_reduction_cap": null,
+    "surge_reduction_m_per_km": null,
+    "maturity_years": 10,
+    "evidence": "Protects against riverbank erosion and cyclone-rain flooding, not coastal waves, so it is reported as hectares and people near rivers, not in the wave model.",
+    "sources": []
+  }
+}
