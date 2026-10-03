@@ -1,0 +1,57 @@
+{
+  "_readme": "Generic flood options for any river town. Town-specific settings (floor height, local examples, existing projects) live in places/<town>.json. Effects are what-ifs from a simple planning model, not engineering designs.",
+  "_defaults": {
+    "floor_height_m": 0.3,
+    "floor_height_note": "Fallback floor height above ground when neither the building nor the place file gives one. Set a sourced value per town in places/<town>.json.",
+    "impassable_depth_m": 0.3,
+    "impassable_note": "Road treated as cut once water is 0.3 m deep, in line with common flood-safety guidance that shallow moving water can float a car."
+  },
+  "channel_clearing_m": {
+    "label": "River channel clearing (dredging/desilting)",
+    "category": "channel",
+    "scale": "river channel, town-wide",
+    "default_m": 0.25,
+    "presets": {"low": 0.1, "medium": 0.25, "high": 0.5},
+    "how": "Lowers the river level by the same amount in every flood, across the whole town.",
+    "assumption": "The amount is YOUR assumption for just after dredging. The benefit shrinks as silt returns, so it must be repeated, and it matters less in big floods. Real effects need hydraulic modelling.",
+    "evidence": "A Fiji cost-benefit study ('Dredging versus hedging') found riverside vegetation buffers more cost-effective than hard options in the catchments it tested.",
+    "sources": [
+      "https://www.naturebasedsolutionsinitiative.org/publications/dredging-versus-hedging-comparing-hard-infrastructure-to-ecosystem-based-adaptation-to-flooding/"
+    ]
+  },
+  "raise_homes": {
+    "label": "Raise homes",
+    "category": "home",
+    "scale": "individual homes, in a chosen area",
+    "default_count": 100,
+    "presets": {"low": 50, "medium": 100, "high": 250},
+    "default_height_m": 1.0,
+    "how": "Raises up to N homes by the chosen height (on posts, stilts or blocks), in the target area if one is chosen, picking homes where that keeps water out at the design flood (most people first). Homes in deeper water are reported separately: they need other options.",
+    "assumption": "Raising is technically possible for these homes; cost and feasibility need checking house by house.",
+    "evidence": "Widely used by households in flood-prone Pacific settlements; one Fiji cost-benefit study found it was not economically viable when applied broadly, so target only homes it actually saves.",
+    "sources": [
+      "https://www.monash.edu/rise-program/publications/research-highlight-local-voices-key-to-shaping-flood-adaptation-strategies-in-pacific-informal-settlements",
+      "https://www.naturebasedsolutionsinitiative.org/publications/dredging-versus-hedging-comparing-hard-infrastructure-to-ecosystem-based-adaptation-to-flooding/"
+    ]
+  },
+  "nature_based": {
+    "label": "Riverbank vegetation buffers",
+    "category": "nature-based",
+    "scale": "riverbanks and wetlands, town-wide",
+    "default_reduction_pct": 5,
+    "presets": {"low": 2, "medium": 5, "high": 10},
+    "full_effect_up_to_m": 2.0,
+    "big_flood_m": 6.0,
+    "big_flood_effect_share": 0.5,
+    "how": "Lowers the river rise by a percentage: the full percentage for floods up to 2 m, fading to half of it by a 6 m rise, because vegetation slows and stores less of the water in very big floods.",
+    "assumption": "The percentage is YOUR assumption. Evidence varies widely: a UK evidence review found natural flood management works best for smaller floods and catchments (one small catchment saw 2-11% lower extreme flood peaks), and a 2025 review found too little evidence for very large floods. Effect on water LEVEL is usually smaller than on flow.",
+    "evidence": "Most cost-effective option in a Fiji catchment study (benefit-cost ratios 2.8-21.6) though protection is modest; also reduces the silt that makes dredging necessary.",
+    "co_benefits": ["less riverbank erosion", "habitat for wildlife", "carbon storage", "cooler, greener spaces"],
+    "sources": [
+      "https://royalsocietypublishing.org/rspa/article/473/2199/20160706/57383/A-restatement-of-the-natural-science-evidence",
+      "https://research.reading.ac.uk/nerc-nfm/wp-content/uploads/sites/81/2021/06/Simon-Dadson-NFM-Reading-Talk.pdf",
+      "https://wires.onlinelibrary.wiley.com/doi/10.1002/wat2.1765",
+      "https://www.naturebasedsolutionsinitiative.org/publications/dredging-versus-hedging-comparing-hard-infrastructure-to-ecosystem-based-adaptation-to-flooding/"
+    ]
+  }
+}

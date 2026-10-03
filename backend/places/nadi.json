@@ -1,0 +1,25 @@
+{
+  "id": "nadi",
+  "name": "Nadi",
+  "country": "Fiji",
+  "bbox": [177.38, -17.86, 177.52, -17.72],
+  "flood_type": "cyclone-season river flooding",
+  "floor_height_m": 0.3,
+  "floor_height_note": "Assumed 0.3 m where data has none. Rough check: 2017 census mix is 39% concrete, 34% corrugated iron, 24% wooden; Fiji guidelines call for at least 600 mm under raised timber floors, while concrete and iron homes usually sit near the ground (assumed ~0.2 m). The weighted average is about 0.3 m. Replace with surveyed floor heights where available.",
+  "existing_work": [
+    "Nadi Flood Alleviation Project (A$35m, Australia-funded, works began 2026)",
+    "Past and ongoing Nadi River dredging",
+    "Google Flood Hub river flood forecasts"
+  ],
+  "agencies": "Fiji Ministry of Waterways and Environment, National Disaster Management Office, Nadi Town Council and village/settlement leaders",
+  "option_examples": {
+    "channel_clearing_m": "Nadi River dredging, which Fiji has used for years",
+    "raise_homes": "homes on posts or concrete blocks, as many Fijian households already build",
+    "nature_based": "vetiver grass and riverside trees on the Nadi River banks, mangroves near the river mouth"
+  },
+  "sources": [
+    "https://fijisun.com.fj/news/nation/australia-backs-35m-flood-solution-for-nadi-basin",
+    "https://fijivillage.fulcrum.com.fj/Nadi-River-Dredging-works-commences-5xfr84/",
+    "https://www.fiji.gov.fj/Media-Centre/News/NATURE-BASED-SOLUTION-FOR-RIVER-BANK-EROSION-COMMI"
+  ]
+}
