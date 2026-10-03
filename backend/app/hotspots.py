@@ -2,13 +2,17 @@
 
 Buildings are grouped into areas, either:
   - by name, if at least 80% of buildings carry an "area" (a settlement or suburb name from OpenStreetMap), or
-  - by a square grid (default 250 m cells), using each building's lon/lat.
+  - by a square grid (default 250 m cells), using each building's lon/lat. Each grid area is then named after
+    the place most of its buildings belong to, or else the nearest named building ("near Namotomoto"), so the
+    list shows names people know instead of "Area 1". Names repeat with a number ("Namotomoto 2") when one
+    place covers several cells.
 Areas are ranked by people with water inside their homes, then by people in deep water (over 1 m).
 
 This is predicted EXPOSURE from the HAND planning model, not observed damage: label it
 "most affected areas" in the app, and check the top areas against past flood reports.
 """
 import math
+from collections import Counter
 
 from . import flood
 
@@ -25,6 +29,18 @@ def _cell_centre(cx: int, cy: int, lat0: float, size_m: float) -> tuple[float, f
     lon = (cx + 0.5) * size_m / (111_320 * math.cos(math.radians(lat0)))
     lat = (cy + 0.5) * size_m / 110_540
     return round(lon, 6), round(lat, 6)
+
+
+def _grid_name(cell_buildings: list[dict], centre: tuple[float, float], named: list[dict], lat0: float) -> tuple[str | None, str]:
+    """Name a grid area: the place most of its buildings carry, else the nearest named building's place."""
+    names = Counter(b["area"] for b in cell_buildings if b.get("area"))
+    if names:
+        return names.most_common(1)[0][0], "place"
+    if not named:
+        return None, "grid"
+    kx = 111_320 * math.cos(math.radians(lat0))
+    near = min(named, key=lambda b: ((b["lon"] - centre[0]) * kx) ** 2 + ((b["lat"] - centre[1]) * 110_540) ** 2)
+    return f"near {near['area']}", "nearest place"
 
 
 def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | None = None,
@@ -55,7 +71,8 @@ def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | N
             continue
         a = areas.setdefault(k, {"buildings": 0, "people": 0.0, "buildings_water_inside": 0,
                                  "people_water_inside": 0.0, "people_deep_water": 0.0,
-                                 "max_depth_m": 0.0, "lons": [], "lats": [], "facilities_flooded": []})
+                                 "max_depth_m": 0.0, "lons": [], "lats": [], "facilities_flooded": [], "members": []})
+        a["members"].append(b)
         r = per_b[b["id"]]
         a["buildings"] += 1
         a["people"] += b.get("people", 0)
@@ -76,19 +93,20 @@ def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | N
             if k in areas:
                 areas[k]["facilities_flooded"].append(f.get("name") or f["id"])
 
+    named_located = [b for b in located if b.get("area")]
     out = []
     for k, a in areas.items():
         if a["people_water_inside"] <= 0 and a["people_deep_water"] <= 0:
             continue
         if by_name:
-            name = k
+            name, source = k, "place"
             lon = round(sum(a["lons"]) / len(a["lons"]), 6) if a["lons"] else None
             lat = round(sum(a["lats"]) / len(a["lats"]), 6) if a["lats"] else None
         else:
             lon, lat = _cell_centre(*k, lat0, cell_m)
-            name = None
+            name, source = _grid_name(a["members"], (lon, lat), named_located, lat0)
         out.append({
-            "name": name, "lon": lon, "lat": lat,
+            "name": name, "name_source": source, "lon": lon, "lat": lat,
             "buildings": a["buildings"],
             "buildings_water_inside": a["buildings_water_inside"],
             "share_water_inside": round(a["buildings_water_inside"] / a["buildings"], 2),
@@ -98,10 +116,15 @@ def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | N
             "facilities_flooded": a["facilities_flooded"],
         })
     out.sort(key=lambda x: (-x["people_water_inside"], -x["people_deep_water"], -x["max_depth_m"]))
+    seen: Counter = Counter()
     for i, x in enumerate(out, 1):
         x["rank"] = i
         if x["name"] is None:
             x["name"] = f"Area {i}"
+        else:
+            seen[x["name"]] += 1
+            if seen[x["name"]] > 1:  # one place spread over several cells: "Namotomoto", "Namotomoto 2"
+                x["name"] = f"{x['name']} {seen[x['name']]}"
     total = result["people_water_inside"]
     top_list = out[: max(1, top)]
     return {
