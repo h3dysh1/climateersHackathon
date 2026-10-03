@@ -231,8 +231,15 @@ def main():
     save_tif(RAW_DIR / "floods_at.tif", floods_at, tr)
 
     gw = max(1, int(round(args.ground_window_m / px)) | 1)
-    hand_lo = ndimage.minimum_filter(np.where(np.isfinite(hand), hand, NEVER), size=gw)
-    fa_lo = ndimage.minimum_filter(floods_at, size=gw)
+    # Lowest nearby LAND (river/stream/drain/sea cells are excluded: they are "flooded" at 0 m by
+    # definition, and would otherwise make every building beside a drain flood before the river rises).
+    is_drain_cell = drain > 0
+    hand_lo = ndimage.minimum_filter(np.where(is_drain_cell | ~np.isfinite(hand), NEVER, hand), size=gw)
+    fa_lo = ndimage.minimum_filter(np.where(is_drain_cell, NEVER, floods_at), size=gw)
+    # A building standing on a channel cell with no land around it floods at the first step.
+    lone = is_drain_cell & (fa_lo >= NEVER)
+    fa_lo[lone] = levels[0]
+    hand_lo[lone] = 0.0
 
     def heights(gdf_m):
         xs, ys = gdf_m.geometry.x.values, gdf_m.geometry.y.values
