@@ -1,37 +1,11 @@
-"""Claude API call that writes the restoration plan.
-
-- No ANTHROPIC_API_KEY: returns clearly-labelled MOCK output (no API spend while building).
-- Identical requests are cached in memory, so repeated demo clicks cost nothing.
-- API failures raise PlanError, which the API turns into a clear 502 message.
-"""
 import hashlib
-import json
 import os
+from typing import Callable
 
-PLAN_PROMPT = """Write a one-page coastal ecosystem restoration plan for {area}, Fiji, to reduce
-cyclone damage. Audience: city council, town planners and community leaders.
-Use ONLY the facts in the JSON below; do not invent numbers, names, costs or species.
-Plain language, short sentences. Name the ecosystem types exactly as given in the facts.
+import httpx
 
-Structure (Markdown):
-# Restoring {area}'s coast to reduce cyclone damage
-## What we found
-## Where to restore first (and why)
-## What restoration protects
-## How long it takes and what else is needed
-## Limits of this analysis
-
-In "How long it takes", use the maturity times in the facts and say that restored ecosystems
-take years to decades to reach full protective value, so restoration should be combined with
-nearer-term measures (cyclone-resistant housing, safe shelters, setbacks from the shore).
-In "Limits", say results come from a simplified, conservative model based on published field
-ranges, that storm-surge reduction is small, and that the plan must be reviewed with local
-communities, landowners, ecologists and the relevant Fiji government agencies before any
-decision. Restoration should be community-led.
-
-Facts:
-{facts}"""
-
+DEFAULT_MODEL = "gemini-2.5-flash"
+TIMEOUT = 60.0
 _cache: dict[str, str] = {}
 
 
@@ -39,49 +13,55 @@ class PlanError(RuntimeError):
     pass
 
 
+def provider() -> str:
+    """'gemini' when a key is set, otherwise 'template' (built-in writer, no AI)."""
+    return "gemini" if os.getenv("GEMINI_API_KEY") else "template"
+
+
+def model() -> str | None:
+    return (os.getenv("LLM_MODEL") or DEFAULT_MODEL) if provider() == "gemini" else None
+
+
 def is_mock() -> bool:
-    return not os.getenv("ANTHROPIC_API_KEY")
+    """True when no AI is in use (built-in writer only)."""
+    return provider() == "template"
 
 
-def _model() -> str:
-    return os.getenv("CLAUDE_MODEL", "claude-sonnet-5-5")
+def _gemini(prompt: str) -> str:
+    r = httpx.post(
+        f"https://generativelanguage.googleapis.com/v1beta/models/{model()}:generateContent",
+        headers={"x-goog-api-key": os.environ["GEMINI_API_KEY"]},
+        # Gemini 2.5+ models before answering and that counts towards maxOutputTokens,
+        # so leave plenty of room or the plan gets cut off.
+        json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"maxOutputTokens": 8192}},
+        timeout=TIMEOUT,
+    )
+    r.raise_for_status()
+    parts = r.json()["candidates"][0]["content"]["parts"]
+    return "".join(p.get("text", "") for p in parts if not p.get("thought"))
+
+# kept as a lookup so tests can swap in a fake Gemini
+PROVIDERS = {"gemini": _gemini}  
 
 
-def _key(area: str, summary: dict) -> str:
-    return hashlib.sha256(json.dumps([area, summary], sort_keys=True, default=str).encode()).hexdigest()
+def generate(prompt: str, fallback: Callable[[str], str]) -> tuple[str, dict]:
+    """Returns (text, info). info = {"provider", "model", "cached", "fallback", "error"?}.
+    `fallback(note)` writes a plan without AI; note explains why ('' when no key is set)."""
+    p = provider()
+    info = {"provider": p, "model": model(), "cached": False, "fallback": False}
+    if p == "template":
+        return fallback(""), info
 
-
-def write_plan(area_name: str, summary: dict) -> tuple[str, bool]:
-    """Returns (markdown, cached)."""
-    if is_mock():
-        return (
-            f"# Restoring {area_name}'s coast (MOCK)\n\n"
-            "Set ANTHROPIC_API_KEY to generate a real plan.\n\n"
-            f"- Ecosystem types: {', '.join(summary.get('types', ['mangrove']))}\n"
-            f"- Segments selected: {len(summary.get('restored', []))}\n"
-            f"- Hectares to restore: {summary.get('hectares', '?')}\n"
-            f"- People better protected: {summary.get('people_better_protected', '?')}\n"
-        ), False
-
-    key = _key(area_name, summary)
+    key = hashlib.sha256(f"{model()}|{prompt}".encode()).hexdigest()
     if key in _cache:
-        return _cache[key], True
-
-    import anthropic
-
+        return _cache[key], {**info, "cached": True}
     try:
-        client = anthropic.Anthropic(timeout=60.0, max_retries=2)
-        msg = client.messages.create(
-            model=_model(),
-            max_tokens=1500,
-            messages=[{"role": "user", "content": PLAN_PROMPT.format(
-                area=area_name, facts=json.dumps(summary, indent=1, default=str))}],
-        )
-    except anthropic.APIError as e:
-        raise PlanError(f"The AI service could not write the plan right now ({type(e).__name__}). Try again shortly.") from e
-
-    text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text").strip()
-    if not text:
-        raise PlanError("The AI service returned an empty plan. Try again.")
+        text = PROVIDERS["gemini"](prompt).strip()
+        if not text:
+            raise ValueError("empty reply")
+    except Exception as e:  # network error, free-tier limit, bad key, empty reply
+        reason = "free-tier limit reached" if "429" in str(e) else type(e).__name__
+        note = f"Gemini was unavailable ({reason}), so this plan was written directly from the analysis."
+        return fallback(note), {**info, "fallback": True, "error": reason}
     _cache[key] = text
-    return text, False
+    return text, info
