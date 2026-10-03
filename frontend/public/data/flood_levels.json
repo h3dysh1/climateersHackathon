@@ -1,0 +1,236 @@
+{
+ "levels": [
+  {
+   "level_m": 0.25,
+   "buildings": 190,
+   "people": 676,
+   "people_far_from_dry": 0,
+   "people_raised_0_5m": 0,
+   "people_raised_1_0m": 0,
+   "coastal_people": 12,
+   "coastal_unbuffered_now": 12,
+   "coastal_unbuffered_restored": 12
+  },
+  {
+   "level_m": 0.5,
+   "buildings": 230,
+   "people": 812,
+   "people_far_from_dry": 0,
+   "people_raised_0_5m": 0,
+   "people_raised_1_0m": 0,
+   "coastal_people": 16,
+   "coastal_unbuffered_now": 16,
+   "coastal_unbuffered_restored": 16
+  },
+  {
+   "level_m": 0.75,
+   "buildings": 270,
+   "people": 956,
+   "people_far_from_dry": 0,
+   "people_raised_0_5m": 676,
+   "people_raised_1_0m": 0,
+   "coastal_people": 56,
+   "coastal_unbuffered_now": 56,
+   "coastal_unbuffered_restored": 56
+  },
+  {
+   "level_m": 1.0,
+   "buildings": 293,
+   "people": 1048,
+   "people_far_from_dry": 0,
+   "people_raised_0_5m": 812,
+   "people_raised_1_0m": 0,
+   "coastal_people": 96,
+   "coastal_unbuffered_now": 96,
+   "coastal_unbuffered_restored": 96
+  },
+  {
+   "level_m": 1.25,
+   "buildings": 330,
+   "people": 1196,
+   "people_far_from_dry": 0,
+   "people_raised_0_5m": 956,
+   "people_raised_1_0m": 676,
+   "coastal_people": 116,
+   "coastal_unbuffered_now": 116,
+   "coastal_unbuffered_restored": 116
+  },
+  {
+   "level_m": 1.5,
+   "buildings": 423,
+   "people": 1552,
+   "people_far_from_dry": 0,
+   "people_raised_0_5m": 1048,
+   "people_raised_1_0m": 812,
+   "coastal_people": 156,
+   "coastal_unbuffered_now": 152,
+   "coastal_unbuffered_restored": 152
+  },
+  {
+   "level_m": 1.75,
+   "buildings": 489,
+   "people": 1788,
+   "people_far_from_dry": 0,
+   "people_raised_0_5m": 1196,
+   "people_raised_1_0m": 956,
+   "coastal_people": 192,
+   "coastal_unbuffered_now": 188,
+   "coastal_unbuffered_restored": 188
+  },
+  {
+   "level_m": 2.0,
+   "buildings": 643,
+   "people": 2340,
+   "people_far_from_dry": 0,
+   "people_raised_0_5m": 1552,
+   "people_raised_1_0m": 1048,
+   "coastal_people": 336,
+   "coastal_unbuffered_now": 332,
+   "coastal_unbuffered_restored": 332
+  },
+  {
+   "level_m": 2.25,
+   "buildings": 781,
+   "people": 2860,
+   "people_far_from_dry": 4,
+   "people_raised_0_5m": 1788,
+   "people_raised_1_0m": 1196,
+   "coastal_people": 488,
+   "coastal_unbuffered_now": 456,
+   "coastal_unbuffered_restored": 456
+  },
+  {
+   "level_m": 2.5,
+   "buildings": 959,
+   "people": 3508,
+   "people_far_from_dry": 4,
+   "people_raised_0_5m": 2340,
+   "people_raised_1_0m": 1552,
+   "coastal_people": 680,
+   "coastal_unbuffered_now": 624,
+   "coastal_unbuffered_restored": 624
+  },
+  {
+   "level_m": 2.75,
+   "buildings": 1176,
+   "people": 4296,
+   "people_far_from_dry": 16,
+   "people_raised_0_5m": 2860,
+   "people_raised_1_0m": 1788,
+   "coastal_people": 940,
+   "coastal_unbuffered_now": 872,
+   "coastal_unbuffered_restored": 872
+  },
+  {
+   "level_m": 3.0,
+   "buildings": 1526,
+   "people": 5576,
+   "people_far_from_dry": 16,
+   "people_raised_0_5m": 3508,
+   "people_raised_1_0m": 2340,
+   "coastal_people": 1164,
+   "coastal_unbuffered_now": 1088,
+   "coastal_unbuffered_restored": 1088
+  },
+  {
+   "level_m": 3.25,
+   "buildings": 2137,
+   "people": 7780,
+   "people_far_from_dry": 28,
+   "people_raised_0_5m": 4296,
+   "people_raised_1_0m": 2860,
+   "coastal_people": 1424,
+   "coastal_unbuffered_now": 1328,
+   "coastal_unbuffered_restored": 1328
+  },
+  {
+   "level_m": 3.5,
+   "buildings": 2508,
+   "people": 9140,
+   "people_far_from_dry": 396,
+   "people_raised_0_5m": 5576,
+   "people_raised_1_0m": 3508,
+   "coastal_people": 1744,
+   "coastal_unbuffered_now": 1640,
+   "coastal_unbuffered_restored": 1640
+  },
+  {
+   "level_m": 3.75,
+   "buildings": 2867,
+   "people": 10440,
+   "people_far_from_dry": 484,
+   "people_raised_0_5m": 7780,
+   "people_raised_1_0m": 4296,
+   "coastal_people": 2088,
+   "coastal_unbuffered_now": 1980,
+   "coastal_unbuffered_restored": 1980
+  },
+  {
+   "level_m": 4.0,
+   "buildings": 3194,
+   "people": 11668,
+   "people_far_from_dry": 708,
+   "people_raised_0_5m": 9140,
+   "people_raised_1_0m": 5576,
+   "coastal_people": 2508,
+   "coastal_unbuffered_now": 2396,
+   "coastal_unbuffered_restored": 2396
+  },
+  {
+   "level_m": 4.25,
+   "buildings": 3470,
+   "people": 12708,
+   "people_far_from_dry": 1108,
+   "people_raised_0_5m": 10440,
+   "people_raised_1_0m": 7780,
+   "coastal_people": 2872,
+   "coastal_unbuffered_now": 2760,
+   "coastal_unbuffered_restored": 2760
+  },
+  {
+   "level_m": 4.5,
+   "buildings": 3947,
+   "people": 14528,
+   "people_far_from_dry": 1680,
+   "people_raised_0_5m": 11668,
+   "people_raised_1_0m": 9140,
+   "coastal_people": 3156,
+   "coastal_unbuffered_now": 3040,
+   "coastal_unbuffered_restored": 3040
+  },
+  {
+   "level_m": 4.75,
+   "buildings": 4312,
+   "people": 15844,
+   "people_far_from_dry": 2072,
+   "people_raised_0_5m": 12708,
+   "people_raised_1_0m": 10440,
+   "coastal_people": 3504,
+   "coastal_unbuffered_now": 3388,
+   "coastal_unbuffered_restored": 3388
+  },
+  {
+   "level_m": 5.0,
+   "buildings": 4920,
+   "people": 18104,
+   "people_far_from_dry": 2484,
+   "people_raised_0_5m": 14528,
+   "people_raised_1_0m": 11668,
+   "coastal_people": 3748,
+   "coastal_unbuffered_now": 3632,
+   "coastal_unbuffered_restored": 3632
+  }
+ ],
+ "settings": {
+  "step_m": 0.25,
+  "evac_km": 0.5,
+  "raise_m": [
+   0.5,
+   1.0
+  ],
+  "pixel_m": 30,
+  "ground_window_m": 90,
+  "dem": "fabdem.tif"
+ },
+ "note": "Water rise above normal river/sea level. Height-above-nearest-drainage model on a 30 m elevation grid: shows which areas flood first, not exact depths or timing."
+}
