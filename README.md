@@ -80,8 +80,8 @@ Check `frontend/public/data/hand_summary.json` after each run. Run `--help` on a
 
 ## Results for Nadi (current run)
 
-From `frontend/public/data/hand_summary.json`: 13,509 buildings, about 35,000 people (WorldPop), 63 critical
-facilities and 1,933 road sections in the map box.
+From `frontend/public/data/hand_summary.json`: 13,509 buildings, about 35,000 people (WorldPop), 51 critical
+facilities (schools, clinics, community halls, fire stations, substations) and 1,933 road sections in the map box.
 
 | River rise | Buildings reached | People reached |
 | --- | --- | --- |
@@ -100,6 +100,16 @@ Sense check against history: within about 500 m of Nadi town centre, 434 of 483 
 within a 6 m rise, at a median of 5 m. So the model has the town centre flooding in large floods rather than
 every year, consistent with major events such as the January and March 2012 floods, which inundated the town.
 
+**What floods first.** At a 2 m rise the most affected named communities are riverside villages: Namotomoto
+(about 415 people) and Nawaka (about 315), then Saunaka (about 120). Sabeto Primary School is reached at 1.5 m,
+two town clinics at 3.75 m, Nadi Primary School at 4.25 m and Nadi Fire Station at 5.5 m.
+
+**Checked against flood reports.** The villages the model ranks highest are the ones named in news reports of
+past floods: in April 2016 Nadi Town closed and flooding hit Tako Street near Nawaka village and the road from
+Namotomoto village to the Nadi Bridge; in March 2026 families in Nawaka (Tramline) and Kerebula were flooded
+and about 40-50 families from Nawajikuma settlement evacuated. This is a qualitative check, not a comparison
+with a mapped flood extent (none was publicly available).
+
 ## Assumptions and limits (also in the app's About panel)
 
 - **Not a flow simulation.** HAND shows which ground the river reaches as it rises. It ignores rainfall,
@@ -113,8 +123,11 @@ every year, consistent with major events such as the January and March 2012 floo
 - **Floor height is assumed:** 0.3 m for every home (`backend/places/nadi.json`, from Fiji's 2017 census mix
   and building guidelines). Surveyed floor heights would replace it.
 - **Measures are what-ifs.** Channel clearing and vegetation effects are user assumptions with sourced ranges,
-  not engineering designs.
+  not engineering designs. We found no public design figure for flood-level reduction in the ADB or JICA
+  Nadi project documents (past dredging removed 1.2 million m3 of sediment, reported only qualitatively).
 - **Roads cut at 0.3 m** of water (shallow moving water can float a car).
+- **Facilities** come from OpenStreetMap. OSM "shelters" are mostly bus stops and gazebos, so only shelters
+  tagged as evacuation shelters are kept; some remaining entries are mis-tagged (check names before quoting).
 - **OSM gaps.** Missing rivers, bridges, facilities or place names lead to wrong cuts, missed facilities or
   unnamed hotspots.
 - **Area names.** Each building takes the nearest OpenStreetMap place name within 3 km; 6,414 of 13,509
@@ -138,6 +151,8 @@ every year, consistent with major events such as the January and March 2012 floo
 - Mangroves: wave reduction 13–66% per 100 m (McIvor et al. 2012); negligible effect on riverine floods
   (Hydrology and Earth System Sciences, 2024, "Mangroves as nature-based mitigation for ENSO-driven compound flood risks")
 - Context: Nadi flood history (2009 flood figures), Nadi Flood Alleviation Project (AIFFP, ADB)
+- Flood reports used as a check: Fiji Village (6 Apr 2016; 4 Mar 2026), Fiji Sun (4 Mar 2026), January 2012 Fiji floods
+- Nadi River dredging (Hall Contracting); ADB TA 52233-002 and JICA evaluation of Nadi River flood control
 
 **APIs and services**
 - Google Gemini API (`gemini-2.5-flash`) for the plan text, with a built-in writer as fallback

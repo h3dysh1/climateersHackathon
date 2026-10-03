@@ -197,6 +197,9 @@ def main():
     ap.add_argument("--max-drain-km", type=float, default=5.0)
     ap.add_argument("--area-max-km", type=float, default=1.5)
     ap.add_argument("--road-section-m", type=float, default=500)
+    ap.add_argument("--keep-shelters", action="store_true",
+                    help="keep every OSM amenity=shelter; by default only shelter_type=evacuation is kept, "
+                         "because most OSM shelters are bus stops, gazebos or carports")
     args = ap.parse_args()
     bbox, px = args.bbox, args.pixel_m
 
@@ -295,6 +298,11 @@ def main():
     facilities = []
     if args.facilities:
         fac = read_layer(args.facilities, bbox).reset_index(drop=True)
+        if len(fac) and not args.keep_shelters and "amenity" in fac.columns:
+            st = fac["shelter_type"].astype(str) if "shelter_type" in fac.columns else ""
+            drop = (fac["amenity"] == "shelter") & ~(st == "evacuation")
+            print(f"Skipping {int(drop.sum())} OSM shelters that are not evacuation shelters (use --keep-shelters to keep them)")
+            fac = fac[~drop].reset_index(drop=True)
         if len(fac):
             fac_m = fac.to_crs(CRS_M)
             fpts = gpd.GeoDataFrame(geometry=fac_m.geometry.representative_point(), crs=CRS_M)

@@ -25,7 +25,8 @@ A JSON **list**, one entry per building (max 15,000; every building water can re
 
 ### `facilities.json`
 List: `{"id": "f0007", "name": "Nadi Hospital", "type": "hospital", "lon": ..., "lat": ..., "ground_m": 2.1, "floods_at_m": 2.25, "area": "..."}`.
-`type` is the OSM `amenity` (hospital, clinic, school, shelter, community_centre, police...) or `substation`. `name` and `area` may be null/omitted.
+`type` is the OSM `amenity` (hospital, clinic, doctors, school, community_centre, fire_station, police...) or `substation`.
+Shelters are included only if tagged as evacuation shelters. `name` and `area` may be null/omitted.
 
 ### `roads.json`
 List of road sections (max 500 m): `{"id": "r00123", "name": "Queens Road", "low_point_m": 0.75, "length_m": 480}`.
