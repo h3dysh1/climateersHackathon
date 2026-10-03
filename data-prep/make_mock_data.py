@@ -89,8 +89,8 @@ def main():
     write_json("mangroves.geojson", {"type": "FeatureCollection", "features": mangroves})
     write_json("buildings.geojson", {"type": "FeatureCollection", "features": buildings})
     write_json("validation.json", {
-        "records": 120, "near_mangroves": 38, "severe_rate_with_mangroves": 0.21,
-        "severe_rate_without": 0.34,
+        "records": 120, "near_mangroves": 38, "no_mangroves": 52, "severe_rate_all": 0.27,
+        "severe_rate_with_mangroves": 0.21, "severe_rate_without": 0.34,
         "note": "MOCK NUMBERS — replace with 05_validate.py output.", "mock": True,
     })
     print(f"{len(segments)} segments, {len(buildings)} buildings, {len(mangroves)} mangrove strips")
