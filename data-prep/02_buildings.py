@@ -21,6 +21,7 @@ from common import write_json
 
 CRS_M = 3460  # Fiji Map Grid (metres)
 
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", required=True)
