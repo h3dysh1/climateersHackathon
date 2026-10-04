@@ -391,10 +391,6 @@ export default function App() {
             },
           },
         ],
-        layers: [
-          { id: "land", type: "background", paint: { "background-color": COLORS.land } },
-          { id: "basemap", type: "raster", source: "dark", paint: { "raster-opacity": 0.9 } },
-        ],
       },
       center: NADI_CENTER,
       zoom: 12.3,
