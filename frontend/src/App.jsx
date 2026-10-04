@@ -366,14 +366,31 @@ export default function App() {
       container: mapDiv.current,
       style: {
         version: 8,
-        sources: {
+         sources: {
           dark: {
+            // Standard OpenStreetMap tiles (no API key), turned into a dark map by the paint settings below.
             type: "raster",
-            tiles: ["a", "b", "c"].map((s) => `https://${s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png`),
+            tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
             tileSize: 256,
-            attribution: "© OpenStreetMap contributors © CARTO",
+            maxzoom: 19,
+            attribution: "© OpenStreetMap contributors",
           },
         },
+        layers: [
+          { id: "land", type: "background", paint: { "background-color": COLORS.land } },
+          {
+            id: "basemap",
+            type: "raster",
+            source: "dark",
+            paint: {
+              "raster-brightness-min": 0.92, // min above max flips light to dark
+              "raster-brightness-max": 0.08,
+              "raster-saturation": -0.85,
+              "raster-contrast": 0.1,
+              "raster-opacity": 0.9,
+            },
+          },
+        ],
         layers: [
           { id: "land", type: "background", paint: { "background-color": COLORS.land } },
           { id: "basemap", type: "raster", source: "dark", paint: { "raster-opacity": 0.9 } },
