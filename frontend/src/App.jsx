@@ -3,9 +3,8 @@
 // Part A (already working): the flood map, slider, headline counts and ranked list.
 // Part B (new): the Options panel with Compare and Combine tabs.
 //
-// Part B uses PLACEHOLDER numbers for now (USE_PLACEHOLDER = true below).
-// The placeholder data copies the shape of P3's compare_options() answer, so when the real
-// backend is ready you should only need to change the "CONNECTING TO P3" block.
+// Part B calls P3's POST /compare-measures (USE_PLACEHOLDER = false below). The placeholder
+// model is kept only as a fallback for layout testing.
 
 import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
@@ -18,30 +17,36 @@ const API_URL = import.meta.env.VITE_API_URL;
 // =====================================================================
 // CONNECTING TO P3 (everything you need to change is in this block)
 // =====================================================================
-const USE_PLACEHOLDER = true; // set to false once P3's compare route works
-const COMPARE_ROUTE = "/compare"; // TODO: ask P3 for the real route
+const USE_PLACEHOLDER = false; // true = made-up numbers for layout testing only
+const COMPARE_ROUTE = "/compare-measures";
 
-// What "Low / Med / High" means for each option. These numbers are GUESSES.
-// TODO: ask P3 for the real values (they may live in measures.json).
-// The names on the left (channel_clearing_m etc.) are P3's names.
+// What "Low / Med / High" means for each option: the presets in backend/app/measures.json.
+// "Med" is what the pitch and charts use (0.25 m clearing, 5% vegetation, 100 homes raised 1 m).
 const PRESETS = {
-  channel_clearing_m: { Low: 0.25, Med: 0.5, High: 1.0 }, // metres the river is lowered
+  channel_clearing_m: { Low: 0.1, Med: 0.25, High: 0.5 }, // metres the river is lowered
   nature_based: {
-    Low: { reduction_pct: 5 },
-    Med: { reduction_pct: 10 },
-    High: { reduction_pct: 20 },
+    Low: { reduction_pct: 2 },
+    Med: { reduction_pct: 5 },
+    High: { reduction_pct: 10 },
   },
   raise_homes: {
-    Low: { count: 50, height_m: 0.5 },
+    Low: { count: 50, height_m: 1.0 },
     Med: { count: 100, height_m: 1.0 },
-    High: { count: 200, height_m: 1.5 },
+    High: { count: 250, height_m: 1.0 },
   },
 };
 
-// How the "Raise homes" target (e.g. Nawaka) is sent.
-// TODO: ask P3 what shape `target` should have. This is a guess.
-function targetFor(areaName) {
-  return areaName ? { area: areaName } : undefined;
+// The "Raise homes" target: a circle around the picked hotspot. Hotspots are usually 250 m grid
+// squares with names like "Nawaka Village 2", which don't match any building's `area`, so we
+// target by position instead of by name.
+const TARGET_RADIUS_M = 200;
+function targetFor(area) {
+  return area ? { lon: area.lon, lat: area.lat, radius_m: TARGET_RADIUS_M } : undefined;
+}
+function metresBetween(a, b) {
+  const dx = (a.lon - b.lon) * 111320 * Math.cos((b.lat * Math.PI) / 180);
+  const dy = (a.lat - b.lat) * 110540;
+  return Math.hypot(dx, dy);
 }
 // =====================================================================
 
@@ -49,6 +54,8 @@ function targetFor(areaName) {
 const NADI_CENTER = [177.42, -17.8]; // [longitude, latitude]
 const DEBOUNCE_MS = 300;
 const DEEP_WATER_M = 1.0;
+const FLOOR_M = 0.3; // assumed floor height above ground (backend/places/nadi.json)
+const ROAD_CUT_DEPTH_M = 0.3; // road cut once water is this deep (backend/app/measures.json)
 const LEVELS = Array.from({ length: 13 }, (_, i) => i * 0.5); // 0, 0.5 ... 6
 
 // Keep these colours the same everywhere (map, legend, list)
@@ -73,9 +80,9 @@ const STATUS_LABELS = [
 
 // The three options. `key` is P3's name for each one.
 const MEASURES = [
-  { key: "channel_clearing_m", label: "Dredging volume", color: "#1b998b" },
+  { key: "channel_clearing_m", label: "Clear river channel", color: "#1b998b" },
   { key: "raise_homes", label: "Raise homes", color: "#f18f01" },
-  { key: "nature_based", label: "Wetlands & vegetation", color: "#6a4c93" },
+  { key: "nature_based", label: "Riverbank vegetation", color: "#6a4c93" },
 ];
 const SIZES = ["Low", "Med", "High"];
 // Combine tab order: lower the river first, then raise homes, then vegetation
@@ -113,22 +120,24 @@ async function postJSON(path, body, signal) {
 function localResult(data, level) {
   const homeStatus = new Map();
   let people = 0;
+  // Same rules as backend/app/flood.py, so numbers don't jump when the backend wakes up.
   for (const b of data.buildings) {
-    const depth = level - b.ground_m;
-    const inside = level >= b.floods_at_m && level > b.ground_m + 0.3;
+    const reached = level >= b.floods_at_m;
+    const depth = reached ? level - b.ground_m : 0;
+    const inside = reached && level > b.ground_m + FLOOR_M;
     let status = 0;
     if (inside) {
       status = depth >= DEEP_WATER_M ? 3 : 2;
       people += b.people;
-    } else if (depth > 0) {
+    } else if (reached) {
       status = 1;
     }
     homeStatus.set(b.id, status);
   }
   const floodedFacilities = new Set(
-    data.facilities.filter((f) => level >= f.floods_at_m).map((f) => f.id)
+    data.facilities.filter((f) => level >= f.floods_at_m && level > f.ground_m + FLOOR_M).map((f) => f.id)
   );
-  const cutRoads = new Set(data.roads.filter((r) => r.low_point_m <= level).map((r) => r.id));
+  const cutRoads = new Set(data.roads.filter((r) => level - r.low_point_m >= ROAD_CUT_DEPTH_M).map((r) => r.id));
   return {
     homeStatus,
     floodedFacilities,
@@ -308,6 +317,14 @@ function CompareBars({ mitigation, level }) {
           </div>
         );
       })}
+      {mitigation.options
+        .filter((o) => o.key === "raise_homes" && o.at_design_level.people_protected === 0 && o.homes_too_deep_to_raise)
+        .map((o) => (
+          <p key="deep" style={styles.muted}>
+            Raising homes helps nobody here at this level: water is too deep for the raise
+            ({o.homes_too_deep_to_raise.toLocaleString()} homes too deep). Try a lower river rise or another area.
+          </p>
+        ))}
     </div>
   );
 }
@@ -422,7 +439,7 @@ export default function App() {
   const [ready, setReady] = useState(false);
   const [error, setError] = useState("");
   const [level, setLevel] = useState(0);
-  const [selectedArea, setSelectedArea] = useState(null); // also the "target" for Raise homes
+  const [selectedArea, setSelectedArea] = useState(null); // picked hotspot {name, lon, lat}; also the Raise homes target
   const [backend, setBackend] = useState("checking");
   const [counts, setCounts] = useState(null);
   const [hotspots, setHotspots] = useState(null);
@@ -544,7 +561,7 @@ export default function App() {
           id: "highlight",
           type: "circle",
           source: "homes",
-          filter: ["==", ["get", "area"], "__none__"],
+          filter: ["in", ["get", "id"], ["literal", []]],
           paint: {
             "circle-radius": 7,
             "circle-color": COLORS.highlight,
@@ -582,7 +599,8 @@ export default function App() {
   useEffect(() => {
     const map = mapRef.current;
     if (!ready || !map) return;
-    map.setFilter("water", ["==", ["get", "level_m"], level]);
+    // Outlines exist every 0.5 m; show the highest one at or below the slider (0.25 -> 0, 1.75 -> 1.5).
+    map.setFilter("water", ["==", ["get", "level_m"], Math.floor(level * 2) / 2]);
   }, [level, ready]);
 
   // Slider stops for 300 ms -> ask the backend for the flood picture (or use the backup plan).
@@ -683,12 +701,15 @@ export default function App() {
     };
   }, [level, options, tab, selectedArea, ready, data]);
 
-  // Area picked in the list -> ring its homes on the map.
+  // Area picked in the list -> ring the homes inside the target circle on the map.
   useEffect(() => {
     const map = mapRef.current;
-    if (!ready || !map) return;
-    map.setFilter("highlight", ["==", ["get", "area"], selectedArea ?? "__none__"]);
-  }, [selectedArea, ready]);
+    if (!ready || !map || !data) return;
+    const ids = selectedArea
+      ? data.buildings.filter((b) => metresBetween(b, selectedArea) <= TARGET_RADIUS_M).map((b) => b.id)
+      : [];
+    map.setFilter("highlight", ["in", ["get", "id"], ["literal", ids]]);
+  }, [selectedArea, ready, data]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -697,7 +718,7 @@ export default function App() {
   }, [extraOn, extraAvailable, ready]);
 
   function pickArea(area) {
-    setSelectedArea(area.name);
+    setSelectedArea({ name: area.name, lon: area.lon, lat: area.lat });
     mapRef.current.flyTo({ center: [area.lon, area.lat], zoom: 15, pitch: 30 });
   }
 
@@ -763,7 +784,7 @@ export default function App() {
                 onClick={() => pickArea(a)}
                 style={{
                   ...styles.row, ...styles.rowButton,
-                  background: selectedArea === a.name ? "#efe3fb" : "transparent",
+                  background: selectedArea?.name === a.name ? "#efe3fb" : "transparent",
                 }}
               >
                 <span>{a.rank}</span>
@@ -801,7 +822,7 @@ export default function App() {
               />{" "}
               <Dot color={m.color} />
               {m.key === "raise_homes"
-                ? `Raise homes${selectedArea ? ` in ${selectedArea}` : " (pick an area above)"}`
+                ? `Raise homes${selectedArea ? ` near ${selectedArea.name}` : " (town-wide; pick an area above to target)"}`
                 : m.label}
             </label>
             <select
