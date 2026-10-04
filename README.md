@@ -153,7 +153,7 @@ police, fire station, community centre, evacuation shelter) plus power substatio
 - OpenStreetMap rivers, facilities, roads, place names and coastline via the Overpass API (© OpenStreetMap contributors, ODbL)
 - WorldPop Fiji 2020 population counts, 100 m, unconstrained (CC BY 4.0)
 - Global Mangrove Watch v3, mangrove extent 1996 and 2020 (Bunting et al. 2022), CC BY 4.0
-- Basemap: OpenStreetMap standard tiles (© OpenStreetMap contributors)
+- Basemap: CARTO dark (© OpenStreetMap contributors, © CARTO)
 
 **Evidence used in the model**
 - Measures: sources listed per option in `backend/app/measures.json`
