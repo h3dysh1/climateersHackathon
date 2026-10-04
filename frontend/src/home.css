@@ -61,12 +61,12 @@
 .cta { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 56px; padding: 0 26px; background: var(--ink); color: var(--on-light); border: 0; cursor: pointer; font: 700 20px var(--font-display); text-decoration: none; margin-top: 6px; }
 .cta:hover:not(:disabled) { background: #fff; }
 .cta:disabled { opacity: .45; cursor: default; }
-.home-foot { position: absolute; left: 64px; bottom: 18px; max-width: 520px; font-size: 12px; color: var(--faint); }
+.home-foot { flex: 1 0 100%; padding: 0 64px 24px; font-size: 12px; color: var(--faint); }
 @media (max-width: 860px) {
   .home-main { padding: 28px 18px 24px; }
   .home-title { font-size: 64px; }
   .home-lede { font-size: 17px; }
   .card { padding: 18px; }
   .home-place { padding: 24px 18px 64px; border-left: 0; }
-  .home-foot { left: 18px; right: 18px; }
+    .home-foot { padding: 8px 18px 22px; }
 }
