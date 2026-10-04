@@ -28,8 +28,7 @@ export default function Home({ sources, leaving, onOpen }) {
         <div className="home-eyebrow"><i />Flood planning, place by place · COP31</div>
         <h1 className="home-title" id="home-title">Waterline</h1>
         <p className="home-lede">
-          Flood-prone towns rarely get a simple way to see who floods first. Choose a place, raise the river and
-          see whose homes it reaches, then compare ways to keep the water out.
+          Choose a place, simulate the flood and see whose homes it reaches, then compare ways to keep the water out.
         </p>
 
         <section className="card" aria-labelledby="data-t">
