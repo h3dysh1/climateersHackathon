@@ -11,6 +11,8 @@ Built for Climate Hack-tion 2026 · Build for 2035 · COP31 priorities: **Resili
 (helping flood-prone towns cope with climate extremes) and **Awareness Across All Areas** (showing
 communities their own flood risk in a form anyone can read).
 
+**Live demo:** [https://<your-site>.vercel.app](https://climateershackathon.vercel.app/)
+
 ## The problem
 
 River towns flood again and again, and the people who decide what to do about it rarely have a simple way to
@@ -128,20 +130,6 @@ cd ../frontend
 npm install
 npm run dev                                           # http://localhost:5173
 ```
-
-## Deploying (Vercel)
-
-One Vercel project serves both parts (`vercel.json`, Vercel Services): the site at `/` and the backend at
-`/api/...` (the backend is set up with `root_path="/api"`). Import the repo with the root directory left as
-the top folder and set these environment variables:
-
-| Name | Value |
-| --- | --- |
-| `VITE_API_URL` | `/api` |
-| `GEMINI_API_KEY` | your Gemini key (server only; never put it in a `VITE_` variable) |
-| `LLM_MODEL` | `gemini-2.5-flash` |
-
-Check `/api/health` shows `"llm_provider": "gemini"` after deploying.
 
 ## Data pipeline (P2)
 
