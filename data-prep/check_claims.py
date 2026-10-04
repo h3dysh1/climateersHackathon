@@ -176,8 +176,8 @@ def main():
     # 1. claims table
     claims = [
         ["Coverage", "Buildings", "13,509", len(b), "buildings.json: number of entries"],
-        ["Coverage", "Facilities", "51 (not 63)", len(f), "facilities.json: number of entries"],
-        ["Coverage", "Road sections", "1,933", len(r), "roads.json: number of entries"],
+        ["Coverage", "Facilities", "46", len(f), "facilities.json: number of entries"],
+        ["Coverage", "Road sections", "1,921", len(r), "roads.json: number of entries"],
         ["Coverage", "People in mapped buildings", "~35,000", round(people_total), "buildings.json: sum of people"],
         ["Coverage", "WorldPop people in whole map box", "66,880", s.get("worldpop_people_in_box"),
          "hand_summary.json: worldpop_people_in_box"],
@@ -187,29 +187,32 @@ def main():
         ["Coverage", "Buildings with an area name", "47%", f"{named_bld:,} ({named_bld / len(b):.0%})",
          "buildings.json: area"],
         ["Coverage", "Elevation data", "FABDEM", s.get("dem"), "hand_summary.json: dem"],
-        ["Flood curve", "People reached at 0 m (should be ~0 after the fix)", "~0", round(ppl_at(0)),
+        ["Flood curve", "People reached at 0 m", "0", round(ppl_at(0)),
          "buildings.json: floods_at_m <= 0"],
-        ["Flood curve", "People reached at 2 m", "~1,700", round(ppl_at(2)), "buildings.json: people where floods_at_m <= 2"],
-        ["Flood curve", "People reached at 4 m", "~6,300", round(ppl_at(4)), "buildings.json: people where floods_at_m <= 4"],
+        ["Flood curve", "People reached at 2 m", "~1,300", round(ppl_at(2)), "buildings.json: people where floods_at_m <= 2"],
+        ["Flood curve", "People reached at 4 m", "~6,100", round(ppl_at(4)), "buildings.json: people where floods_at_m <= 4"],
         ["Flood curve", "People reached at 6 m", "~14,700", round(ppl_at(6)), "buildings.json: people where floods_at_m <= 6"],
-        ["Flood curve", "Biggest jump in one 0.25 m step", "above ~3 m",
+        ["Flood curve", "Biggest jump in one 0.25 m step", "3 to 3.25 m, ~1,900",
          f"{jump[0] - 0.25:g} to {jump[0]:g} m: +{jump[4]:,} people", "2_flood_curve.csv: last column"],
-        ["What floods first", "Most affected named community at 2 m", "Namotomoto ~415",
+        ["What floods first", "Most affected named community at 2 m", "Namotomoto ~390",
          f"{named[0][0]} {round(named[0][1])}" if named else "", "buildings.json: area, people, floods_at_m <= 2"],
-        ["What floods first", "Second named community at 2 m", "Nawaka ~315",
+        ["What floods first", "Second named community at 2 m", "Saunaka ~105",
          f"{named[1][0]} {round(named[1][1])}" if len(named) > 1 else "", "same"],
         ["What floods first", "People at 2 m with no area name", "(say 'named communities')",
          round(at2.get("(no area name)", 0)), "same"],
+        ["What floods first", "Nawaka first reached at (m)", "0.75",
+         min((x["floods_at_m"] for x in b if "nawaka" in (x.get("area") or "").lower()), default="not in data"),
+         "buildings.json: area contains Nawaka, min floods_at_m"],
         ["What floods first", "Sabeto Primary School reached at (m)", "1.5", fl("Sabeto Primary School"),
          "facilities.json: floods_at_m"],
         ["What floods first", "Family Clinic reached at (m)", "3.75", fl("Family Clinic"), "facilities.json: floods_at_m"],
         ["What floods first", "Eye Clinic reached at (m)", "3.75", fl("EYE CLINIC"), "facilities.json: floods_at_m"],
         ["What floods first", "Nadi Fire Station reached at (m)", "5.5", fl("NADI FIRE STATION"), "facilities.json: floods_at_m"],
-        ["What floods first", "First fire station of any name reached at (m)", "(check)",
+        ["What floods first", "First fire station of any name reached at (m)", "4 (unnamed)",
          min((x["floods_at_m"] for x in f if x["type"] == "fire_station"), default="none"),
          "facilities.json: type = fire_station"],
         ["Town centre", "Buildings within ~500 m of the centre", "483", len(near), "buildings.json: lon, lat"],
-        ["Town centre", "Share reached within 6 m", "90%", f"{len(near_lv) / max(1, len(near)):.0%}",
+        ["Town centre", "Share reached within 6 m", "about 90%", f"{len(near_lv) / max(1, len(near)):.0%}",
          "buildings.json: floods_at_m < 99"],
         ["Town centre", "Median rise to reach them (m)", "5", statistics.median(near_lv) if near_lv else "",
          "buildings.json: median floods_at_m"],
@@ -234,10 +237,16 @@ def main():
                                                  for L in (2.0, 3.0)]])
         d = {m[0]: m for m in measures}
         claims += [
-            ["Measures", "Raise 100 homes: people kept dry at 2 m", "~390", d[names["raise_homes"]][1], "backend compare.py"],
-            ["Measures", "Clear channel: people kept dry at 2 m", "~120", d[names["channel_clearing_m"]][1], "backend compare.py"],
+            ["Measures", "Raise 100 homes: people kept dry at 2 m", "~435", d[names["raise_homes"]][1], "backend compare.py"],
+            ["Measures", "Clear channel: people kept dry at 2 m", "~130", d[names["channel_clearing_m"]][1], "backend compare.py"],
             ["Measures", "Vegetation: people kept dry at 2 m", "~80", d[names["nature_based"]][1], "backend compare.py"],
-            ["Measures", "All three: people kept dry at 2 m", "~570", d["All three together"][1], "backend compare.py"],
+            ["Measures", "All three: people kept dry at 2 m", "~630", d["All three together"][1], "backend compare.py"],
+        ]
+        sw = {o["key"]: o["at_design_level"]["people_protected"]
+              for o in compare.compare_options(3.25, opts, b, f, r)["options"]}
+        claims += [
+            ["Measures", "Clear channel: people kept dry at 3.25 m", "~1,640", sw["channel_clearing_m"], "backend compare.py"],
+            ["Measures", "Raise 100 homes: people kept dry at 3.25 m", "~610", sw["raise_homes"], "backend compare.py"],
         ]
 
     saved.append(report("1. Pitch claims vs data", "1_claims.csv",

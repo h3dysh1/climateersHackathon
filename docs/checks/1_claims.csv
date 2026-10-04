@@ -1,30 +1,33 @@
 ﻿section,claim,pitch says,data says,where it comes from
 Coverage,Buildings,"13,509",13509,buildings.json: number of entries
-Coverage,Facilities,51 (not 63),46,facilities.json: number of entries
-Coverage,Road sections,"1,933",1921,roads.json: number of entries
+Coverage,Facilities,46,46,facilities.json: number of entries
+Coverage,Road sections,"1,921",1921,roads.json: number of entries
 Coverage,People in mapped buildings,"~35,000",34947,buildings.json: sum of people
 Coverage,WorldPop people in whole map box,"66,880",66880,hand_summary.json: worldpop_people_in_box
 Coverage,Share of residents in mapped buildings,about half,52%,the two lines above
 Coverage,Buildings with an area name,47%,"6,414 (47%)",buildings.json: area
 Coverage,Elevation data,FABDEM,fabdem.tif,hand_summary.json: dem
-Flood curve,People reached at 0 m (should be ~0 after the fix),~0,0,buildings.json: floods_at_m <= 0
-Flood curve,People reached at 2 m,"~1,700",1336,buildings.json: people where floods_at_m <= 2
-Flood curve,People reached at 4 m,"~6,300",6145,buildings.json: people where floods_at_m <= 4
+Flood curve,People reached at 0 m,0,0,buildings.json: floods_at_m <= 0
+Flood curve,People reached at 2 m,"~1,300",1336,buildings.json: people where floods_at_m <= 2
+Flood curve,People reached at 4 m,"~6,100",6145,buildings.json: people where floods_at_m <= 4
 Flood curve,People reached at 6 m,"~14,700",14679,buildings.json: people where floods_at_m <= 6
-Flood curve,Biggest jump in one 0.25 m step,above ~3 m,"3 to 3.25 m: +1,933 people",2_flood_curve.csv: last column
-What floods first,Most affected named community at 2 m,Namotomoto ~415,Namotomoto Village 385,"buildings.json: area, people, floods_at_m <= 2"
-What floods first,Second named community at 2 m,Nawaka ~315,Saunaka Village 106,same
+Flood curve,Biggest jump in one 0.25 m step,"3 to 3.25 m, ~1,900","3 to 3.25 m: +1,933 people",2_flood_curve.csv: last column
+What floods first,Most affected named community at 2 m,Namotomoto ~390,Namotomoto Village 385,"buildings.json: area, people, floods_at_m <= 2"
+What floods first,Second named community at 2 m,Saunaka ~105,Saunaka Village 106,same
 What floods first,People at 2 m with no area name,(say 'named communities'),807,same
+What floods first,Nawaka first reached at (m),0.75,0.75,"buildings.json: area contains Nawaka, min floods_at_m"
 What floods first,Sabeto Primary School reached at (m),1.5,1.5,facilities.json: floods_at_m
 What floods first,Family Clinic reached at (m),3.75,3.75,facilities.json: floods_at_m
 What floods first,Eye Clinic reached at (m),3.75,3.75,facilities.json: floods_at_m
 What floods first,Nadi Fire Station reached at (m),5.5,5.5,facilities.json: floods_at_m
-What floods first,First fire station of any name reached at (m),(check),4.0,facilities.json: type = fire_station
+What floods first,First fire station of any name reached at (m),4 (unnamed),4.0,facilities.json: type = fire_station
 Town centre,Buildings within ~500 m of the centre,483,483,"buildings.json: lon, lat"
-Town centre,Share reached within 6 m,90%,89%,buildings.json: floods_at_m < 99
+Town centre,Share reached within 6 m,about 90%,89%,buildings.json: floods_at_m < 99
 Town centre,Median rise to reach them (m),5,5.0,buildings.json: median floods_at_m
 Roads,Road km cut at 1 m,17,17.0,roads.json: length_m where 1 - low_point_m >= 0.3
-Measures,Raise 100 homes: people kept dry at 2 m,~390,435,backend compare.py
-Measures,Clear channel: people kept dry at 2 m,~120,127,backend compare.py
+Measures,Raise 100 homes: people kept dry at 2 m,~435,435,backend compare.py
+Measures,Clear channel: people kept dry at 2 m,~130,127,backend compare.py
 Measures,Vegetation: people kept dry at 2 m,~80,80,backend compare.py
-Measures,All three: people kept dry at 2 m,~570,630,backend compare.py
+Measures,All three: people kept dry at 2 m,~630,630,backend compare.py
+Measures,Clear channel: people kept dry at 3.25 m,"~1,640",1643,backend compare.py
+Measures,Raise 100 homes: people kept dry at 3.25 m,~610,613,backend compare.py

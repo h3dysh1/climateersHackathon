@@ -1,20 +1,54 @@
 // App.jsx - Nadi flood planner
 //
-// 1. Where water gets inside: drag the river gauge on the map; homes, facilities and roads update,
-//    and the most affected areas are listed (backend: /flood and /hotspots).
-// 2. Test options: dredging, raising homes and riverbank vegetation, each Low / Medium / High
-//    (presets come from the backend's /measures).
-// 3. Results: each option alone ("One at a time") or layered in order ("All together")
-//    (backend: /compare-measures).
-// Styles live in index.css.
+// Part A (already working): the flood map, slider, headline counts and ranked list.
+// Part B (new): the Options panel with Compare and Combine tabs.
+//
+// Part B calls P3's POST /compare-measures (USE_PLACEHOLDER = false below). The placeholder
+// model is kept only as a fallback for layout testing.
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { addExtraLayers, setExtraVisibility, EXTRA_DEFAULTS, MapLayersPanel } from "./extraLayers";
 
 // Backend address. Put it in frontend/.env.local like:  VITE_API_URL=http://localhost:8000
 const API_URL = import.meta.env.VITE_API_URL;
+
+// =====================================================================
+// CONNECTING TO P3 (everything you need to change is in this block)
+// =====================================================================
+const USE_PLACEHOLDER = false; // true = made-up numbers for layout testing only
+const COMPARE_ROUTE = "/compare-measures";
+
+// What "Low / Med / High" means for each option: the presets in backend/app/measures.json.
+// "Med" is what the pitch and charts use (0.25 m clearing, 5% vegetation, 100 homes raised 1 m).
+const PRESETS = {
+  channel_clearing_m: { Low: 0.1, Med: 0.25, High: 0.5 }, // metres the river is lowered
+  nature_based: {
+    Low: { reduction_pct: 2 },
+    Med: { reduction_pct: 5 },
+    High: { reduction_pct: 10 },
+  },
+  raise_homes: {
+    Low: { count: 50, height_m: 1.0 },
+    Med: { count: 100, height_m: 1.0 },
+    High: { count: 250, height_m: 1.0 },
+  },
+};
+
+// The "Raise homes" target: a circle around the picked hotspot. Hotspots are usually 250 m grid
+// squares with names like "Nawaka Village 2", which don't match any building's `area`, so we
+// target by position instead of by name.
+const TARGET_RADIUS_M = 200;
+function targetFor(area) {
+  return area ? { lon: area.lon, lat: area.lat, radius_m: TARGET_RADIUS_M } : undefined;
+}
+function metresBetween(a, b) {
+  const dx = (a.lon - b.lon) * 111320 * Math.cos((b.lat * Math.PI) / 180);
+  const dy = (a.lat - b.lat) * 110540;
+  return Math.hypot(dx, dy);
+}
+// =====================================================================
 
 // ---------- 1. SETTINGS ----------
 const NADI_CENTER = [177.44, -17.79]; // [longitude, latitude]
@@ -24,8 +58,9 @@ const STEP = 0.25;
 const START_LEVEL = 2;
 const DEBOUNCE_MS = 300;
 const DEEP_WATER_M = 1.0;
-const DEFAULT_FLOOR_M = 0.3;
-const NEAR_RADIUS_M = 800; // "Around X" areas are targeted as a circle around their centre
+const FLOOR_M = 0.3; // assumed floor height above ground (backend/places/nadi.json)
+const ROAD_CUT_DEPTH_M = 0.3; // road cut once water is this deep (backend/app/measures.json)
+const LEVELS = Array.from({ length: 13 }, (_, i) => i * 0.5); // 0, 0.5 ... 6
 
 // Same colours as index.css (MapLibre needs them as plain values)
 const COLORS = {
@@ -67,10 +102,12 @@ const OPTIONS = [
     describe: (v) => `Floods ${v}% lower, less in very big floods. Also cuts erosion and silt.`,
   },
 ];
-const SIZES = [
-  ["low", "Low"],
-  ["medium", "Med"],
-  ["high", "High"],
+
+// The three options. `key` is P3's name for each one.
+const MEASURES = [
+  { key: "channel_clearing_m", label: "Clear river channel", color: "#1b998b" },
+  { key: "raise_homes", label: "Raise homes", color: "#f18f01" },
+  { key: "nature_based", label: "Riverbank vegetation", color: "#6a4c93" },
 ];
 // "All together" adds options in this order: town-wide first, then raise the homes still flooding.
 const ORDER = ["channel_clearing_m", "nature_based", "raise_homes"];
@@ -150,22 +187,24 @@ function backendResult(flood, hot) {
 function localResult(data, level) {
   const homeStatus = new Map();
   let people = 0;
+  // Same rules as backend/app/flood.py, so numbers don't jump when the backend wakes up.
   for (const b of data.buildings) {
     const reached = level >= b.floods_at_m;
-    const depth = level - b.ground_m;
+    const depth = reached ? level - b.ground_m : 0;
+    const inside = reached && level > b.ground_m + FLOOR_M;
     let status = 0;
     if (reached && level > b.ground_m + DEFAULT_FLOOR_M) {
       status = depth >= DEEP_WATER_M ? 3 : 2;
       people += b.people;
-    } else if (reached && depth > 0) {
+    } else if (reached) {
       status = 1;
     }
     homeStatus.set(b.id, status);
   }
   const floodedFacilities = new Set(
-    data.facilities.filter((f) => level >= f.floods_at_m && level > f.ground_m + DEFAULT_FLOOR_M).map((f) => f.id)
+    data.facilities.filter((f) => level >= f.floods_at_m && level > f.ground_m + FLOOR_M).map((f) => f.id)
   );
-  const cutRoads = new Set(data.roads.filter((r) => level - r.low_point_m >= 0.3).map((r) => r.id));
+  const cutRoads = new Set(data.roads.filter((r) => level - r.low_point_m >= ROAD_CUT_DEPTH_M).map((r) => r.id));
   return {
     homeStatus,
     floodedFacilities,
@@ -299,7 +338,14 @@ function CompareBars({ result, level }) {
           </div>
         );
       })}
-      <p className="hint">People who would no longer have water inside their homes.</p>
+      {mitigation.options
+        .filter((o) => o.key === "raise_homes" && o.at_design_level.people_protected === 0 && o.homes_too_deep_to_raise)
+        .map((o) => (
+          <p key="deep" style={styles.muted}>
+            Raising homes helps nobody here at this level: water is too deep for the raise
+            ({o.homes_too_deep_to_raise.toLocaleString()} homes too deep). Try a lower river rise or another area.
+          </p>
+        ))}
     </div>
   );
 }
@@ -496,8 +542,8 @@ export default function App() {
   const [data, setData] = useState(null);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState("");
-  const [level, setLevel] = useState(START_LEVEL);
-  const [area, setArea] = useState(null); // picked area: also the target for "Raise homes"
+  const [level, setLevel] = useState(0);
+  const [selectedArea, setSelectedArea] = useState(null); // picked hotspot {name, lon, lat}; also the Raise homes target
   const [backend, setBackend] = useState("checking");
   const [counts, setCounts] = useState(null);
   const [hotspots, setHotspots] = useState(null);
@@ -680,6 +726,7 @@ export default function App() {
   useEffect(() => {
     const map = mapRef.current;
     if (!ready || !map) return;
+    // Outlines exist every 0.5 m; show the highest one at or below the slider (0.25 -> 0, 1.75 -> 1.5).
     map.setFilter("water", ["==", ["get", "level_m"], Math.floor(level * 2) / 2]);
   }, [level, ready]);
 
@@ -761,19 +808,17 @@ export default function App() {
       clearTimeout(timer);
       controller.abort();
     };
-  }, [level, choice, presets, tab, area, ready, data, backend]);
+  }, [level, options, tab, selectedArea, ready, data]);
 
-  // Picked area -> ring its homes on the map.
-  const targetIds = useMemo(() => {
-    if (!data || !area) return [];
-    const t = targetFor(area);
-    return data.buildings.filter((b) => inTarget(b, t)).map((b) => b.id);
-  }, [data, area]);
+  // Area picked in the list -> ring the homes inside the target circle on the map.
   useEffect(() => {
     const map = mapRef.current;
-    if (!ready || !map) return;
-    map.setFilter("highlight", ["in", ["get", "id"], ["literal", targetIds]]);
-  }, [targetIds, ready]);
+    if (!ready || !map || !data) return;
+    const ids = selectedArea
+      ? data.buildings.filter((b) => metresBetween(b, selectedArea) <= TARGET_RADIUS_M).map((b) => b.id)
+      : [];
+    map.setFilter("highlight", ["in", ["get", "id"], ["literal", ids]]);
+  }, [selectedArea, ready, data]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -781,37 +826,9 @@ export default function App() {
     setExtraVisibility(map, extraOn);
   }, [extraOn, extraAvailable, ready]);
 
-  // The settings a plan was written for, so we can say when it is out of date.
-  const settingsKey = JSON.stringify({ level, choice, area: area?.name ?? null });
-
-  async function writePlan() {
-    setPlanState("loading");
-    setCopied(false);
-    try {
-      const measures = buildOptions(choice, presets, area);
-      const flood = await postJSON("/flood", {
-        level_m: level,
-        buildings: data.buildings,
-        facilities: data.facilities,
-        roads: data.roads,
-        measures,
-      });
-      const res = await postJSON("/flood-plan", { area_name: "Nadi", place: "nadi", summary: slimFlood(flood) });
-      setPlan({ ...res, settingsKey });
-      setPlanState("idle");
-    } catch (err) {
-      console.warn("Plan problem:", err);
-      setPlanState("error");
-    }
-  }
-
-  async function copyPlan() {
-    try {
-      await navigator.clipboard.writeText(plan.markdown);
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
+  function pickArea(area) {
+    setSelectedArea({ name: area.name, lon: area.lon, lat: area.lat });
+    mapRef.current.flyTo({ center: [area.lon, area.lat], zoom: 15, pitch: 30 });
   }
 
   function downloadPlan() {
@@ -960,73 +977,67 @@ export default function App() {
               <button aria-pressed={tab === "compare"} onClick={() => setTab("compare")}>One at a time</button>
               <button aria-pressed={tab === "combine"} onClick={() => setTab("combine")}>All together</button>
             </div>
+            {hotspots.map((a) => (
+              <button
+                key={a.name}
+                onClick={() => pickArea(a)}
+                style={{
+                  ...styles.row, ...styles.rowButton,
+                  background: selectedArea?.name === a.name ? "#efe3fb" : "transparent",
+                }}
+              >
+                <span>{a.rank}</span>
+                <span style={{ textAlign: "left" }}>{a.name}</span>
+                <span>{a.people_water_inside.toLocaleString()}</span>
+                <span>{a.people_deep_water.toLocaleString()}</span>
+                <span>{(a.facilities_flooded ?? []).length}</span>
+              </button>
+            ))}
           </div>
-          {backend !== "online" && <p className="muted">Results need the backend.</p>}
-          {backend === "online" && !anyOn && <p className="muted">Switch on at least one option above.</p>}
-          {backend === "online" && anyOn && counts?.people === 0 && (
-            <p className="muted">Nobody has water inside at {levelText}, so there is nothing to protect yet. Raise the river on the gauge.</p>
-          )}
-          {resultState === "error" && <p className="notice error">The comparison failed. Check the backend terminal for the error.</p>}
-          {anyOn && !showResult && resultState === "loading" && <p className="muted">Working out the results…</p>}
-          {anyOn && showResult && result.baseline.people_water_inside > 0 && (
-            <div style={{ opacity: resultState === "loading" ? 0.55 : 1 }}>
-              {tab === "compare" ? (
-                <>
-                  <CompareBars result={result} level={level} />
-                  <CompareLines result={result} level={level} />
-                </>
-              ) : (
-                <Waterfall result={result} />
-              )}
-            </div>
-          )}
-        </section>
+        )}
 
-        {/* 4. Written plan */}
-        <section className="step" aria-labelledby="s4">
-          <div className="step-head"><span className="step-n">4</span><h2 id="s4">Write the plan</h2></div>
-          <p className="muted">
-            Turns this scenario ({levelText} flood, the options switched on above) into a one-page plan for the council
-            and community leaders.
-          </p>
-          <button
-            className="primary"
-            onClick={writePlan}
-            disabled={backend !== "online" || !data || planState === "loading"}
-          >
-            {planState === "loading" ? "Writing the plan…" : plan ? "Write it again for these settings" : "Write the plan"}
-          </button>
-          {backend !== "online" && <p className="hint">Needs the backend.</p>}
-          {planState === "error" && <p className="notice error">The plan could not be written. Check the backend terminal for the error.</p>}
-          {plan && (
-            <div className="plan" aria-live="polite">
-              <div className="plan-meta">
-                <span>
-                  {plan.provider === "gemini" && !plan.fallback
-                    ? `Written by Gemini (${plan.model}) from the numbers above`
-                    : "Written by the built-in writer from the numbers above"}
-                  {plan.fallback && plan.error ? `. Gemini was unavailable: ${plan.error}` : ""}
-                </span>
-                <span className="plan-actions">
-                  <button className="link" onClick={copyPlan}>{copied ? "Copied" : "Copy"}</button>
-                  <button className="link" onClick={downloadPlan}>Download</button>
-                </span>
-              </div>
-              {plan.settingsKey !== settingsKey && (
-                <p className="notice">You've changed the settings since this plan was written. Write it again to update it.</p>
-              )}
-              <Markdown text={plan.markdown} />
-            </div>
-          )}
-        </section>
+        {/* 2. Options */}
+        <div style={styles.optionsHeader}>
+          <h3 style={{ ...styles.h3, margin: 0 }}>Options</h3>
+          <div>
+            <button
+              onClick={() => setTab("compare")}
+              style={{ ...styles.tab, ...(tab === "compare" ? styles.tabOn : {}) }}
+            >Compare</button>
+            <button
+              onClick={() => setTab("combine")}
+              style={{ ...styles.tab, ...(tab === "combine" ? styles.tabOn : {}) }}
+            >Combine</button>
+          </div>
+        </div>
 
-        <section className="layers">
-          <MapLayersPanel
-            available={extraAvailable}
-            on={extraOn}
-            onChange={(id, value) => setExtraOn((o) => ({ ...o, [id]: value }))}
-          />
-        </section>
+        {MEASURES.map((m) => (
+          <div key={m.key} style={styles.optionRow}>
+            <label style={{ flex: 1, fontSize: 14 }}>
+              <input
+                type="checkbox"
+                checked={options[m.key].on}
+                onChange={(e) => setOpt(m.key, { on: e.target.checked })}
+              />{" "}
+              <Dot color={m.color} />
+              {m.key === "raise_homes"
+                ? `Raise homes${selectedArea ? ` near ${selectedArea.name}` : " (town-wide; pick an area above to target)"}`
+                : m.label}
+            </label>
+            <select
+              value={options[m.key].size}
+              disabled={!options[m.key].on}
+              onChange={(e) => setOpt(m.key, { size: e.target.value })}
+              aria-label={`${m.label} size`}
+            >
+              {SIZES.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+        ))}
+
+        {/* OPTIONAL, LATER: the "Find best mix" button goes here, in the Combine tab.
+        {tab === "combine" && <button onClick={findBestMix}>Find best mix</button>}
+        */}
 
         <p className="footer">
           A planning screen, not a flood forecast: it shows which ground the river reaches as it rises (height above
