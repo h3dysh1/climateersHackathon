@@ -11,13 +11,13 @@ import maplibregl from "maplibre-gl";
 
 // ---------- Settings ----------
 const COLORS = {
-  river: "#1d70b8",
+  river: "#5AA6E8",
   mangrove: "#2d9a4b",
   restorable: "#8fd694",
   restorableLine: "#4c9a5b",
 };
 // Coast bands. These colours are different from the home colours on purpose.
-const BANDS = [
+export const BANDS = [
   ["strong", "Strong (mangroves protect well)", "#2d6a4f"],
   ["partial", "Partial", "#ffd166"],
   ["exposed", "Exposed", "#b5179e"],
