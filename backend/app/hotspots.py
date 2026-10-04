@@ -31,31 +31,74 @@ def _cell_centre(cx: int, cy: int, lat0: float, size_m: float) -> tuple[float, f
     return round(lon, 6), round(lat, 6)
 
 
-def _grid_name(cell_buildings: list[dict], centre: tuple[float, float], named: list[dict], lat0: float) -> tuple[str | None, str]:
+class _NearestName:
+    """Finds the nearest named building quickly: named buildings are bucketed into ~1 km cells and
+    the search widens ring by ring, instead of comparing against every named building."""
+
+    def __init__(self, named: list[dict], lat0: float, cell_m: float = 1000.0):
+        self.kx, self.ky, self.cell = 111_320 * math.cos(math.radians(lat0)), 110_540, cell_m
+        # Thin the named buildings to one per place per ~50 m: the nearest NAME barely changes,
+        # and it makes the search many times faster on real towns.
+        thin: dict = {}
+        for b in named:
+            thin.setdefault((b["area"], round(b["lon"] * self.kx / 50), round(b["lat"] * self.ky / 50)), b)
+        self.buckets: dict = {}
+        for b in thin.values():
+            self.buckets.setdefault(self._key(b["lon"], b["lat"]), []).append(b)
+        self.max_ring = 200  # 60 km: far beyond any town
+
+    def _key(self, lon, lat):
+        return math.floor(lon * self.kx / self.cell), math.floor(lat * self.ky / self.cell)
+
+    def find(self, lon: float, lat: float) -> dict | None:
+        if not self.buckets:
+            return None
+        cx, cy = self._key(lon, lat)
+        best, best_d = None, float("inf")
+        for ring in range(self.max_ring + 1):
+            for dx in range(-ring, ring + 1):
+                for dy in range(-ring, ring + 1):
+                    if max(abs(dx), abs(dy)) != ring:
+                        continue
+                    for b in self.buckets.get((cx + dx, cy + dy), ()):
+                        d = ((b["lon"] - lon) * self.kx) ** 2 + ((b["lat"] - lat) * self.ky) ** 2
+                        if d < best_d:
+                            best, best_d = b, d
+            # Anything in a further ring is at least `ring * cell` away.
+            if best is not None and math.sqrt(best_d) <= ring * self.cell:
+                return best
+        return best
+
+
+def _grid_name(cell_buildings: list[dict], centre: tuple[float, float], nearest: "_NearestName") -> tuple[str | None, str]:
     """Name a grid area: the place most of its buildings carry, else the nearest named building's place."""
     names = Counter(b["area"] for b in cell_buildings if b.get("area"))
     if names:
         return names.most_common(1)[0][0], "place"
-    if not named:
+    near = nearest.find(*centre)
+    if near is None:
         return None, "grid"
-    kx = 111_320 * math.cos(math.radians(lat0))
-    near = min(named, key=lambda b: ((b["lon"] - centre[0]) * kx) ** 2 + ((b["lat"] - centre[1]) * 110_540) ** 2)
     return f"near {near['area']}", "nearest place"
 
 
-def _fill_names(buildings: list[dict], lat0: float) -> list[dict]:
-    """Give every unnamed building the name of the nearest named one, as "near <place>"."""
-    named = [b for b in buildings if b.get("area") and b.get("lon") is not None]
-    if not named:
-        return buildings
-    kx = 111_320 * math.cos(math.radians(lat0))
+_NAME_CACHE: dict = {}  # (lon, lat, place names) -> "near X"; the same buildings arrive on every slider move
+
+
+def _fill_names(items: list[dict], nearest: "_NearestName", sig) -> list[dict]:
+    """Give every unnamed building/facility the name of the nearest named building, as "near <place>"."""
+    if len(_NAME_CACHE) > 200_000:
+        _NAME_CACHE.clear()
     out = []
-    for b in buildings:
-        if b.get("area") or b.get("lon") is None:
+    for b in items:
+        if b.get("area") or b.get("lon") is None or b.get("lat") is None:
             out.append(b)
             continue
-        near = min(named, key=lambda n: ((n["lon"] - b["lon"]) * kx) ** 2 + ((n["lat"] - b["lat"]) * 110_540) ** 2)
-        out.append({**b, "area": f"near {near['area']}"})
+        key = (b["lon"], b["lat"], sig)
+        if key not in _NAME_CACHE:
+            near = nearest.find(b["lon"], b["lat"])
+            _NAME_CACHE[key] = f"near {near['area']}" if near else None
+        name = _NAME_CACHE[key]
+        out.append({**b, "area": name} if name else b)
     return out
 
 
@@ -68,10 +111,12 @@ def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | N
     result = flood.assess(level_m, buildings, facilities)
     per_b = {r["id"]: r for r in result["buildings"]}
     located = [b for b in buildings if b.get("lon") is not None and b.get("lat") is not None]
+    lat_c = sum(b["lat"] for b in located) / len(located) if located else 0.0
+    nearest = _NearestName([b for b in located if b.get("area")], lat_c)
     if group_by == "place" and located:
-        lat_c = sum(b["lat"] for b in located) / len(located)
-        buildings = _fill_names(buildings, lat_c)
-        facilities = _fill_names(facilities, lat_c)
+        sig = (len(nearest.buckets), tuple(sorted({b["area"] for b in located if b.get("area")})))
+        buildings = _fill_names(buildings, nearest, sig)
+        facilities = _fill_names(facilities, nearest, sig)
         located = [b for b in buildings if b.get("lon") is not None and b.get("lat") is not None]
     named = sum(1 for b in buildings if b.get("area"))
     if group_by == "place":
@@ -121,7 +166,6 @@ def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | N
             if k in areas:
                 areas[k]["facilities_flooded"].append(f.get("name") or f["id"])
 
-    named_located = [b for b in located if b.get("area")]
     out = []
     for k, a in areas.items():
         if a["people_water_inside"] <= 0 and a["people_deep_water"] <= 0:
@@ -132,7 +176,7 @@ def rank_areas(level_m: float, buildings: list[dict], facilities: list[dict] | N
             lat = round(sum(a["lats"]) / len(a["lats"]), 6) if a["lats"] else None
         else:
             lon, lat = _cell_centre(*k, lat0, cell_m)
-            name, source = _grid_name(a["members"], (lon, lat), named_located, lat0)
+            name, source = _grid_name(a["members"], (lon, lat), nearest)
         out.append({
             "name": name, "name_source": source, "lon": lon, "lat": lat,
             "buildings": a["buildings"],
