@@ -19,7 +19,7 @@ SERVERS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.sys
 
 QUERIES = {
     "rivers": 'way["waterway"~"river|stream|canal|drain"]({b});',
-    "facilities": '(nwr["amenity"~"hospital|clinic|doctors|school|kindergarten|college|police|fire_station|community_centre|shelter"]({b});'
+    "facilities": '(nwr["amenity"~"^(hospital|clinic|doctors|school|kindergarten|college|police|fire_station|community_centre|shelter)$"]({b});'
                   'nwr["power"="substation"]({b}););',
     "roads": 'way["highway"~"motorway|trunk|primary|secondary|tertiary|unclassified|residential"]({b});',
     "places": 'node["place"~"suburb|neighbourhood|quarter|village|hamlet|town|locality"]({b});',
