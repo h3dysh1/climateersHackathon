@@ -28,8 +28,8 @@ export default function Home({ sources, leaving, onOpen }) {
         <div className="home-eyebrow"><i />Flood planning, place by place · COP31</div>
         <h1 className="home-title" id="home-title">Waterline</h1>
         <p className="home-lede">
-          Pick a place, raise the river and see whose homes it reaches. Then test three ways to keep the water out:
-          dredging, raising homes and planting riverbanks.
+          Flood-prone towns rarely get a simple way to see who floods first. Choose a place, raise the river and
+          see whose homes it reaches, then compare ways to keep the water out.
         </p>
 
         <section className="card" aria-labelledby="data-t">
@@ -75,7 +75,7 @@ export default function Home({ sources, leaving, onOpen }) {
 
       <div className="home-place">
         <div className="place-title"><span className="place-n">1</span>Choose a place</div>
-        <div className="place-sub">Nadi is our test city and the only place prepared so far. Click it to start.</div>
+        <div className="place-sub">Click the city to start.</div>
         <div className="place-map">
           <VitiLevu />
           {PLACES.filter((p) => p.pin).map((p) => (
