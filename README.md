@@ -1,4 +1,4 @@
-# Nadi Flood Planner (working title)
+# Nadi Flood Planner
 
 See who floods in Nadi, Fiji, as the river rises, and compare the planning measures that keep the most
 people dry before the next wet season: clearing the river channel, raising homes, and riverbank vegetation.
@@ -21,21 +21,60 @@ Nadi Flood Alleviation Project, so there is a real decision about where and how 
    connected to the river or sea can reach it (hollows behind banks stay dry until the water tops them).
 3. **Homes, facilities and roads:** each building, clinic, school, substation and road section gets the
    river rise at which water first reaches it; people per building come from WorldPop.
-4. **Measures:** what-if sliders for river channel clearing, raising homes and riverbank vegetation
-   (`backend/app/measures.json`, with sources and assumptions shown in the app).
-5. **Hotspots and plan:** the most affected areas are ranked, and an LLM (or a built-in writer) produces a
-   plain-language plan.
+4. **Measures:** Low / Medium / High settings for river channel clearing (0.1 / 0.25 / 0.5 m lower river),
+   riverbank vegetation (2 / 5 / 10% lower river rise) and raising homes (50 / 100 / 250 homes by 1 m),
+   from `backend/app/measures.json`, with sources and assumptions shown in the app. Picking a hotspot
+   targets home-raising to a 200 m circle around it.
+5. **Hotspots and plan:** the most affected areas are ranked, and an LLM (Gemini, or a built-in writer
+   when no key is set) produces a plain-language plan.
 6. **Mangroves (map layer):** current mangroves and mangroves lost since 1996 near the river mouth. They
    protect the coast from waves and erosion; they are not counted as lowering river floods.
+
+## What we found (Nadi, model estimates)
+
+All heights are metres the river rises above its normal level. Full tables: `docs/figures/results.md` and
+`docs/checks/*.csv`; charts: `docs/figures/*.png`.
+
+| River rise | Buildings reached | People reached |
+| ---: | ---: | ---: |
+| 2 m | 1,090 | about 1,300 |
+| 3 m | 1,831 | about 2,200 |
+| 4 m | 3,268 | about 6,100 |
+| 6 m | 6,126 | about 14,700 |
+
+- **The steepest rise is from 3 to 3.25 m** (about 1,900 more people reached), when water spills onto the
+  flat floodplain.
+- **Riverside villages are reached first.** Namotomoto is the most affected named community (about 390
+  people reached at 2 m, 640 at 3 m); parts of Nawaka are reached from a 0.75 m rise. Sabeto Primary School
+  is reached at 1.5 m, two town clinics at 3.75 m and Nadi Fire Station at 5.5 m. About 90% of buildings
+  within 500 m of the town centre are reached by 6 m (median 5 m).
+- **The best measure depends on flood size** (app's Medium settings: −0.25 m channel clearing, −5%
+  vegetation, 100 homes raised by 1 m):
+
+  | People kept dry | at 2 m | at 3 m | at 3.25 m |
+  | --- | ---: | ---: | ---: |
+  | *(people with water inside, no measure)* | *1,030* | *1,860* | |
+  | Clear the river channel | 127 | 192 | 1,643 |
+  | Riverbank vegetation | 80 | 85 | 1,509 |
+  | Raise 100 homes | 435 | 475 | 613 |
+  | All three together | 630 | 735 | |
+
+  Raising homes wins at most flood sizes, but at 3.25 m, the edge of the floodplain, lowering the river by
+  0.25 m keeps nearly three times as many people dry.
+- **Check against reality:** Namotomoto and Nawaka are both named in flood reports from April 2016
+  (Fiji Village) and March 2026 (Fiji Village, Fiji Sun).
+
+Data size: 13,509 buildings, about 35,000 people (WorldPop) in mapped buildings, 46 facilities, 1,921 road
+sections; 47% of buildings have an area name. Re-check every number with `python check_claims.py`.
 
 ## Repo layout
 
 | Folder | Owner | What |
 | --- | --- | --- |
-| `frontend/` | P1 | React + MapLibre + deck.gl map and panels |
-| `data-prep/` | P2 | Python: `fetch_osm.py`, `hand_flood.py` (flood data), `00_pick_gmw_tile.py`, `03_coast_segments.py` (mangroves) |
+| `frontend/` | P1 | React + MapLibre map and panels |
+| `data-prep/` | P2 | Python: `fetch_osm.py`, `hand_flood.py` (flood data), `make_figures.py` (charts), `check_claims.py` (checks every pitch number), `00_pick_gmw_tile.py`, `03_coast_segments.py` (mangroves) |
 | `backend/` | P3 | FastAPI: `/flood`, `/hotspots`, `/compare-measures`, `/flood-curve`, `/flood-plan` |
-| `docs/` | All | `contracts.md` (file formats, units, API) |
+| `docs/` | All | `contracts.md` (file formats, units, API), `figures/` (charts, results), `checks/` (claim checks) |
 
 **Rule:** work in your own folder; change `docs/contracts.md` only after agreeing in the team chat.
 
@@ -49,7 +88,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000             # try it at http://localhost:8000/docs
 python -m pytest -q tests
 
-# Frontend (Node 22)
+# Frontend (Node 22); set VITE_API_URL=http://localhost:8000 in frontend/.env.local
 cd ../frontend
 npm install
 npm run dev                                           # http://localhost:5173
@@ -64,11 +103,13 @@ From `data-prep/` (Windows PowerShell shown; use `/` paths on Mac/Linux). Large 
 pip install -r requirements.txt
 python fetch_osm.py --bbox 177.38 -17.86 177.52 -17.72          # rivers, facilities, roads, place names
 overturemaps download "--bbox=177.38,-17.86,177.52,-17.72" -f geojson --type=building -o raw\buildings_raw.geojson
-# WorldPop: download fji_ppp_2020.tif into raw\ (hub.worldpop.org → Population Counts → Fiji → 2020)
+# WorldPop: download fji_ppp_2020.tif into raw\ (hub.worldpop.org → Unconstrained individual countries 2000-2020, 100 m → Fiji → 2020)
 # FABDEM: download S20E170-S10W180_FABDEM_V1-2.zip from data.bris.ac.uk, then:
 python 00_pick_gmw_tile.py --zip raw\S20E170-S10W180_FABDEM_V1-2.zip --year fabdem --bbox 177.35 -17.88 177.55 -17.70
 Move-Item raw\gmw_fabdem.tif raw\fabdem.tif -Force
 python hand_flood.py --bbox 177.38 -17.86 177.52 -17.72 --dem raw\fabdem.tif --buildings raw\buildings_raw.geojson --rivers raw\rivers.geojson --facilities raw\facilities.geojson --roads raw\roads.geojson --places raw\places.geojson --worldpop raw\fji_ppp_2020.tif --area-max-km 3
+python make_figures.py                                          # charts + results.md in docs\figures
+python check_claims.py                                          # every pitch number vs the data, CSVs in docs\checks
 
 # Mangrove layer (Global Mangrove Watch v3 zips from Zenodo record 6894273 in raw\):
 python 00_pick_gmw_tile.py --zip raw\gmw_v3_2020_gtiff.zip --year 2020 --bbox 177.37 -17.86 177.52 -17.72
@@ -77,38 +118,9 @@ python 03_coast_segments.py --bbox 177.37 -17.86 177.52 -17.72 --coastline raw\c
 ```
 
 Check `frontend/public/data/hand_summary.json` after each run. Run `--help` on any script for options.
-
-## Results for Nadi (current run)
-
-From `frontend/public/data/hand_summary.json`: 13,509 buildings, about 35,000 people (WorldPop), 51 critical
-facilities (schools, clinics, community halls, fire stations, substations) and 1,933 road sections in the map box.
-
-| River rise | Buildings reached | People reached |
-| --- | --- | --- |
-| 1 m | 574 | about 1,000 |
-| 2 m | 1,199 | about 1,700 |
-| 3 m | 1,912 | about 2,600 |
-| 4 m | 3,327 | about 6,300 |
-| 5 m | 4,828 | about 10,500 |
-| 6 m | 6,155 | about 14,700 |
-
-"Reached" means floodwater gets to the building; the app also shows how many have water **inside**
-(above the assumed floor height). These are planning estimates, not predictions of a specific flood.
-Robustness check: an independent, simpler version of the model (main river only) gave the same order of
-magnitude (about 640 buildings at 2 m and 1,530 at 3 m).
-Sense check against history: within about 500 m of Nadi town centre, 434 of 483 buildings (90%) are reached
-within a 6 m rise, at a median of 5 m. So the model has the town centre flooding in large floods rather than
-every year, consistent with major events such as the January and March 2012 floods, which inundated the town.
-
-**What floods first.** At a 2 m rise the most affected named communities are riverside villages: Namotomoto
-(about 415 people) and Nawaka (about 315), then Saunaka (about 120). Sabeto Primary School is reached at 1.5 m,
-two town clinics at 3.75 m, Nadi Primary School at 4.25 m and Nadi Fire Station at 5.5 m.
-
-**Checked against flood reports.** The villages the model ranks highest are the ones named in news reports of
-past floods: in April 2016 Nadi Town closed and flooding hit Tako Street near Nawaka village and the road from
-Namotomoto village to the Nadi Bridge; in March 2026 families in Nawaka (Tramline) and Kerebula were flooded
-and about 40-50 families from Nawajikuma settlement evacuated. This is a qualitative check, not a comparison
-with a mapped flood extent (none was publicly available).
+Facilities are OSM amenities matched by whole name (hospital, clinic, doctors, school, kindergarten, college,
+police, fire station, community centre, evacuation shelter) plus power substations; other OSM shelters
+(mostly bus stops and carports) are skipped.
 
 ## Assumptions and limits (also in the app's About panel)
 
@@ -123,15 +135,12 @@ with a mapped flood extent (none was publicly available).
 - **Floor height is assumed:** 0.3 m for every home (`backend/places/nadi.json`, from Fiji's 2017 census mix
   and building guidelines). Surveyed floor heights would replace it.
 - **Measures are what-ifs.** Channel clearing and vegetation effects are user assumptions with sourced ranges,
-  not engineering designs. We found no public design figure for flood-level reduction in the ADB or JICA
-  Nadi project documents (past dredging removed 1.2 million m3 of sediment, reported only qualitatively).
+  not engineering designs. People kept dry is not value for money: 100 raised homes and a town-wide measure
+  cost very different amounts.
 - **Roads cut at 0.3 m** of water (shallow moving water can float a car).
-- **Facilities** come from OpenStreetMap. OSM "shelters" are mostly bus stops and gazebos, so only shelters
-  tagged as evacuation shelters are kept; some remaining entries are mis-tagged (check names before quoting).
+- **Area names** are the nearest OSM place within 3 km, so "Namotomoto" covers more than the village itself.
 - **OSM gaps.** Missing rivers, bridges, facilities or place names lead to wrong cuts, missed facilities or
   unnamed hotspots.
-- **Area names.** Each building takes the nearest OpenStreetMap place name within 3 km; 6,414 of 13,509
-  buildings (47%) get one. Below the backend's 80% threshold, hotspots are grouped on a 250 m grid instead.
 - **Mangroves** reduce waves and erosion on the coast (13–66% wave height reduction per 100 m in field
   studies) but have a negligible effect on river flood levels (HESS 2024), so they are not in the flood model.
 
@@ -142,39 +151,41 @@ with a mapped flood extent (none was publicly available).
 - Copernicus DEM GLO-30 (ESA/Copernicus), used for comparison
 - Overture Maps buildings (ODbL / CDLA by source; includes OpenStreetMap, Microsoft and Google footprints)
 - OpenStreetMap rivers, facilities, roads, place names and coastline via the Overpass API (© OpenStreetMap contributors, ODbL)
-- WorldPop Fiji 2020 population counts, 100 m (CC BY 4.0)
+- WorldPop Fiji 2020 population counts, 100 m, unconstrained (CC BY 4.0)
 - Global Mangrove Watch v3, mangrove extent 1996 and 2020 (Bunting et al. 2022), CC BY 4.0
-- Basemap: CARTO (© OpenStreetMap contributors, © CARTO)
+- Basemap: OpenStreetMap standard tiles (© OpenStreetMap contributors)
 
 **Evidence used in the model**
 - Measures: sources listed per option in `backend/app/measures.json`
 - Mangroves: wave reduction 13–66% per 100 m (McIvor et al. 2012); negligible effect on riverine floods
   (Hydrology and Earth System Sciences, 2024, "Mangroves as nature-based mitigation for ENSO-driven compound flood risks")
 - Context: Nadi flood history (2009 flood figures), Nadi Flood Alleviation Project (AIFFP, ADB)
-- Flood reports used as a check: Fiji Village (6 Apr 2016; 4 Mar 2026), Fiji Sun (4 Mar 2026), January 2012 Fiji floods
-- Nadi River dredging (Hall Contracting); ADB TA 52233-002 and JICA evaluation of Nadi River flood control
+- Validation: flood reports from Fiji Village (6 Apr 2016; 4 Mar 2026) and Fiji Sun (4 Mar 2026)
 
 **APIs and services**
 - Google Gemini API (`gemini-2.5-flash`) for the plan text, with a built-in writer as fallback
 - Overpass API (OpenStreetMap data)
-- Hosting: Vercel (frontend), Render (backend)
+- Hosting: Vercel (frontend and FastAPI backend as Vercel Services)
 
 **Libraries**
-- Frontend: React, Vite, MapLibre GL JS, deck.gl, react-map-gl
+- Frontend: React, Vite, MapLibre GL JS
 - Backend: FastAPI, Uvicorn, pydantic, httpx, python-dotenv
-- Data: numpy, scipy, pandas, geopandas, shapely, rasterio, pyproj, requests, overturemaps
+- Data: numpy, scipy, pandas, geopandas, shapely, rasterio, requests, matplotlib, overturemaps
 
 **AI assistance**
-- Claude (claude.ai) was used for idea development, planning, and writing and testing the data-prep scripts
-  (`hand_flood.py`, `fetch_osm.py`, `00_pick_gmw_tile.py`, `03_coast_segments.py`).
+- Claude (claude.ai) was used for idea development, planning, writing and testing the data-prep scripts
+  (`hand_flood.py`, `fetch_osm.py`, `make_figures.py`, `check_claims.py`, `00_pick_gmw_tile.py`,
+  `03_coast_segments.py`), reviewing the code for bugs, and drafting the README and submission text.
+  All numbers were re-checked against the data with `check_claims.py`.
+- Google Gemini writes the plan text inside the app.
 - List any other AI tools each team member used: [P1: ...] [P3: ...]
 
 ## Team
 
 | Role | Name |
 | --- | --- |
-| P1: Map and experience | |
-| P2: Data and evidence | |
-| P3: AI and backend | |
+| P1: Map and experience | Jess |
+| P2: Data and evidence | Chris |
+| P3: AI and backend | Hedy |
 
 All work was created during Climate Hack-tion (from 9:00am AEST, Fri 2 Oct 2026).

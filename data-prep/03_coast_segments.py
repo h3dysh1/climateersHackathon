@@ -16,7 +16,7 @@ Usage:
   python 03_coast_segments.py --bbox 177.35 -17.70 177.55 -17.50 \
       --coastline raw/coastline.geojson --mangroves raw/gmw_2020.tif \
       --restorable raw/gmw_1996.tif --earlier
-  Add --tag _ba to write coast_segments_ba.geojson etc. (e.g. a second area for 05_validate.py)
+  Add --tag _ba to write coast_segments_ba.geojson etc. (e.g. for a second town)
   without overwriting the pilot files.
 """
 import argparse
