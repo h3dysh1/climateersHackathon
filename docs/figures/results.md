@@ -6,19 +6,19 @@ All heights are metres the river rises above normal. Model estimates, not predic
 
 | Measure | at 2 m | at 3 m |
 | --- | ---: | ---: |
-| *(people with water inside, no measures)* | 1,493 | 2,213 |
-| Clear the river channel (−0.25 m) | 122 | 184 |
-| Riverbank vegetation (−5% river rise) | 78 | 84 |
-| Raise 100 homes by 1 m | 392 | 410 |
-| All three together | 570 | 656 |
+| *(people with water inside, no measures)* | 1,030 | 1,860 |
+| Clear the river channel (−0.25 m) | 127 | 192 |
+| Riverbank vegetation (−5% river rise) | 80 | 85 |
+| Raise 100 homes by 1 m | 435 | 475 |
+| All three together | 630 | 735 |
 
 ## 2. What floods first
 
 | River rise | Place |
 | ---: | --- |
-| 1 m | First 574 buildings, along rivers and streams |
+| 1 m | First 401 buildings, along rivers and streams |
 | 1.5 m | Sabeto Primary School |
-| 2 m | Namotomoto Village (~420 people) & Nawaka Village (~310 people) |
+| 2 m | Namotomoto Village (~390 people) & Saunaka Village (~110 people) |
 | 3.25 m | Sabeto Muslim Primary School |
 | 3.75 m | Family Clinic; Eye Clinic |
 | 4.25 m | Nadi Primary School |
@@ -31,16 +31,16 @@ All heights are metres the river rises above normal. Model estimates, not predic
 
 | River rise | People reached | People with water inside |
 | ---: | ---: | ---: |
-| 0 m | 614 | 0 |
-| 0.5 m | 715 | 636 |
-| 1 m | 1,004 | 838 |
-| 1.5 m | 1,328 | 1,202 |
-| 2 m | 1,708 | 1,493 |
-| 2.5 m | 2,060 | 1,880 |
-| 3 m | 2,569 | 2,213 |
-| 3.5 m | 4,906 | 4,366 |
-| 4 m | 6,302 | 5,440 |
-| 4.5 m | 7,927 | 7,160 |
-| 5 m | 10,534 | 9,417 |
-| 5.5 m | 12,838 | 11,529 |
-| 6 m | 14,743 | 13,615 |
+| 0 m | 0 | 0 |
+| 0.5 m | 129 | 25 |
+| 1 m | 490 | 283 |
+| 1.5 m | 860 | 719 |
+| 2 m | 1,336 | 1,030 |
+| 2.5 m | 1,699 | 1,511 |
+| 3 m | 2,247 | 1,860 |
+| 3.5 m | 4,743 | 4,155 |
+| 4 m | 6,145 | 5,282 |
+| 4.5 m | 7,790 | 7,023 |
+| 5 m | 10,401 | 9,281 |
+| 5.5 m | 12,752 | 11,396 |
+| 6 m | 14,679 | 13,544 |
