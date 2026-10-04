@@ -1,112 +1,80 @@
-/*:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+/* Waterline: design tokens and layout.
+   Night planner (dark map, thin river gauge beside the panel), dark home, light summary page.
+   Colour meaning never changes: blue = water; orange / red / dark red = water at the door / inside / 1 m+;
+   brown = dredging, indigo = raised homes, green = riverbank vegetation. */
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+:root {
+  /* grounds */
+  --bg: #0B1620;
+  --panel: #101E29;
+  --surface: #16242F;
+  --sea: #0E1A23;
+  --line: #23394A;
+  --line-strong: #3B5162;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* text on dark */
+  --ink: #E6EDF2;
+  --ink-2: #B9C6CF;
+  --muted: #9FB0BC;
+  --faint: #8FA2B0;
+  --on-light: #0B1620;   /* text on light surfaces */
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
+  /* water */
+  --river: #5AA6E8;
+  --water: #3b87b5;
+  --waterline: #1D5E99;
+  --water-fill: rgba(43, 116, 184, 0.45);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+  /* flood states (map, list, charts) */
+  --dry: #56656F;
+  --reaching: #E0892B;
+  --inside: #C9402A;
+  --deep: #6E1710;
+  --alarm-text: #FF7A62;
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
+  /* options: fills (validated for colour-blind separation on light), and text tints for dark */
+  --dredge: #BF8740;
+  --raise: #4646A8;
+  --veg: #1B6E3F;
+  --dredge-dk: #BF8740;
+  --raise-dk: #7474D8;
+  --veg-dk: #2E8F54;
+  --dredge-text: #D6A273;
+  --raise-text: #A9A9F5;
+  --veg-text: #7FCB95;
 
-body {
-  margin: 0;
-}
+  --ok: #6FC08A;
+  --focus: #F2B33D;
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+  /* the staff gauge post */
+  --post: #FBFBF7;
+  --post-ink: #10222F;
+  --post-high: #B5321F;
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
+  /* light summary page */
+  --paper: #F3F5F2;
+  --paper-ink: #0B1620;
+  --paper-ink-2: #33424D;
+  --paper-muted: #4E5C66;
+  --paper-rule: #D2D6CE;
+  --paper-track: #E3E7EA;
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
+  --font-display: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;
+  --font-text: 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --ease: cubic-bezier(.2, .7, .2, 1);
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
+  font-family: var(--font-text);
   font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
 }
-  */
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; height: 100%; background: var(--bg); }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.num { font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

@@ -1,108 +1,64 @@
-// App.jsx - Nadi flood planner (P1 frontend)
+// App.jsx - Waterline (Nadi is the test city)
 //
-// Part A (already working): the flood map, slider, headline counts and ranked list.
-// Part B (new): the Options panel with Compare and Combine tabs.
+// Screens (hash routes, so the map stays loaded underneath):
+//   #/              Home: what Waterline is, the data loading, choose a place
+//   #/nadi          Planner: map with the river gauge and key; panel with 1 · 2 · 3
+//   #/nadi/summary  Summary: the current scenario with charts from the backend, and the written plan
 //
-// Part B calls P3's POST /compare-measures (USE_PLACEHOLDER = false below). The placeholder
-// model is kept only as a fallback for layout testing.
+// 1. Where water gets inside: drag the river gauge; homes, facilities and roads update, and the most
+//    affected areas are listed (backend: /flood and /hotspots).
+// 2. Test options: dredging, raising homes and riverbank vegetation, each Low / Med / High
+//    (presets come from the backend's /measures).
+// 3. Results: one /compare-measures call gives each option alone and all of them layered in order.
+// Styles live in index.css.
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { addExtraLayers, setExtraVisibility, EXTRA_DEFAULTS, MapLayersPanel } from "./extraLayers";
+import "./planner.css"; // map page styles (must load before Home and Summary)
+import { addExtraLayers, setExtraVisibility, EXTRA_DEFAULTS, EXTRA_LAYERS, BANDS } from "./extraLayers";
+import RiverGauge from "./RiverGauge";
+import Home from "./Home";
+import Summary from "./Summary";
+import useRollingNumber from "./useRollingNumber";
+import {
+  MAX_LEVEL, DEEP_WATER_M, COLORS, OPTIONS, SIZES, ORDER, optionOf,
+  fmt, fmtLevel, areaLabel, titleCase, optionsPhrase,
+} from "./options";
 
-// Address of P3's backend. Put it in frontend/.env like:  VITE_API_URL=http://localhost:8000
+// Backend address. Put it in frontend/.env.local like:  VITE_API_URL=http://localhost:8000
 const API_URL = import.meta.env.VITE_API_URL;
 
-// =====================================================================
-// CONNECTING TO P3 (everything you need to change is in this block)
-// =====================================================================
-const USE_PLACEHOLDER = false; // true = made-up numbers for layout testing only
-const COMPARE_ROUTE = "/compare-measures";
-
-// What "Low / Med / High" means for each option: the presets in backend/app/measures.json.
-// "Med" is what the pitch and charts use (0.25 m clearing, 5% vegetation, 100 homes raised 1 m).
-const PRESETS = {
-  channel_clearing_m: { Low: 0.1, Med: 0.25, High: 0.5 }, // metres the river is lowered
-  nature_based: {
-    Low: { reduction_pct: 2 },
-    Med: { reduction_pct: 5 },
-    High: { reduction_pct: 10 },
-  },
-  raise_homes: {
-    Low: { count: 50, height_m: 1.0 },
-    Med: { count: 100, height_m: 1.0 },
-    High: { count: 250, height_m: 1.0 },
-  },
-};
-
-// The "Raise homes" target: a circle around the picked hotspot. Hotspots are usually 250 m grid
-// squares with names like "Nawaka Village 2", which don't match any building's `area`, so we
-// target by position instead of by name.
-const TARGET_RADIUS_M = 200;
-function targetFor(area) {
-  return area ? { lon: area.lon, lat: area.lat, radius_m: TARGET_RADIUS_M } : undefined;
-}
-function metresBetween(a, b) {
-  const dx = (a.lon - b.lon) * 111320 * Math.cos((b.lat * Math.PI) / 180);
-  const dy = (a.lat - b.lat) * 110540;
-  return Math.hypot(dx, dy);
-}
-// =====================================================================
-
 // ---------- 1. SETTINGS ----------
-const NADI_CENTER = [177.42, -17.8]; // [longitude, latitude]
+const NADI_CENTER = [177.44, -17.79]; // [longitude, latitude]
+const NADI_BOUNDS = [[177.38, -17.86], [177.52, -17.72]]; // same box as the data
+const START_LEVEL = 2;
 const DEBOUNCE_MS = 300;
-const DEEP_WATER_M = 1.0;
-const FLOOR_M = 0.3; // assumed floor height above ground (backend/places/nadi.json)
-const ROAD_CUT_DEPTH_M = 0.3; // road cut once water is this deep (backend/app/measures.json)
-const LEVELS = Array.from({ length: 13 }, (_, i) => i * 0.5); // 0, 0.5 ... 6
+const DEFAULT_FLOOR_M = 0.3;
+const NEAR_RADIUS_M = 800; // "Around X" areas are targeted as a circle around their centre
+const ROW_H = 64; // height of one row in the areas list (rows slide when they re-rank)
 
-// Keep these colours the same everywhere (map, legend, list)
-const COLORS = {
-  dry: "#8d99ae",
-  reaching: "#f9a03f",
-  inside: "#d62828",
-  deep: "#7f0000",
-  water: "#2b8cbe",
-  road: "#444444",
-  roadCut: "#d62828",
-  highlight: "#7b2cbf",
-  protected: "#2a9d8f",
-};
-
-const STATUS_LABELS = [
-  ["dry", "Dry home"],
-  ["reaching", "Water reaching, not inside"],
-  ["inside", "Water inside"],
-  ["deep", "Deep water (1 m or more)"],
+// The data behind each source on the home screen (files in public/data).
+const SOURCES = [
+  { label: "Ground height", name: "FABDEM", files: ["flood_extents.geojson"] },
+  { label: "Rivers and roads", name: "OpenStreetMap", files: ["roads.json", "roads.geojson"] },
+  { label: "Homes and buildings", name: "Overture Maps", files: ["buildings.json", "facilities.json"] },
+  { label: "Where people live", name: "WorldPop", files: ["buildings.json"] }, // people per building
 ];
 
-// The three options. `key` is P3's name for each one.
-const MEASURES = [
-  { key: "channel_clearing_m", label: "Clear river channel", color: "#1b998b" },
-  { key: "raise_homes", label: "Raise homes", color: "#f18f01" },
-  { key: "nature_based", label: "Riverbank vegetation", color: "#6a4c93" },
-];
-const SIZES = ["Low", "Med", "High"];
-// Combine tab order: lower the river first, then raise homes, then vegetation
-const ORDER = ["channel_clearing_m", "raise_homes", "nature_based"];
-const labelOf = (key) => MEASURES.find((m) => m.key === key)?.label ?? key;
-const colorOf = (key) => MEASURES.find((m) => m.key === key)?.color ?? "#999";
-
-// ---------- 2. HELPERS: flood map ----------
+// ---------- 2. HELPERS ----------
 function pointsToGeoJSON(rows) {
   return {
     type: "FeatureCollection",
-    features: rows.map((r) => ({
-      type: "Feature",
-      properties: r,
-      geometry: { type: "Point", coordinates: [r.lon, r.lat] },
-    })),
+    features: rows.map((r) => ({ type: "Feature", properties: r, geometry: { type: "Point", coordinates: [r.lon, r.lat] } })),
   };
 }
 
-const idOf = (x) => (x !== null && typeof x === "object" ? x.id : x);
+async function getJSON(path, signal) {
+  const res = await fetch(`${API_URL}${path}`, { signal });
+  if (!res.ok) throw new Error(`${path} failed (${res.status})`);
+  return res.json();
+}
 
 async function postJSON(path, body, signal) {
   if (!API_URL) throw new Error("VITE_API_URL is not set");
@@ -116,36 +72,21 @@ async function postJSON(path, body, signal) {
   return res.json();
 }
 
-// Backup plan: work everything out in the browser (used when the backend is down).
-function localResult(data, level) {
-  const homeStatus = new Map();
-  let people = 0;
-  // Same rules as backend/app/flood.py, so numbers don't jump when the backend wakes up.
-  for (const b of data.buildings) {
-    const reached = level >= b.floods_at_m;
-    const depth = reached ? level - b.ground_m : 0;
-    const inside = reached && level > b.ground_m + FLOOR_M;
-    let status = 0;
-    if (inside) {
-      status = depth >= DEEP_WATER_M ? 3 : 2;
-      people += b.people;
-    } else if (reached) {
-      status = 1;
-    }
-    homeStatus.set(b.id, status);
-  }
-  const floodedFacilities = new Set(
-    data.facilities.filter((f) => level >= f.floods_at_m && level > f.ground_m + FLOOR_M).map((f) => f.id)
-  );
-  const cutRoads = new Set(data.roads.filter((r) => level - r.low_point_m >= ROAD_CUT_DEPTH_M).map((r) => r.id));
-  return {
-    homeStatus,
-    floodedFacilities,
-    cutRoads,
-    counts: { people, facilities: floodedFacilities.size, roads: cutRoads.size },
-    hotspots: null,
-    topShare: null,
-  };
+const idOf = (x) => (x !== null && typeof x === "object" ? x.id : x);
+
+// Where "Raise homes" applies: a named village exactly, or a circle around an "around X" area.
+function targetFor(area) {
+  if (!area) return undefined;
+  if (area.name_source === "place" && !area.name.startsWith("near ")) return { area: area.name };
+  return { lon: area.lon, lat: area.lat, radius_m: NEAR_RADIUS_M };
+}
+
+function inTarget(b, target) {
+  if (!target) return false;
+  if (target.area) return b.area === target.area;
+  const dx = (b.lon - target.lon) * 111320 * Math.cos((target.lat * Math.PI) / 180);
+  const dy = (b.lat - target.lat) * 110540;
+  return Math.hypot(dx, dy) <= target.radius_m;
 }
 
 function backendResult(flood, hot) {
@@ -161,13 +102,39 @@ function backendResult(flood, hot) {
     homeStatus,
     floodedFacilities,
     cutRoads,
-    counts: {
-      people: base.people_water_inside,
-      facilities: floodedFacilities.size,
-      roads: cutRoads.size,
-    },
+    counts: { people: base.people_water_inside, facilities: floodedFacilities.size, roads: cutRoads.size },
     hotspots: hot.areas,
     topShare: hot.top_areas_share_of_people,
+  };
+}
+
+// Backup plan: work the map colours out in the browser when the backend is down.
+function localResult(data, level) {
+  const homeStatus = new Map();
+  let people = 0;
+  for (const b of data.buildings) {
+    const reached = level >= b.floods_at_m;
+    const depth = level - b.ground_m;
+    let status = 0;
+    if (reached && level > b.ground_m + DEFAULT_FLOOR_M) {
+      status = depth >= DEEP_WATER_M ? 3 : 2;
+      people += b.people;
+    } else if (reached && depth > 0) {
+      status = 1;
+    }
+    homeStatus.set(b.id, status);
+  }
+  const floodedFacilities = new Set(
+    data.facilities.filter((f) => level >= f.floods_at_m && level > f.ground_m + DEFAULT_FLOOR_M).map((f) => f.id)
+  );
+  const cutRoads = new Set(data.roads.filter((r) => level - r.low_point_m >= 0.3).map((r) => r.id));
+  return {
+    homeStatus,
+    floodedFacilities,
+    cutRoads,
+    counts: { people, facilities: floodedFacilities.size, roads: cutRoads.size },
+    hotspots: null,
+    topShare: null,
   };
 }
 
@@ -180,353 +147,286 @@ function applyResult(map, data, result) {
   );
   map.getSource("roads").setData({
     ...data.roadsGeo,
-    features: data.roadsGeo.features.map((f) => ({
-      ...f,
-      properties: { ...f.properties, cut: result.cutRoads.has(f.properties.id) },
-    })),
+    features: data.roadsGeo.features.map((f) => ({ ...f, properties: { ...f.properties, cut: result.cutRoads.has(f.properties.id) } })),
   });
 }
 
-// ---------- 3. HELPERS: options panel ----------
-// Turn the ticked boxes + Low/Med/High choices into P3's `options` object.
-function buildOptions(optionState, targetArea) {
+// Switched-on options + Low/Med/High -> the backend's `options` object.
+function buildOptions(choice, presets, area) {
   const out = {};
-  for (const m of MEASURES) {
-    const o = optionState[m.key];
-    if (!o.on) continue;
-    let cfg = PRESETS[m.key][o.size];
-    if (m.key === "raise_homes") cfg = { ...cfg, target: targetFor(targetArea) };
-    out[m.key] = cfg;
+  for (const o of OPTIONS) {
+    const c = choice[o.key];
+    if (!c.on) continue;
+    const v = presets[o.key][c.size];
+    if (o.key === "channel_clearing_m") out[o.key] = v;
+    if (o.key === "nature_based") out[o.key] = { reduction_pct: v };
+    if (o.key === "raise_homes") {
+      const t = targetFor(area);
+      out[o.key] = { count: v, height_m: 1.0, ...(t ? { target: t } : {}) };
+    }
   }
   return out;
 }
 
-// ----- PLACEHOLDER MODEL (made-up numbers; delete when P3's route is connected) -----
-const mockBaseline = (lv) => Math.round(2100 * Math.pow(lv / 3, 1.4));
+// Per-building rows are huge and the plan doesn't need them.
+function slimFlood(flood) {
+  const strip = (x) => (x ? { ...x, buildings: undefined } : x);
+  return { ...flood, baseline: strip(flood.baseline), with_measures: strip(flood.with_measures) };
+}
 
-// People still with water inside after applying `steps` in order. steps = [[key, setting], ...]
-function mockAfter(level, steps) {
-  let lvl = level;
-  let wet = 0;
-  let raised = 0;
-  let townWide = false;
-  let town = mockBaseline(level);
-  for (const [key, cfg] of steps) {
-    if (key === "channel_clearing_m") {
-      lvl = Math.max(0, level - cfg);
-      townWide = true;
-    } else if (key === "nature_based") {
-      wet = cfg.reduction_pct;
-      townWide = true;
-    } else if (key === "raise_homes") {
-      // Raising first wastes some lifts on homes the other options would have kept dry.
-      raised = Math.min(town * 0.5, cfg.count * 3.5 * cfg.height_m * (townWide ? 1 : 0.65));
+const screenFromHash = () => {
+  const h = window.location.hash.replace(/^#\/?/, "");
+  if (h.startsWith("nadi/summary")) return "summary";
+  if (h.startsWith("nadi")) return "planner";
+  return "home";
+};
+
+// One /compare-measures call gives each option alone AND all of them layered in ORDER.
+// withCurves adds people-with-water-inside at every 0.5 m (for the summary charts).
+function useCompare({ enabled, withCurves, ready, data, backend, level, choice, presets, area, setRes, setState }) {
+  useEffect(() => {
+    if (!enabled || !ready || !data || backend !== "online") return undefined;
+    const opts = buildOptions(choice, presets, area);
+    const order = ORDER.filter((k) => opts[k]);
+    if (!order.length) {
+      setRes(null);
+      setState("idle");
+      return undefined;
     }
-    town = mockBaseline(lvl) * (1 - (wet / 100) * Math.max(0, 1 - lvl / 8));
-  }
-  return Math.round(Math.max(0, town - raised));
-}
-
-function permutations(arr) {
-  if (arr.length <= 1) return [arr];
-  return arr.flatMap((x, i) =>
-    permutations([...arr.slice(0, i), ...arr.slice(i + 1)]).map((p) => [x, ...p])
-  );
-}
-
-// Same shape as P3's compare_options() answer.
-function mockCompare(level, options, order) {
-  const base = mockBaseline(level);
-  const curve = (steps) =>
-    LEVELS.map((lv) => ({ level_m: lv, people_water_inside: mockAfter(lv, steps) }));
-
-  const singles = Object.keys(options)
-    .map((key) => {
-      const steps = [[key, options[key]]];
-      const after = mockAfter(level, steps);
-      return {
-        key,
-        at_design_level: {
-          people_protected: Math.max(0, base - after),
-          people_still_water_inside: after,
-        },
-        curve: curve(steps),
-      };
-    })
-    .sort((a, b) => b.at_design_level.people_protected - a.at_design_level.people_protected)
-    .map((o, i) => ({ ...o, rank: i + 1 }));
-
-  const stepsFor = (ord) =>
-    ord.map((key, i) => {
-      const so = ord.slice(0, i + 1).map((k) => [k, options[k]]);
-      const before = i === 0 ? base : mockAfter(level, so.slice(0, -1));
-      const after = mockAfter(level, so);
-      return {
-        step: i + 1,
-        added: key,
-        people_added_protection: Math.max(0, before - after),
-        people_protected_so_far: Math.max(0, base - after),
-        people_still_water_inside: after,
-      };
-    });
-
-  let layering = null;
-  if (order && order.length) {
-    layering = {
-      order,
-      steps: stepsFor(order),
-      orders_compared: permutations(order)
-        .map((p) => {
-          const s = stepsFor(p);
-          return { order: p, people_protected: s[s.length - 1].people_protected_so_far };
-        })
-        .sort((a, b) => b.people_protected - a.people_protected),
-      note: "Placeholder numbers. Order only changes which homes get raised.",
+    const controller = new AbortController();
+    setState("loading");
+    const timer = setTimeout(async () => {
+      try {
+        const t = targetFor(area);
+        const res = await postJSON(
+          "/compare-measures",
+          {
+            level_m: level,
+            options: opts,
+            buildings: data.buildings,
+            facilities: data.facilities,
+            roads: data.roads,
+            order,
+            ...(t ? { target: t } : {}),
+            ...(withCurves ? { min_m: 0, max_m: MAX_LEVEL, step_m: 0.5 } : { min_m: level, max_m: level, step_m: 1 }),
+          },
+          controller.signal
+        );
+        if (controller.signal.aborted) return;
+        setRes({ ...res, forLevel: level });
+        setState("ready");
+      } catch (err) {
+        if (err.name === "AbortError") return;
+        console.warn("Compare problem:", err);
+        setState("error");
+      }
+    }, DEBOUNCE_MS);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
     };
-  }
-
-  return {
-    level_m: level,
-    baseline: { people_water_inside: base, curve: curve([]) },
-    options: singles,
-    layering,
-  };
+  }, [enabled, withCurves, ready, data, backend, level, choice, presets, area, setRes, setState]);
 }
-// ----- end of placeholder model -----
 
-// ---------- 4. CHARTS ----------
-function CompareBars({ mitigation, level }) {
-  const total = mitigation.baseline.people_water_inside;
-  if (!total) {
-    return <p style={styles.muted}>Nobody has water inside at this river level, so there is nothing to protect. Raise the slider.</p>;
-  }
+// ---------- 3. SMALL PIECES ----------
+function OptionIcon({ k }) {
+  if (k === "channel_clearing_m")
+    return (
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M2 9 C6 6 10 12 14 9 S22 6 24 9" fill="none" stroke="#5AA6E8" strokeWidth="2" /><path d="M2 16 H24 M4 20 H22 M7 24 H19" stroke="#D6A273" strokeWidth="2.4" /></svg>
+    );
+  if (k === "raise_homes")
+    return (
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M5 14 L13 7 L21 14 V22 H5 Z" fill="none" stroke="#A9A9F5" strokeWidth="2.2" strokeLinejoin="round" /><path d="M13 5 V1.5 M10.5 4 L13 1.5 L15.5 4" fill="none" stroke="#A9A9F5" strokeWidth="1.8" /><path d="M3 25 H23" stroke="#5AA6E8" strokeWidth="2" /></svg>
+    );
   return (
-    <div>
-      <p style={styles.chartTitle}>
-        People protected at a {level.toFixed(1)} m flood (out of {total.toLocaleString()} with water inside)
-      </p>
-      {mitigation.options.map((o) => {
-        const n = o.at_design_level.people_protected;
-        return (
-          <div key={o.key} style={styles.barRow}>
-            <span style={styles.barLabel}>{labelOf(o.key)}</span>
-            <div style={styles.barTrack}>
-              <div style={{ ...styles.barFill, width: `${Math.min(100, (n / total) * 100)}%`, background: colorOf(o.key) }} />
-            </div>
-            <span style={styles.barValue}>{n.toLocaleString()}</span>
-          </div>
-        );
-      })}
-      {mitigation.options
-        .filter((o) => o.key === "raise_homes" && o.at_design_level.people_protected === 0 && o.homes_too_deep_to_raise)
-        .map((o) => (
-          <p key="deep" style={styles.muted}>
-            Raising homes helps nobody here at this level: water is too deep for the raise
-            ({o.homes_too_deep_to_raise.toLocaleString()} homes too deep). Try a lower river rise or another area.
-          </p>
-        ))}
-    </div>
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M8 22 C8 14 4 11 2 10 C7 10 9 13 9 16 M12 22 C12 12 15 7 19 5 C17 10 15 14 15 22 M18 22 C18 17 21 14 24 14" fill="none" stroke="#7FCB95" strokeWidth="2" strokeLinecap="round" /><path d="M1 24 H25" stroke="#D6A273" strokeWidth="2" /></svg>
   );
 }
 
-function CompareLines({ mitigation, level }) {
-  const W = 380, H = 210, pad = { l: 46, r: 10, t: 10, b: 30 };
-  const series = [
-    { key: "base", label: "Do nothing", color: "#333333", curve: mitigation.baseline.curve },
-    ...mitigation.options.map((o) => ({ key: o.key, label: labelOf(o.key), color: colorOf(o.key), curve: o.curve })),
-  ].filter((s) => s.curve && s.curve.length);
-
-  if (series.length === 0) {
-    return <p style={styles.muted}>No curve data yet. The backend needs a list of river levels in the request.</p>;
-  }
-
-  const maxY = Math.max(1, ...series.flatMap((s) => s.curve.map((p) => p.people_water_inside)));
-  const x = (lv) => pad.l + (lv / 6) * (W - pad.l - pad.r);
-  const y = (v) => pad.t + (1 - v / maxY) * (H - pad.t - pad.b);
-
+function MapKey({ available, on, onChange }) {
+  const layers = EXTRA_LAYERS.filter((l) => available[l.id]);
   return (
-    <div>
-      <p style={styles.chartTitle}>People with water inside, at each river rise</p>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%" }} role="img" aria-label="Line chart of people with water inside against river rise">
-        <line x1={pad.l} y1={y(0)} x2={W - pad.r} y2={y(0)} stroke="#999" />
-        <line x1={pad.l} y1={pad.t} x2={pad.l} y2={y(0)} stroke="#999" />
-        <text x={pad.l - 6} y={y(0) + 4} fontSize="10" textAnchor="end">0</text>
-        <text x={pad.l - 6} y={pad.t + 8} fontSize="10" textAnchor="end">{maxY.toLocaleString()}</text>
-        {[0, 1, 2, 3, 4, 5, 6].map((lv) => (
-          <text key={lv} x={x(lv)} y={H - 14} fontSize="10" textAnchor="middle">{lv}</text>
-        ))}
-        <text x={(pad.l + W - pad.r) / 2} y={H - 2} fontSize="10" textAnchor="middle">River rise above normal (m)</text>
-        <line x1={x(level)} y1={pad.t} x2={x(level)} y2={y(0)} stroke="#999" strokeDasharray="4 3" />
-        {series.map((s) => (
-          <polyline
-            key={s.key}
-            fill="none"
-            stroke={s.color}
-            strokeWidth={s.key === "base" ? 2.5 : 2}
-            points={s.curve.map((p) => `${x(p.level_m)},${y(p.people_water_inside)}`).join(" ")}
-          />
-        ))}
-      </svg>
-      <div style={styles.legend}>
-        {series.map((s) => (
-          <span key={s.key} style={{ marginRight: 12, whiteSpace: "nowrap" }}>
-            <Dot color={s.color} /> {s.label}
-          </span>
-        ))}
-      </div>
-      <p style={styles.muted}>The dotted line is the river rise on the slider. Where a line meets the dark "Do nothing" line, that option has stopped helping.</p>
-    </div>
-  );
-}
-
-function Waterfall({ mitigation }) {
-  const base = mitigation.baseline.people_water_inside;
-  const layering = mitigation.layering;
-  if (!layering) return <p style={styles.muted}>Loading combined results...</p>;
-  if (!base) {
-    return <p style={styles.muted}>Nobody has water inside at this river level, so there is nothing to protect. Raise the slider.</p>;
-  }
-  const steps = layering.steps;
-  const totalProtected = steps[steps.length - 1].people_protected_so_far;
-  const best = layering.orders_compared?.[0]?.order;
-
-  return (
-    <div>
-      <p style={styles.chartTitle}>
-        Together these protect {totalProtected.toLocaleString()} people ({Math.round((totalProtected / base) * 100)}%)
-      </p>
-      <div style={styles.wfRow}>
-        <span style={styles.wfLabel}>Do nothing</span>
-        <div style={styles.barTrack}><div style={{ ...styles.barFill, width: "100%", background: COLORS.inside }} /></div>
-        <span style={styles.wfValue}>{base.toLocaleString()}</span>
-      </div>
-      {steps.map((s) => {
-        const still = (s.people_still_water_inside / base) * 100;
-        const added = (s.people_added_protection / base) * 100;
-        return (
-          <div key={s.step} style={styles.wfRow}>
-            <span style={styles.wfLabel}>+ {labelOf(s.added)}</span>
-            <div style={styles.barTrack}>
-              <div style={{ display: "flex", height: "100%" }}>
-                <div style={{ width: `${still}%`, background: COLORS.inside }} />
-                <div style={{ width: `${added}%`, background: COLORS.protected }} />
+    <details className="key" open={typeof window === "undefined" || window.innerWidth > 860}>
+      <summary>
+        Key and map layers
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5 L7 9.5 L11 5" fill="none" stroke="currentColor" strokeWidth="2" /></svg>
+      </summary>
+      <div className="key-body">
+        <div className="key-item"><i style={{ background: COLORS.reaching }} />Water at the door, not inside</div>
+        <div className="key-item"><i style={{ background: COLORS.inside }} />Water inside home</div>
+        <div className="key-item"><i style={{ background: COLORS.deep, boxShadow: "0 0 0 1.5px #E6EDF2" }} />Deep water (1 m or more)</div>
+        <div className="key-item"><i style={{ background: COLORS.dry }} />Dry home</div>
+        <div className="key-item"><i className="sq" style={{ background: COLORS.water }} />Flood water</div>
+        <div className="key-item"><i className="ln" style={{ background: COLORS.roadCut }} />Road cut (30 cm of water)</div>
+        <div className="key-item"><i style={{ background: "#fff", border: `2px solid ${COLORS.ink}` }} />Clinic, school or other facility</div>
+        <div className="key-item"><i style={{ background: COLORS.inside, border: "2px solid #fff" }} />Facility flooded</div>
+        <div className="key-item"><i style={{ background: "transparent", border: `1.5px solid ${COLORS.highlight}` }} />Homes in the raise-homes area</div>
+        {layers.length > 0 && (
+          <>
+            <div className="key-div" />
+            <div className="key-sub">Map layers</div>
+            {layers.map((l) => (
+              <div key={l.id}>
+                <label className="key-chk">
+                  <input type="checkbox" checked={!!on[l.id]} onChange={(e) => onChange(l.id, e.target.checked)} />
+                  <span>{l.label}</span>
+                </label>
+                {l.id === "rivers" && on.rivers && <div className="key-note">Thicker line = bigger river.</div>}
+                {l.id === "coast" && on.coast && (
+                  <div className="key-note">
+                    {BANDS.map(([key, label, color]) => (
+                      <span key={key} className="key-item"><i style={{ background: color }} />{label}</span>
+                    ))}
+                    <span>Click a piece of coast for details.</span>
+                  </div>
+                )}
               </div>
-            </div>
-            <span style={styles.wfValue}>
-              -{s.people_added_protection.toLocaleString()} → {s.people_still_water_inside.toLocaleString()}
-            </span>
-          </div>
-        );
-      })}
-      <div style={styles.legend}>
-        <span style={{ marginRight: 12 }}><Dot color={COLORS.inside} /> Still water inside</span>
-        <span><Dot color={COLORS.protected} /> Protected by this step</span>
+            ))}
+          </>
+        )}
       </div>
-      {best && best.length > 1 && (
-        <p style={styles.muted}>Best order: {best.map(labelOf).join(" → ")}</p>
-      )}
-      {layering.note && <p style={styles.muted}>{layering.note}</p>}
-    </div>
+    </details>
   );
 }
 
-// ---------- 5. THE PAGE ----------
+// ---------- 4. THE PAGE ----------
 export default function App() {
   const mapDiv = useRef(null);
   const mapRef = useRef(null);
 
+  const [screen, setScreen] = useState(screenFromHash);
   const [data, setData] = useState(null);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState("");
-  const [level, setLevel] = useState(0);
-  const [selectedArea, setSelectedArea] = useState(null); // picked hotspot {name, lon, lat}; also the Raise homes target
+  const [files, setFiles] = useState({}); // file name -> "loading" | "done" | "failed"
+  const [level, setLevel] = useState(START_LEVEL);
+  const [area, setArea] = useState(null); // picked area: also the target for "Raise homes"
   const [backend, setBackend] = useState("checking");
   const [counts, setCounts] = useState(null);
   const [hotspots, setHotspots] = useState(null);
   const [topShare, setTopShare] = useState(null);
   const [extraOn, setExtraOn] = useState(EXTRA_DEFAULTS);
   const [extraAvailable, setExtraAvailable] = useState({});
+  const [presets, setPresets] = useState(() => Object.fromEntries(OPTIONS.map((o) => [o.key, o.presets])));
 
-  // Options panel
-  const [tab, setTab] = useState("compare");
-  const [options, setOptions] = useState({
-    channel_clearing_m: { on: true, size: "Med" },
-    raise_homes: { on: true, size: "Med" },
-    nature_based: { on: true, size: "Med" },
+  const [view, setView] = useState("together"); // results view in the planner: together | single
+  const [choice, setChoice] = useState({
+    channel_clearing_m: { on: true, size: "medium" },
+    raise_homes: { on: true, size: "medium" },
+    nature_based: { on: true, size: "medium" },
   });
-  const [mitigation, setMitigation] = useState(null);
-  const [mitigationError, setMitigationError] = useState("");
+  const [result, setResult] = useState(null); // planner: /compare-measures at the gauge level
+  const [resultState, setResultState] = useState("idle"); // idle | loading | ready | error
+  const [summary, setSummary] = useState(null); // summary page: same call with curves for 0–6 m
+  const [summaryState, setSummaryState] = useState("idle");
 
-  function setOpt(key, patch) {
-    setOptions((o) => ({ ...o, [key]: { ...o[key], ...patch } }));
-  }
+  const [plan, setPlan] = useState(null); // { markdown, provider, fallback, error, settingsKey }
+  const [planState, setPlanState] = useState("idle"); // idle | loading | error
+  const [copied, setCopied] = useState(false);
 
-  // Check the backend once at the start (GET /health).
+  const setOpt = (key, patch) => setChoice((c) => ({ ...c, [key]: { ...c[key], ...patch } }));
+  const peopleShown = useRollingNumber(counts?.people);
+
+  // Hash routes
+  useEffect(() => {
+    const onHash = () => setScreen(screenFromHash());
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+  useEffect(() => {
+    if (screen === "planner") mapRef.current?.resize();
+  }, [screen]);
+
+  // Check the backend once and read the option presets from /measures.
   useEffect(() => {
     if (!API_URL) {
       setBackend("not-set");
       return;
     }
-    fetch(`${API_URL}/health`)
-      .then((r) => setBackend(r.ok ? "online" : "offline"))
+    getJSON("/health")
+      .then(() => {
+        setBackend("online");
+        return getJSON("/measures");
+      })
+      .then((m) => {
+        if (!m) return;
+        setPresets((p) => {
+          const next = { ...p };
+          for (const o of OPTIONS) if (m[o.key]?.presets) next[o.key] = m[o.key].presets;
+          return next;
+        });
+      })
       .catch(() => setBackend("offline"));
   }, []);
 
-  // Set up the map and load the data files once, at the start.
+  // Set up the map and load the data files once.
   useEffect(() => {
     let cancelled = false;
-
     const map = new maplibregl.Map({
       container: mapDiv.current,
       style: {
         version: 8,
         sources: {
-          osm: {
+          dark: {
             type: "raster",
-            tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+            tiles: ["a", "b", "c"].map((s) => `https://${s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png`),
             tileSize: 256,
-            attribution: "© OpenStreetMap contributors",
+            attribution: "© OpenStreetMap contributors © CARTO",
           },
         },
-        layers: [{ id: "basemap", type: "raster", source: "osm" }],
+        layers: [
+          { id: "land", type: "background", paint: { "background-color": COLORS.land } },
+          { id: "basemap", type: "raster", source: "dark", paint: { "raster-opacity": 0.9 } },
+        ],
       },
       center: NADI_CENTER,
-      zoom: 12,
-      pitch: 30,
+      zoom: 12.3,
     });
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-left");
     mapRef.current = map;
 
     const mapLoaded = new Promise((resolve) => map.on("load", resolve));
-    const getJSON = (name) =>
-      fetch(`/data/${name}`).then((r) => {
-        if (!r.ok) throw new Error(`Could not load /data/${name}`);
-        return r.json();
-      });
-    
-    const getOptional = (name) => getJSON(name).catch(() => null);
+    const mark = (name, status) => !cancelled && setFiles((f) => ({ ...f, [name]: status }));
+    const file = (name) => {
+      mark(name, "loading");
+      return fetch(`/data/${name}`)
+        .then((r) => {
+          if (!r.ok) throw new Error(`Could not load /data/${name}`);
+          return r.json();
+        })
+        .then((j) => {
+          mark(name, "done");
+          return j;
+        })
+        .catch((e) => {
+          mark(name, "failed");
+          throw e;
+        });
+    };
+    const optional = (name) => fetch(`/data/${name}`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
 
     Promise.all([
       mapLoaded,
-      getJSON("buildings.json"),
-      getJSON("facilities.json"),
-      getJSON("roads.json"),
-      getJSON("roads.geojson"),
-      getJSON("flood_extents.geojson"), 
-      getOptional("rivers.geojson"),
-      getOptional("mangroves.geojson"),
-      getOptional("restorable.geojson"),
-      getOptional("coast_segments.geojson"),
+      file("buildings.json"),
+      file("facilities.json"),
+      file("roads.json"),
+      file("roads.geojson"),
+      file("flood_extents.geojson"),
+      optional("rivers.geojson"),
+      optional("mangroves.geojson"),
+      optional("restorable.geojson"),
+      optional("coast_segments.geojson"),
     ])
       .then(([, buildings, facilities, roads, roadsGeo, floodExtents, rivers, mangroves, restorable, coast]) => {
         if (cancelled) return;
 
-        // Top to bottom on screen: facilities, homes, roads, water, basemap.
+        // Top to bottom on screen: facilities, highlight, homes, roads, water, basemap.
         map.addSource("water", { type: "geojson", data: floodExtents });
         map.addLayer({
           id: "water",
           type: "fill",
           source: "water",
-          filter: ["==", ["get", "level_m"], 0],
+          filter: ["==", ["get", "level_m"], -1],
           paint: { "fill-color": COLORS.water, "fill-opacity": 0.5 },
         });
 
@@ -537,7 +437,10 @@ export default function App() {
           source: "roads",
           paint: {
             "line-color": ["case", ["==", ["get", "cut"], true], COLORS.roadCut, COLORS.road],
-            "line-width": 3,
+            "line-width": ["interpolate", ["linear"], ["zoom"],
+              11, ["case", ["==", ["get", "cut"], true], 1.6, 0.5],
+              15, ["case", ["==", ["get", "cut"], true], 4, 2]],
+            "line-opacity": ["case", ["==", ["get", "cut"], true], 0.95, 0.7],
           },
         });
 
@@ -547,14 +450,12 @@ export default function App() {
           type: "circle",
           source: "homes",
           paint: {
-            "circle-radius": 3,
-            "circle-color": [
-              "match", ["get", "status"],
-              3, COLORS.deep,
-              2, COLORS.inside,
-              1, COLORS.reaching,
-              COLORS.dry,
-            ],
+            "circle-radius": ["interpolate", ["linear"], ["zoom"], 11, 1.6, 14, 3, 17, 6],
+            "circle-color": ["match", ["get", "status"], 3, COLORS.deep, 2, COLORS.inside, 1, COLORS.reaching, COLORS.dry],
+            "circle-opacity": ["match", ["get", "status"], 0, 0.6, 1],
+            // a thin light ring keeps dark-red homes visible on the dark map
+            "circle-stroke-color": "#E6EDF2",
+            "circle-stroke-width": ["match", ["get", "status"], 3, 0.8, 0],
           },
         });
         map.addLayer({
@@ -563,9 +464,8 @@ export default function App() {
           source: "homes",
           filter: ["in", ["get", "id"], ["literal", []]],
           paint: {
-            "circle-radius": 7,
-            "circle-color": COLORS.highlight,
-            "circle-opacity": 0.25,
+            "circle-radius": ["interpolate", ["linear"], ["zoom"], 11, 3.5, 17, 10],
+            "circle-color": "rgba(0,0,0,0)",
             "circle-stroke-color": COLORS.highlight,
             "circle-stroke-width": 1.5,
           },
@@ -577,13 +477,26 @@ export default function App() {
           type: "circle",
           source: "facilities",
           paint: {
-            "circle-radius": 7,
-            "circle-color": ["case", ["==", ["get", "flooded"], true], COLORS.inside, COLORS.dry],
-            "circle-stroke-color": "#ffffff",
+            "circle-radius": 6,
+            "circle-color": ["case", ["==", ["get", "flooded"], true], COLORS.inside, "#ffffff"],
+            "circle-stroke-color": ["case", ["==", ["get", "flooded"], true], "#ffffff", COLORS.ink],
             "circle-stroke-width": 2,
           },
         });
+        map.on("click", "facilities", (e) => {
+          const p = e.features[0].properties;
+          new maplibregl.Popup({ closeButton: false })
+            .setLngLat(e.lngLat)
+            .setText(`${p.name || "Facility"} (${p.type || "facility"}): ${p.flooded === true || p.flooded === "true" ? "flooded" : "dry"}`)
+            .addTo(map);
+        });
+        map.on("mouseenter", "facilities", () => (map.getCanvas().style.cursor = "pointer"));
+        map.on("mouseleave", "facilities", () => (map.getCanvas().style.cursor = ""));
+
         setExtraAvailable(addExtraLayers(map, { rivers, mangroves, restorable, coast }));
+        // Frame the town, leaving room for the key (top left) and the gauge (right edge).
+        const narrow = mapDiv.current.clientWidth < 600;
+        map.fitBounds(NADI_BOUNDS, { padding: { left: narrow ? 16 : 40, right: narrow ? 90 : 110, top: 30, bottom: 30 }, duration: 0 });
         setData({ buildings, facilities, roads, roadsGeo });
         setReady(true);
       })
@@ -595,37 +508,27 @@ export default function App() {
     };
   }, []);
 
-  // Slider moves -> the water layer changes straight away.
+  // Gauge moves -> the water layer follows straight away (outlines exist every 0.5 m).
   useEffect(() => {
     const map = mapRef.current;
     if (!ready || !map) return;
-    // Outlines exist every 0.5 m; show the highest one at or below the slider (0.25 -> 0, 1.75 -> 1.5).
     map.setFilter("water", ["==", ["get", "level_m"], Math.floor(level * 2) / 2]);
   }, [level, ready]);
 
-  // Slider stops for 300 ms -> ask the backend for the flood picture (or use the backup plan).
+  // Gauge rests for 300 ms -> ask the backend for the flood picture (or work it out locally).
   useEffect(() => {
     if (!ready || !data) return;
     const controller = new AbortController();
-
     const timer = setTimeout(async () => {
-      let result = null;
-
+      let res = null;
       if (API_URL) {
         try {
+          const body = { level_m: level, buildings: data.buildings, facilities: data.facilities };
           const [flood, hot] = await Promise.all([
-            postJSON(
-              "/flood",
-              { level_m: level, buildings: data.buildings, facilities: data.facilities, roads: data.roads },
-              controller.signal
-            ),
-            postJSON(
-              "/hotspots",
-              { level_m: level, buildings: data.buildings, facilities: data.facilities, top: 10 },
-              controller.signal
-            ),
+            postJSON("/flood", { ...body, roads: data.roads }, controller.signal),
+            postJSON("/hotspots", { ...body, top: 8, group_by: "place" }, controller.signal),
           ]);
-          result = backendResult(flood, hot);
+          res = backendResult(flood, hot);
           setBackend("online");
         } catch (err) {
           if (err.name === "AbortError") return;
@@ -633,83 +536,35 @@ export default function App() {
           setBackend("offline");
         }
       }
-
-      if (!result) result = localResult(data, level);
+      if (!res) res = localResult(data, level);
       if (controller.signal.aborted) return;
-
-      applyResult(mapRef.current, data, result);
-      setCounts(result.counts);
-      setHotspots(result.hotspots);
-      setTopShare(result.topShare);
+      applyResult(mapRef.current, data, res);
+      setCounts(res.counts);
+      setHotspots(res.hotspots);
+      setTopShare(res.topShare);
     }, DEBOUNCE_MS);
-
     return () => {
       clearTimeout(timer);
       controller.abort();
     };
   }, [level, ready, data]);
 
-  // Slider, options, tab or target change -> refresh the Compare / Combine results.
-  useEffect(() => {
-    if (!ready || !data) return;
-    const opts = buildOptions(options, selectedArea);
-    const order = ORDER.filter((k) => opts[k]);
-    if (order.length === 0) {
-      setMitigation(null);
-      return;
-    }
-    const controller = new AbortController();
+  // Results for the planner, and the curves for the summary page, from /compare-measures.
+  const deps = { ready, data, backend, level, choice, presets, area };
+  useCompare({ ...deps, enabled: true, withCurves: false, setRes: setResult, setState: setResultState });
+  useCompare({ ...deps, enabled: screen === "summary", withCurves: true, setRes: setSummary, setState: setSummaryState });
 
-    const timer = setTimeout(async () => {
-      try {
-        let result;
-        if (USE_PLACEHOLDER) {
-          result = mockCompare(level, opts, order);
-        } else {
-          // Real call. TODO: check these field names with P3.
-          // `levels` is only sent for the Compare tab and `order` only for the Combine tab,
-          // because the backend recalculates every level for every option.
-          result = await postJSON(
-            COMPARE_ROUTE,
-            {
-              level_m: level,
-              options: opts,
-              buildings: data.buildings,
-              facilities: data.facilities,
-              roads: data.roads,
-              levels: tab === "compare" ? LEVELS : [],
-              target: targetFor(selectedArea) ?? null,
-              order: tab === "combine" ? order : null,
-            },
-            controller.signal
-          );
-        }
-        if (controller.signal.aborted) return;
-        setMitigation(result);
-        setMitigationError("");
-      } catch (err) {
-        if (err.name === "AbortError") return;
-        console.warn("Compare problem:", err);
-        setMitigation(null);
-        setMitigationError("Could not load results from the backend.");
-      }
-    }, DEBOUNCE_MS);
-
-    return () => {
-      clearTimeout(timer);
-      controller.abort();
-    };
-  }, [level, options, tab, selectedArea, ready, data]);
-
-  // Area picked in the list -> ring the homes inside the target circle on the map.
+  // Picked area -> ring its homes on the map.
+  const targetIds = useMemo(() => {
+    if (!data || !area) return [];
+    const t = targetFor(area);
+    return data.buildings.filter((b) => inTarget(b, t)).map((b) => b.id);
+  }, [data, area]);
   useEffect(() => {
     const map = mapRef.current;
-    if (!ready || !map || !data) return;
-    const ids = selectedArea
-      ? data.buildings.filter((b) => metresBetween(b, selectedArea) <= TARGET_RADIUS_M).map((b) => b.id)
-      : [];
-    map.setFilter("highlight", ["in", ["get", "id"], ["literal", ids]]);
-  }, [selectedArea, ready, data]);
+    if (!ready || !map) return;
+    map.setFilter("highlight", ["in", ["get", "id"], ["literal", choice.raise_homes.on ? targetIds : []]]);
+  }, [targetIds, ready, choice.raise_homes.on]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -717,214 +572,347 @@ export default function App() {
     setExtraVisibility(map, extraOn);
   }, [extraOn, extraAvailable, ready]);
 
-  function pickArea(area) {
-    setSelectedArea({ name: area.name, lon: area.lon, lat: area.lat });
-    mapRef.current.flyTo({ center: [area.lon, area.lat], zoom: 15, pitch: 30 });
+  // Areas re-rank as the river rises: remember last ranks so rows can show "up 2" / "down 1".
+  const prevRanks = useRef({});
+  const [moves, setMoves] = useState({});
+  useEffect(() => {
+    if (!hotspots) return;
+    const now = Object.fromEntries(hotspots.map((a, i) => [a.name, i]));
+    const m = {};
+    for (const name in now) if (name in prevRanks.current) m[name] = prevRanks.current[name] - now[name];
+    prevRanks.current = now;
+    setMoves(m);
+  }, [hotspots]);
+
+  // The settings a plan was written for, so we can say when it is out of date.
+  const settingsKey = JSON.stringify({ level, choice, area: area?.name ?? null });
+
+  async function writePlan() {
+    setPlanState("loading");
+    setCopied(false);
+    try {
+      const measures = buildOptions(choice, presets, area);
+      const flood = await postJSON("/flood", { level_m: level, buildings: data.buildings, facilities: data.facilities, roads: data.roads, measures });
+      const res = await postJSON("/flood-plan", { area_name: "Nadi", place: "nadi", summary: slimFlood(flood) });
+      setPlan({ ...res, settingsKey });
+      setPlanState("idle");
+    } catch (err) {
+      console.warn("Plan problem:", err);
+      setPlanState("error");
+    }
+  }
+  async function copyPlan() {
+    try {
+      await navigator.clipboard.writeText(plan.markdown);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
+  }
+  function downloadPlan() {
+    const blob = new Blob([plan.markdown], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `nadi-flood-plan-${level}m.md`;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
-  // OPTIONAL, LATER: "Find best mix" (tries all 64 presets within an effort budget,
-  // then switches the boxes to the winner). Left switched off for now.
-  // function findBestMix() {
-  //   // Ask the backend's optimiser for the best settings, then call setOptions(...) with them.
-  //   // The route and the response format are not known yet.
-  // }
+  function pickArea(a) {
+    if (area && area.name === a.name) {
+      setArea(null);
+      return;
+    }
+    setArea(a);
+    if (a.lon != null) mapRef.current.flyTo({ center: [a.lon, a.lat], zoom: 14.5, duration: 900 });
+  }
 
-  const anyOn = MEASURES.some((m) => options[m.key].on);
+  // Home screen: each source ticks off when its files have loaded.
+  const sources = SOURCES.map((s) => {
+    const st = s.files.map((f) => files[f]);
+    const status = st.includes("failed") ? "failed" : st.every((x) => x === "done") ? "done" : st.some(Boolean) ? "loading" : "waiting";
+    return { label: s.label, name: s.name, status };
+  });
+
+  const anyOn = OPTIONS.some((o) => choice[o.key].on);
+  const nOn = OPTIONS.filter((o) => choice[o.key].on).length;
+  const levelText = `${fmtLevel(level)} m`;
+  const maxPeople = hotspots?.length ? hotspots[0].people_water_inside : 1;
+  const lay = result?.layering;
+  const lastStep = lay?.steps?.[lay.steps.length - 1];
+  const base = result?.baseline?.people_water_inside ?? 0;
+  const kept = lastStep?.people_protected_so_far ?? 0;
+  const singles = result?.options ?? [];
+  const best = singles[0];
+  const maxAlone = Math.max(1, ...singles.map((o) => o.at_design_level.people_protected));
+  const showResult = result && resultState !== "error";
 
   return (
-    <div style={styles.page}>
-      <div ref={mapDiv} style={styles.map} />
+    <>
+      <div className="page" aria-hidden={screen !== "planner"}>
+        <div className="map-wrap">
+          <div ref={mapDiv} className="map" />
+          <MapKey available={extraAvailable} on={extraOn} onChange={(id, value) => setExtraOn((o) => ({ ...o, [id]: value }))} />
+          <RiverGauge level={level} onChange={setLevel} people={counts ? peopleShown : null} />
+        </div>
 
-      <aside style={styles.panel}>
-        <h2 style={styles.h2}>Nadi flood planner</h2>
-        {error && <p style={styles.error}>{error}</p>}
-        {backend === "offline" && (
-          <p style={styles.note}>Backend offline. Map colours are worked out locally and the ranked list is unavailable.</p>
-        )}
-        {backend === "not-set" && (
-          <p style={styles.note}>No backend address set (VITE_API_URL). Using local calculations only.</p>
-        )}
-
-        {/* Slider */}
-        <label style={styles.sliderLabel}>
-          River rise above normal: <b>{level.toFixed(2)} m</b>
-          <input
-            type="range" min="0" max="6" step="0.25" value={level}
-            onChange={(e) => setLevel(Number(e.target.value))}
-            style={{ width: "100%" }}
-          />
-        </label>
-
-        {/* Headline counts */}
-        {counts && (
-          <div style={styles.counts}>
-            <Count number={counts.people} label="people with water inside" />
-            <Count number={counts.facilities} label="facilities flooded" />
-            <Count number={counts.roads} label="road sections cut" />
-          </div>
-        )}
-
-        {/* 1. Most affected areas */}
-        <h3 style={styles.h3}>Most affected areas</h3>
-        {hotspots === null && counts && <p style={styles.muted}>Ranked list unavailable (needs the backend).</p>}
-        {hotspots && hotspots.length === 0 && <p style={styles.muted}>Move the slider to see flooded areas.</p>}
-        {hotspots && hotspots.length > 0 && (
-          <div>
-            {topShare !== null && topShare !== undefined && (
-              <p style={styles.muted}>
-                These areas hold {Math.round(topShare * 100)}% of the people with water inside. Click one to target it.
-              </p>
-            )}
-            <div style={{ ...styles.row, fontWeight: 600 }}>
-              <span>#</span><span>Area</span><span>Inside</span><span>Deep</span><span>Facilities</span>
+        <aside className="panel" aria-label="Flood planner">
+          <div className="panel-in">
+            <div className="ph-top">
+              <div className="ph-eyebrow"><i /><b>Waterline</b> · flood planner</div>
+              <nav className="ph-nav" aria-label="Pages">
+                <a href="#/">Places</a>
+                <a href="#/nadi/summary">Summary</a>
+              </nav>
             </div>
-            {hotspots.map((a) => (
-              <button
-                key={a.name}
-                onClick={() => pickArea(a)}
-                style={{
-                  ...styles.row, ...styles.rowButton,
-                  background: selectedArea?.name === a.name ? "#efe3fb" : "transparent",
-                }}
-              >
-                <span>{a.rank}</span>
-                <span style={{ textAlign: "left" }}>{a.name}</span>
-                <span>{a.people_water_inside.toLocaleString()}</span>
-                <span>{a.people_deep_water.toLocaleString()}</span>
-                <span>{(a.facilities_flooded ?? []).length}</span>
-              </button>
-            ))}
+            <h1 className="ph-city">Nadi, Fiji<span className="ph-tag">Test city</span></h1>
+            <p className="ph-lede">Raise the river on the gauge to see whose homes it reaches, then test three ways to keep the water out.</p>
+
+            {error && <p className="notice error">{error}</p>}
+            {backend === "offline" && (
+              <p className="notice">The backend is not running, so the map is worked out in the browser and the areas and results are hidden. Start it with uvicorn and reload.</p>
+            )}
+            {backend === "not-set" && (
+              <p className="notice">No backend address set. Add VITE_API_URL to frontend/.env.local and restart npm run dev.</p>
+            )}
+
+            {/* 1. Where water gets inside */}
+            <section className="step" aria-labelledby="s1">
+              <div className="step-head"><span className="step-n">1</span><h2 id="s1">Where water gets inside</h2></div>
+              {counts && (
+                <p className="lede" aria-live="polite">
+                  {counts.people > 0 ? (
+                    <>
+                      At <span className="num">{levelText}</span>, water gets inside the homes of{" "}
+                      <span className="num inside">{fmt(peopleShown)}</span> people, floods <span className="num">{fmt(counts.facilities)}</span>{" "}
+                      {counts.facilities === 1 ? "facility" : "facilities"} and cuts <span className="num">{fmt(counts.roads)}</span> road sections.
+                    </>
+                  ) : (
+                    <>At {levelText}, no homes have water inside. Drag the river gauge on the map to raise the river.</>
+                  )}
+                </p>
+              )}
+              {hotspots && hotspots.length > 0 && (
+                <>
+                  <div className="areas-head">
+                    <b>Most affected areas{topShare != null && topShare < 0.995 ? ` · ${Math.round(topShare * 100)}% of those people` : ""}</b>
+                    <span>Pick one to target raised homes</span>
+                  </div>
+                  <ul className="areas" style={{ height: hotspots.length * ROW_H }}>
+                    {hotspots.map((a, i) => {
+                      const deep = a.people_water_inside ? Math.min(a.people_deep_water, a.people_water_inside) : 0;
+                      const selected = area?.name === a.name;
+                      const mv = moves[a.name] || 0;
+                      return (
+                        <li key={a.name} className="area-row" style={{ top: i * ROW_H }}>
+                          <button className="area" type="button" aria-pressed={selected} onClick={() => pickArea(a)}>
+                            <span className="area-rank">
+                              <span>{String(i + 1).padStart(2, "0")}</span>
+                              {mv !== 0 && (
+                                <span className="area-move" aria-label={mv > 0 ? `up ${mv}` : `down ${-mv}`}>
+                                  <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><path d={mv > 0 ? "M4 1 L7.5 6.5 H0.5 Z" : "M4 7 L7.5 1.5 H0.5 Z"} fill="currentColor" /></svg>
+                                  {Math.abs(mv)}
+                                </span>
+                              )}
+                            </span>
+                            <span className="area-mid">
+                              <span className="area-top">
+                                <span className="area-name">{titleCase(areaLabel(a))}</span>
+                                {selected && choice.raise_homes.on && <span className="area-target">Raise here</span>}
+                              </span>
+                              <span className="area-bar" aria-hidden="true">
+                                <span style={{ left: 0, width: `${(deep / maxPeople) * 100}%`, background: "var(--deep)" }} />
+                                <span style={{ left: `${(deep / maxPeople) * 100}%`, width: `${((a.people_water_inside - deep) / maxPeople) * 100}%`, background: "var(--inside)" }} />
+                              </span>
+                              <span className="area-meta">
+                                {fmt(a.people_deep_water)} in deep water
+                                {a.facilities_flooded?.length ? ` · ${a.facilities_flooded.join(", ")} flooded` : ""}
+                              </span>
+                            </span>
+                            <span className="area-count">{fmt(a.people_water_inside)}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <div className="legend-row">
+                    <span><i style={{ background: "var(--deep)" }} />People in deep water (1 m+)</span>
+                    <span><i style={{ background: "var(--inside)" }} />Water inside, under 1 m</span>
+                  </div>
+                </>
+              )}
+            </section>
+
+            {/* 2. Test options */}
+            <section className="step" aria-labelledby="s2">
+              <div className="step-head"><span className="step-n">2</span><h2 id="s2">Test options</h2></div>
+              {OPTIONS.map((o) => {
+                const c = choice[o.key];
+                const v = presets[o.key][c.size];
+                const idx = SIZES.findIndex(([k]) => k === c.size);
+                return (
+                  <div key={o.key} className={`option${c.on ? "" : " off"}`}>
+                    <div className="option-top">
+                      <button type="button" className="switch" aria-pressed={c.on} aria-label={`Use ${o.name}`} onClick={() => setOpt(o.key, { on: !c.on })} />
+                      <span className="option-icon dim"><OptionIcon k={o.key} /></span>
+                      <span className="option-name dim">{o.name}</span>
+                      <span className="option-eff dim" style={{ color: o.text }}>{o.effect(v)}</span>
+                    </div>
+                    <div className="detent dim" role="group" aria-label={`${o.name} size`}>
+                      <span className="detent-rail" />
+                      <span className="detent-knob" style={{ left: `${16.667 + idx * 33.333}%`, background: c.on ? o.colorDk : "#8C948A" }} />
+                      {SIZES.map(([k, label]) => (
+                        <button key={k} type="button" className="detent-stop" aria-pressed={c.size === k} onClick={() => setOpt(o.key, { size: k, on: true })}>
+                          <span className="detent-notch" />
+                          <span className="detent-label">{label}</span>
+                          <span className="detent-val">{o.stop(presets[o.key][k])}</span>
+                        </button>
+                      ))}
+                    </div>
+                    <p className="option-desc dim">{o.describe(v, o.key === "raise_homes" ? area : null)}</p>
+                    {o.key === "raise_homes" && area && (
+                      <div className="where dim">
+                        Where
+                        <div className="seg" role="group" aria-label="Where to raise homes">
+                          <button type="button" aria-pressed={true}>{titleCase(areaLabel(area))}</button>
+                          <button type="button" aria-pressed={false} onClick={() => setArea(null)}>Town-wide</button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </section>
+
+            {/* 3. Results (short; the full breakdown is on the summary page) */}
+            <section className="step" id="results" aria-labelledby="s3">
+              <div className="step-head">
+                <span className="step-n">3</span>
+                <h2 id="s3">Results</h2>
+                <span className="spacer" />
+                <div className="seg" role="group" aria-label="How to compare">
+                  <button type="button" aria-pressed={view === "together"} onClick={() => setView("together")}>All together</button>
+                  <button type="button" aria-pressed={view === "single"} onClick={() => setView("single")}>One at a time</button>
+                </div>
+              </div>
+              {backend !== "online" && <p className="muted">Results need the backend.</p>}
+              {backend === "online" && !anyOn && <p className="muted">Switch on at least one option above.</p>}
+              {backend === "online" && anyOn && counts?.people === 0 && (
+                <p className="muted">Nobody has water inside at {levelText}, so there is nothing to protect yet. Raise the river on the gauge.</p>
+              )}
+              {resultState === "error" && <p className="notice error">The comparison failed. Check the backend terminal for the error.</p>}
+              {anyOn && !showResult && resultState === "loading" && <p className="muted">Working out the results…</p>}
+              {anyOn && showResult && base > 0 && (
+                <div className={resultState === "loading" ? "loading-dim" : ""}>
+                  {view === "together" && lastStep ? (
+                    <>
+                      <div className="verdict-box" aria-live="polite">
+                        <div className="verdict-kick">At {fmtLevel(result.forLevel)} m, with {optionsPhrase(nOn)}</div>
+                        <div className="verdict-row">
+                          <span className="verdict-num">{fmt(kept)}</span>
+                          <span className="verdict-of">of {fmt(base)} people would keep water out of their homes</span>
+                          <span className="verdict-pct">{Math.round((kept / base) * 100)}%</span>
+                        </div>
+                        <div className="verdict-bar" aria-hidden="true">
+                          {lay.steps.map((s) => (
+                            <span key={s.added} style={{ width: `${(s.people_added_protection / base) * 100}%`, background: optionOf(s.added).color }} />
+                          ))}
+                        </div>
+                        <div className="verdict-scale"><span><b>{fmt(kept)}</b> kept dry</span><span><b>{fmt(lastStep.people_still_water_inside)}</b> still have water inside</span></div>
+                      </div>
+                      <div className="steps-mini" aria-label="What each option adds">
+                        {lay.steps.map((s) => (
+                          <div key={s.added}>
+                            <span className="sw" style={{ background: optionOf(s.added).colorDk }} />
+                            <span>{optionOf(s.added).name}</span>
+                            <b>−{fmt(s.people_added_protection)}</b>
+                          </div>
+                        ))}
+                      </div>
+                      <a className="more" href="#/nadi/summary">Full breakdown and charts in the summary →</a>
+                    </>
+                  ) : (
+                    <>
+                      {best && (
+                        <div className="verdict-box" aria-live="polite">
+                          <div className="verdict-kick">At {fmtLevel(result.forLevel)} m, each option on its own</div>
+                          <div className="verdict-row">
+                            <span className="verdict-num">{fmt(best.at_design_level.people_protected)}</span>
+                            <span className="verdict-of">of {fmt(base)} people protected by {optionOf(best.key).short}, the strongest option on its own here</span>
+                          </div>
+                        </div>
+                      )}
+                      <div className="bars">
+                        {singles.map((o) => {
+                          const n = o.at_design_level.people_protected;
+                          return (
+                            <div key={o.key} className="bar-row">
+                              <span className="bar-name"><i className="sw" style={{ background: optionOf(o.key).colorDk }} />{optionOf(o.key).name}</span>
+                              <span className="bar-track" role="img" aria-label={`${fmt(n)} people protected`}>
+                                <span style={{ width: `${(n / maxAlone) * 100}%`, background: optionOf(o.key).colorDk }} />
+                              </span>
+                              <span className="bar-val">{fmt(n)}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      {singles
+                        .filter((o) => o.key === "raise_homes" && o.at_design_level.people_protected === 0 && o.homes_too_deep_to_raise)
+                        .map((o) => (
+                          <p key="deep" className="hint">
+                            Raising homes helps nobody at this level: the water is too deep for a 1 m lift ({fmt(o.homes_too_deep_to_raise)} homes too deep).
+                          </p>
+                        ))}
+                      <a className="more" href="#/nadi/summary">Charts for every river level in the summary →</a>
+                    </>
+                  )}
+                </div>
+              )}
+            </section>
           </div>
-        )}
 
-        {/* 2. Options */}
-        <div style={styles.optionsHeader}>
-          <h3 style={{ ...styles.h3, margin: 0 }}>Options</h3>
-          <div>
-            <button
-              onClick={() => setTab("compare")}
-              style={{ ...styles.tab, ...(tab === "compare" ? styles.tabOn : {}) }}
-            >Compare</button>
-            <button
-              onClick={() => setTab("combine")}
-              style={{ ...styles.tab, ...(tab === "combine" ? styles.tabOn : {}) }}
-            >Combine</button>
+          <p className="footer">
+            A planning screen, not a flood forecast: it shows which ground the river reaches as it rises (height above
+            nearest drainage), not how water flows. Option effects are what-ifs. Data: FABDEM, OpenStreetMap, Overture Maps, WorldPop.
+          </p>
+          <div className="strip">
+            <span className="strip-t">
+              {!counts ? "Loading…" : counts.people === 0 ? `No homes flood at ${levelText}.` : !anyOn || !lastStep ? `At ${levelText}: ` : `With ${optionsPhrase(nOn)}: `}
+              {counts && counts.people > 0 && lastStep && anyOn ? (
+                <><b>{fmt(kept)}</b> kept dry · {fmt(lastStep.people_still_water_inside)} still flooded</>
+              ) : counts && counts.people > 0 ? (
+                <><b>{fmt(counts.people)}</b> people with water inside</>
+              ) : null}
+            </span>
+            <button type="button" className="strip-link" onClick={() => document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })}>Results</button>
+            <a className="solid" href="#/nadi/summary">Summary</a>
           </div>
-        </div>
+        </aside>
+      </div>
 
-        {MEASURES.map((m) => (
-          <div key={m.key} style={styles.optionRow}>
-            <label style={{ flex: 1, fontSize: 14 }}>
-              <input
-                type="checkbox"
-                checked={options[m.key].on}
-                onChange={(e) => setOpt(m.key, { on: e.target.checked })}
-              />{" "}
-              <Dot color={m.color} />
-              {m.key === "raise_homes"
-                ? `Raise homes${selectedArea ? ` near ${selectedArea.name}` : " (town-wide; pick an area above to target)"}`
-                : m.label}
-            </label>
-            <select
-              value={options[m.key].size}
-              disabled={!options[m.key].on}
-              onChange={(e) => setOpt(m.key, { size: e.target.value })}
-              aria-label={`${m.label} size`}
-            >
-              {SIZES.map((s) => <option key={s} value={s}>{s}</option>)}
-            </select>
-          </div>
-        ))}
+      {screen === "summary" && (
+        <Summary
+          level={level}
+          choice={choice}
+          presets={presets}
+          area={area}
+          counts={counts}
+          hotspots={hotspots}
+          backend={backend}
+          result={summary}
+          resultState={summaryState}
+          plan={plan}
+          planState={planState}
+          onWritePlan={writePlan}
+          onCopyPlan={copyPlan}
+          onDownloadPlan={downloadPlan}
+          copied={copied}
+          planOutdated={plan ? plan.settingsKey !== settingsKey : false}
+        />
+      )}
 
-        {/* OPTIONAL, LATER: the "Find best mix" button goes here, in the Combine tab.
-        {tab === "combine" && <button onClick={findBestMix}>Find best mix</button>}
-        */}
-
-        {/* 3. Results (changes with the tab) */}
-        <h3 style={styles.h3}>Results</h3>
-        {USE_PLACEHOLDER && (
-          <p style={styles.note}>Placeholder numbers: made up to test the layout, not real model results.</p>
-        )}
-        {mitigationError && <p style={styles.error}>{mitigationError}</p>}
-        {!anyOn && <p style={styles.muted}>Tick at least one option to see results.</p>}
-        {anyOn && !mitigation && !mitigationError && <p style={styles.muted}>Loading results...</p>}
-        {anyOn && mitigation && tab === "compare" && (
-          <>
-            <CompareBars mitigation={mitigation} level={level} />
-            <CompareLines mitigation={mitigation} level={level} />
-          </>
-        )}
-        {anyOn && mitigation && tab === "combine" && <Waterfall mitigation={mitigation} />}
-
-        <MapLayersPanel
-         available={extraAvailable} 
-         on={extraOn}
-         onChange={(id, value) => setExtraOn((o) => ({ ...o, [id]: value }))}/>
-         
-        {/* Key */}
-        <h3 style={styles.h3}>Key</h3>
-        <div style={styles.legend}>
-          {STATUS_LABELS.map(([key, label]) => (
-            <div key={key}><Dot color={COLORS[key]} /> {label}</div>
-          ))}
-          <div><Dot color={COLORS.water} /> Flood water</div>
-          <div><Dot color={COLORS.roadCut} /> Cut road</div>
-        </div>
-
-        <p style={styles.footer}>
-          Modelled exposure (HAND), not a river-flow simulation. Data: FABDEM, OpenStreetMap, Overture.
-        </p>
-      </aside>
-    </div>
+      {screen === "home" && <Home sources={sources} onOpen={() => (window.location.hash = "#/nadi")} />}
+    </>
   );
 }
-
-function Count({ number, label }) {
-  return (
-    <div style={styles.count}>
-      <div style={{ fontSize: 24, fontWeight: 700 }}>{number.toLocaleString()}</div>
-      <div style={{ fontSize: 12 }}>{label}</div>
-    </div>
-  );
-}
-
-function Dot({ color }) {
-  return (
-    <span style={{
-      display: "inline-block", width: 10, height: 10, borderRadius: "50%",
-      background: color, marginRight: 6,
-    }} />
-  );
-}
-
-// ---------- 6. STYLES ----------
-const styles = {
-  page: { display: "flex", position: "fixed", inset: 0, fontFamily: "sans-serif" },
-  map: { flex: 1, position: "relative" },
-  panel: { width: 440, padding: 16, overflowY: "auto", background: "#fff", boxSizing: "border-box" },
-  h2: { margin: "0 0 12px" },
-  h3: { margin: "20px 0 8px" },
-  sliderLabel: { display: "block", fontSize: 14 },
-  counts: { display: "flex", gap: 8, marginTop: 16 },
-  count: { flex: 1, background: "#f1f3f5", borderRadius: 6, padding: 8, textAlign: "center" },
-  row: { display: "grid", gridTemplateColumns: "24px 1fr 56px 48px 70px", gap: 4, fontSize: 13, padding: "6px 4px" },
-  rowButton: { width: "100%", border: "none", borderBottom: "1px solid #e9ecef", cursor: "pointer", font: "inherit", fontSize: 13 },
-  legend: { fontSize: 13, lineHeight: 1.7 },
-  footer: { fontSize: 12, color: "#555", marginTop: 20 },
-  error: { color: "#b00020", fontSize: 13 },
-  note: { background: "#fff3cd", padding: 8, borderRadius: 6, fontSize: 12 },
-  muted: { fontSize: 13, color: "#555" },
-  optionsHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", margin: "20px 0 8px" },
-  tab: { border: "1px solid #adb5bd", background: "#fff", padding: "4px 12px", cursor: "pointer", font: "inherit", fontSize: 13 },
-  tabOn: { background: "#1d3557", color: "#fff", borderColor: "#1d3557" },
-  optionRow: { display: "flex", alignItems: "center", gap: 8, padding: "4px 0" },
-  chartTitle: { fontSize: 13, fontWeight: 600, margin: "8px 0" },
-  barRow: { display: "grid", gridTemplateColumns: "130px 1fr 52px", gap: 8, alignItems: "center", fontSize: 13, margin: "6px 0" },
-  barLabel: { textAlign: "left" },
-  barTrack: { background: "#e9ecef", height: 14, borderRadius: 3, overflow: "hidden" },
-  barFill: { height: "100%" },
-  barValue: { textAlign: "right" },
-  wfRow: { display: "grid", gridTemplateColumns: "140px 1fr 96px", gap: 8, alignItems: "center", fontSize: 13, margin: "6px 0" },
-  wfLabel: { textAlign: "left" },
-  wfValue: { textAlign: "right", fontSize: 12 },
-};
