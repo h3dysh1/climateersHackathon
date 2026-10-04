@@ -1,17 +1,36 @@
-# Nadi Flood Planner
+# Waterline
 
-See who floods in Nadi, Fiji, as the river rises, and compare the planning measures that keep the most
-people dry before the next wet season: clearing the river channel, raising homes, and riverbank vegetation.
-Turns the result into a plain-language plan for Nadi Town Council, communities and government agencies.
+Flood planning for river towns. Raise the river on a gauge, see whose
+homes it reaches, and compare the measures that keep the most people dry before the next wet season.
+One click turns the result into a plain-language plan for town councils, communities and government agencies.
+
+**Nadi, Fiji is our first city**: a city we have prepared and validated. Any flood-prone river town
+covered by the global datasets can be added with the same pipeline (see [Adding a new town](#adding-a-new-town)).
 
 Built for Climate Hack-tion 2026 · Build for 2035 · COP31 priorities: **Resilient Cities & Buildings**
-(coping with climate extremes) and **Awareness Across All Areas**.
+(helping flood-prone towns cope with climate extremes) and **Awareness Across All Areas** (showing
+communities their own flood risk in a form anyone can read).
 
-## Why Nadi
+## The problem
 
-Nadi floods almost every year: 26 major floods since 1991, and the January 2009 flood killed 11 people,
-left 12,000 homeless and caused FJD 113 million in damage. Australia (AIFFP) and the ADB are funding the
-Nadi Flood Alleviation Project, so there is a real decision about where and how to reduce flood risk.
+River towns flood again and again, and the people who decide what to do about it rarely have a simple way to
+see **who floods first as the river rises**, or **which measures would keep the most people dry**. Flood
+studies are expensive and slow, and early warnings say *when* a flood is coming, not what to fix before it does.
+
+**Why Nadi as the test city:** Nadi floods almost every year: 26 major floods since 1991, and the January 2009
+flood caused FJD 113 million in damage. Australia (AIFFP) and the ADB are funding the Nadi Flood Alleviation Project, 
+so there is a real decision about where and how to reduce flood risk.
+
+## Using the app
+
+1. **Home:** choose a place (Nadi is ready) and see the four open datasets it is built from load.
+2. **Map:** drag the river gauge (0–6 m above normal). Homes, facilities and roads change colour as water
+   reaches them, and the most affected areas are ranked by people with water inside their homes. Pick an area
+   to target raised homes there.
+3. **Test options:** switch dredging, raising homes and riverbank vegetation on or off at Low / Med / High,
+   and compare them one at a time or all together (in order: town-wide measures first, then raised homes).
+4. **Summary:** the whole scenario in charts, and **Write the plan**, which turns it into a one-page plan
+   (written by Gemini, or by a built-in writer when no key is set). Copy, download or print it.
 
 ## How it works
 
@@ -22,25 +41,27 @@ Nadi Flood Alleviation Project, so there is a real decision about where and how 
 3. **Homes, facilities and roads:** each building, clinic, school, substation and road section gets the
    river rise at which water first reaches it; people per building come from WorldPop.
 4. **Measures:** Low / Medium / High settings for river channel clearing (0.1 / 0.25 / 0.5 m lower river),
-   riverbank vegetation (2 / 5 / 10% lower river rise) and raising homes (50 / 100 / 250 homes by 1 m),
-   from `backend/app/measures.json`, with sources and assumptions shown in the app. Picking a hotspot
-   targets home-raising to a 200 m circle around it.
-5. **Hotspots and plan:** the most affected areas are ranked, and an LLM (Gemini, or a built-in writer
-   when no key is set) produces a plain-language plan.
+   riverbank vegetation (2 / 5 / 10% lower river rise, fading to half in very big floods) and raising homes
+   (50 / 100 / 250 homes by 1 m), from `backend/app/measures.json`, with sources and assumptions shown in the
+   app. Raised homes go only where a 1 m lift keeps the water out. Picking a named area targets that area;
+   an "around X" area is targeted as an 800 m circle around its centre.
+5. **Most affected areas and plan:** areas are ranked by people with water inside (homes without a place name
+   join the nearest named place as "around X"), and an LLM (Gemini, or a built-in writer when no key is set)
+   writes a plain-language plan from the model's numbers only.
 6. **Mangroves (map layer):** current mangroves and mangroves lost since 1996 near the river mouth. They
    protect the coast from waves and erosion; they are not counted as lowering river floods.
 
-## What we found (Nadi, model estimates)
+## What we found in Nadi (model estimates)
 
 All heights are metres the river rises above its normal level. Full tables: `docs/figures/results.md` and
 `docs/checks/*.csv`; charts: `docs/figures/*.png`.
 
-| River rise | Buildings reached | People reached |
-| ---: | ---: | ---: |
-| 2 m | 1,090 | about 1,300 |
-| 3 m | 1,831 | about 2,200 |
-| 4 m | 3,268 | about 6,100 |
-| 6 m | 6,126 | about 14,700 |
+| River rise | Buildings reached | People reached | People with water inside |
+| ---: | ---: | ---: | ---: |
+| 2 m | 1,090 | about 1,300 | about 1,030 |
+| 3 m | 1,831 | about 2,200 | about 1,860 |
+| 4 m | 3,268 | about 6,100 | about 5,280 |
+| 6 m | 6,126 | about 14,700 | about 13,540 |
 
 - **The steepest rise is from 3 to 3.25 m** (about 1,900 more people reached), when water spills onto the
   flat floodplain.
@@ -61,19 +82,33 @@ All heights are metres the river rises above its normal level. Full tables: `doc
 
   Raising homes wins at most flood sizes, but at 3.25 m, the edge of the floodplain, lowering the river by
   0.25 m keeps nearly three times as many people dry.
+- **Order matters when measures are combined:** raising homes after the river is lowered protects more
+  people than raising them first, because every lift then goes to a home that is still flooding.
 - **Check against reality:** Namotomoto and Nawaka are both named in flood reports from April 2016
   (Fiji Village) and March 2026 (Fiji Village, Fiji Sun).
 
 Data size: 13,509 buildings, about 35,000 people (WorldPop) in mapped buildings, 46 facilities, 1,921 road
 sections; 47% of buildings have an area name. Re-check every number with `python check_claims.py`.
 
+## Adding a new town
+
+The flood model, comparison, ranking and plan writer are not tied to Nadi. To add a town:
+
+1. Pick its map box (west, south, east, north).
+2. Run the data pipeline below with that box (all four datasets are global).
+3. Copy `backend/places/nadi.json` to `backend/places/<town>.json` and set the local floor height (with a
+   source), existing flood projects and agencies. The plan writer uses these.
+4. Add the town to the place list in `frontend/src/Home.jsx`.
+
+Fiji towns such as Ba, Rakiraki and Labasa would be next; the pipeline is not limited to Fiji.
+
 ## Repo layout
 
 | Folder | Owner | What |
 | --- | --- | --- |
-| `frontend/` | P1 | React + MapLibre map and panels |
+| `frontend/` | P1 | React + MapLibre: home page (`Home.jsx`), map page (`App.jsx`, `RiverGauge.jsx`, `extraLayers.jsx`), summary page (`Summary.jsx`, `charts.jsx`); one stylesheet per page |
 | `data-prep/` | P2 | Python: `fetch_osm.py`, `hand_flood.py` (flood data), `make_figures.py` (charts), `check_claims.py` (checks every pitch number), `00_pick_gmw_tile.py`, `03_coast_segments.py` (mangroves) |
-| `backend/` | P3 | FastAPI: `/flood`, `/hotspots`, `/compare-measures`, `/flood-curve`, `/flood-plan` |
+| `backend/` | P3 | FastAPI: `/flood`, `/hotspots`, `/compare-measures`, `/flood-curve`, `/flood-plan`, `/measures`, `/places`; town settings in `places/` |
 | `docs/` | All | `contracts.md` (file formats, units, API), `figures/` (charts, results), `checks/` (claim checks) |
 
 **Rule:** work in your own folder; change `docs/contracts.md` only after agreeing in the team chat.
@@ -81,12 +116,12 @@ sections; 47% of buildings have an area name. Re-check every number with `python
 ## Quick start
 
 ```bash
-# Backend (built-in plan writer until GEMINI_API_KEY is set in backend/.env)
+# Backend (built-in plan writer until GEMINI_API_KEY is set in backend/.env; see env.example)
 cd backend
 python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000             # try it at http://localhost:8000/docs
 python -m pytest -q tests
+uvicorn app.main:app --reload --port 8000             # try it at http://localhost:8000/docs
 
 # Frontend (Node 22); set VITE_API_URL=http://localhost:8000 in frontend/.env.local
 cd ../frontend
@@ -94,10 +129,24 @@ npm install
 npm run dev                                           # http://localhost:5173
 ```
 
+## Deploying (Vercel)
+
+One Vercel project serves both parts (`vercel.json`, Vercel Services): the site at `/` and the backend at
+`/api/...` (the backend is set up with `root_path="/api"`). Import the repo with the root directory left as
+the top folder and set these environment variables:
+
+| Name | Value |
+| --- | --- |
+| `VITE_API_URL` | `/api` |
+| `GEMINI_API_KEY` | your Gemini key (server only; never put it in a `VITE_` variable) |
+| `LLM_MODEL` | `gemini-2.5-flash` |
+
+Check `/api/health` shows `"llm_provider": "gemini"` after deploying.
+
 ## Data pipeline (P2)
 
 From `data-prep/` (Windows PowerShell shown; use `/` paths on Mac/Linux). Large inputs go in
-`data-prep/raw/`, which is not committed.
+`data-prep/raw/`, which is not committed. The Nadi map box is shown; use your town's box for a new place.
 
 ```powershell
 pip install -r requirements.txt
@@ -122,7 +171,7 @@ Facilities are OSM amenities matched by whole name (hospital, clinic, doctors, s
 police, fire station, community centre, evacuation shelter) plus power substations; other OSM shelters
 (mostly bus stops and carports) are skipped.
 
-## Assumptions and limits (also in the app's About panel)
+## Assumptions and limits (also shown in the app)
 
 - **Not a flow simulation.** HAND shows which ground the river reaches as it rises. It ignores rainfall,
   timing, flow speed and how a flood moves down the valley.
@@ -130,17 +179,18 @@ police, fire station, community centre, evacuation shelter) plus power substatio
   (straight-line distance, not traced flow paths); unmapped channels are not detected.
 - **Elevation error.** FABDEM is a 30 m global model; heights can be off by a metre or more, especially in
   dense town blocks. We compared it with Copernicus DEM: FABDEM sits between the two Copernicus variants.
-- **People are estimated.** WorldPop 2020 people are shared across buildings by footprint area. About half of
-  WorldPop's residents in the map box fall in 100 m cells with no mapped building, so they are not counted.
-- **Floor height is assumed:** 0.3 m for every home (`backend/places/nadi.json`, from Fiji's 2017 census mix
-  and building guidelines). Surveyed floor heights would replace it.
+- **People are estimated.** WorldPop 2020 people are shared across buildings by footprint area. In Nadi, about
+  half of WorldPop's residents in the map box fall in 100 m cells with no mapped building, so they are not counted.
+- **Floor height is assumed:** 0.3 m for every home in Nadi (`backend/places/nadi.json`, from Fiji's 2017
+  census mix and building guidelines). Each town sets its own; surveyed floor heights would replace it.
 - **Measures are what-ifs.** Channel clearing and vegetation effects are user assumptions with sourced ranges,
   not engineering designs. People kept dry is not value for money: 100 raised homes and a town-wide measure
   cost very different amounts.
 - **Roads cut at 0.3 m** of water (shallow moving water can float a car).
-- **Area names** are the nearest OSM place within 3 km, so "Namotomoto" covers more than the village itself.
+- **Area names** are the nearest OSM place within 3 km, so "Namotomoto" covers more than the village itself;
+  homes further away are grouped as "around" the nearest named place.
 - **OSM gaps.** Missing rivers, bridges, facilities or place names lead to wrong cuts, missed facilities or
-  unnamed hotspots.
+  unnamed areas.
 - **Mangroves** reduce waves and erosion on the coast (13–66% wave height reduction per 100 m in field
   studies) but have a negligible effect on river flood levels (HESS 2024), so they are not in the flood model.
 
@@ -175,10 +225,11 @@ police, fire station, community centre, evacuation shelter) plus power substatio
 **AI assistance**
 - Claude (claude.ai) was used for idea development, planning, writing and testing the data-prep scripts
   (`hand_flood.py`, `fetch_osm.py`, `make_figures.py`, `check_claims.py`, `00_pick_gmw_tile.py`,
-  `03_coast_segments.py`), reviewing the code for bugs, and drafting the README and submission text.
-  All numbers were re-checked against the data with `check_claims.py`.
+  `03_coast_segments.py`), building and testing the backend (flood model, measures, area ranking, comparison
+  and plan endpoints), the frontend design (home, map and summary pages), reviewing the code for bugs, and
+  drafting the README and submission text. All numbers were re-checked against the data with `check_claims.py`.
 - Google Gemini writes the plan text inside the app.
-- List any other AI tools each team member used: [P1: ...] [P3: ...]
+- List any other AI tools each team member used: [P1: ...]
 
 ## Team
 
